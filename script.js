@@ -98,4 +98,51 @@ window.addEventListener("load", () => {
   }
 });
 
+// === Divisi Selection (hanya jika elemen ada di halaman) ===
+const divisionButtons = document.querySelectorAll(".division-btn");
+if (divisionButtons.length > 0) {
+  let selectedDivisions = [];
+
+  divisionButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const division = button.dataset.division;
+
+      // Kalau sudah dipilih -> unselect
+      if (selectedDivisions.includes(division)) {
+        selectedDivisions = selectedDivisions.filter(d => d !== division);
+        button.classList.remove("active");
+      } 
+      // Kalau belum dipilih dan < 2
+      else if (selectedDivisions.length < 2) {
+        selectedDivisions.push(division);
+        button.classList.add("active");
+      } 
+      // Kalau lebih dari 2 -> alert
+      else {
+        alert("Kamu hanya bisa memilih maksimal 2 divisi!");
+      }
+
+      console.log("Divisi terpilih:", selectedDivisions);
+    });
+  });
+
+  // === Tambahkan hidden input agar divisi ikut terkirim ===
+  const form = document.querySelector(".registration-form");
+  if (form) {
+    form.addEventListener("submit", () => {
+      // sebelum submit, hapus dulu input lama
+      form.querySelectorAll("input[name='divisions[]']").forEach(el => el.remove());
+
+      // tambahkan input hidden untuk tiap divisi
+      selectedDivisions.forEach(div => {
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = "divisions[]";
+        hiddenInput.value = div;
+        form.appendChild(hiddenInput);
+      });
+    });
+  }
+}
+
 

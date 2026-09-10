@@ -458,11 +458,11 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 > ⚠️ Dipecah menjadi 4 sub-sesi bertahap untuk meminimalkan risiko regresi dan memastikan verifikasi visual per halaman:
 
 #### Sesi 26A — Setup Tooling Tailwind CLI v3 & Eliminasi CDN (`P-06`)
-- [ ] Inisialisasi `package.json` dan install `tailwindcss@^3` lokal
-- [ ] Buat `tailwind.config.js` dengan menyatukan seluruh design tokens (warna, shadow, radius, font)
-- [ ] Buat `src/input.css` dan setup script npm `"build:css"`
-- [ ] Compile ke `dist/output.css` dan ganti tag CDN di `pengumuman.html`, `success.html`, `denied.html`
-- [ ] Verifikasi 3 halaman hasil bebas dari CDN runtime compiler
+- [x] Inisialisasi `package.json` dan install `tailwindcss@^3` lokal
+- [x] Buat `tailwind.config.js` dengan menyatukan seluruh design tokens (warna, shadow, radius, font)
+- [x] Buat `src/input.css` dan setup script npm `"build:css"`
+- [x] Compile ke `dist/output.css` dan ganti tag CDN di `pengumuman.html`, `success.html`, `denied.html`
+- [x] Verifikasi 3 halaman hasil bebas dari CDN runtime compiler
 
 #### Sesi 26B — Migrasi `thankyou.html`
 - [ ] Migrasi layout kartu & footer `thankyou.html` ke utility class Tailwind
