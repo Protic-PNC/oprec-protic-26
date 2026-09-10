@@ -195,100 +195,40 @@
           </div>
 
           <div class="grid grid-cols-3 gap-3 sm:gap-4 justify-items-center" role="group" aria-label="Pilihan Divisi">
-            <!-- Row 1: WEB, UI/UX, MOBILE -->
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="WEB" aria-label="Divisi Web" aria-pressed="false">
-                <img src="img/icon/web.svg" alt="Web Icon" width="30" height="30" loading="lazy" />
-                WEB
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="WEB">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="WEB" aria-label="Lihat detail divisi WEB" title="Detail WEB">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="UI/UX" aria-label="Divisi UI/UX" aria-pressed="false">
-                <img src="img/icon/ui.svg" alt="UI/UX Icon" width="30" height="30" loading="lazy" />
-                UI/UX
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="UI/UX">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="UI/UX" aria-label="Lihat detail divisi UI/UX" title="Detail UI/UX">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="MOBILE" aria-label="Divisi Mobile" aria-pressed="false">
-                <img src="img/icon/mobile.svg" alt="Mobile Icon" width="30" height="30" loading="lazy" />
-                MOBILE
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="MOBILE">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="MOBILE" aria-label="Lihat detail divisi MOBILE" title="Detail MOBILE">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <!-- Drawer Baris 1 (Membentang 3 kolom) -->
-            <div id="divisionDrawerRow1" class="col-span-3 w-full hidden overflow-hidden transition-all duration-300"></div>
-
-            <!-- Row 2: DEVOPS, DATA, HUMAS -->
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="DEVOPS" aria-label="Divisi DevOps" aria-pressed="false">
-                <img src="img/icon/devops.svg" alt="DevOps Icon" width="30" height="30" loading="lazy" />
-                DEVOPS
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="DEVOPS">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="DEVOPS" aria-label="Lihat detail divisi DEVOPS" title="Detail DEVOPS">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="DATA" aria-label="Divisi Data" aria-pressed="false">
-                <img src="img/icon/data.svg" alt="Data Icon" width="30" height="30" loading="lazy" />
-                DATA
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="DATA">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="DATA" aria-label="Lihat detail divisi DATA" title="Detail DATA">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="HUMAS" aria-label="Divisi Humas" aria-pressed="false">
-                <img src="img/icon/humas.svg" alt="Public Relations Icon" width="30" height="30" loading="lazy" />
-                HUMAS
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="HUMAS">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="HUMAS" aria-label="Lihat detail divisi HUMAS" title="Detail HUMAS">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <!-- Drawer Baris 2 (Membentang 3 kolom) -->
-            <div id="divisionDrawerRow2" class="col-span-3 w-full hidden overflow-hidden transition-all duration-300"></div>
-
-            <!-- Row 3: KOMINFO -->
-            <div class="relative flex justify-center w-[90px] h-[90px]">
-              <button type="button" class="division-btn w-full h-full" data-division="KOMINFO" aria-label="Divisi Kominfo" aria-pressed="false">
-                <img src="img/icon/kominfo.svg" alt="Communication Icon" width="30" height="30" loading="lazy" />
-                KOMINFO
-              </button>
-              <span class="division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none" data-rank-for="KOMINFO">1</span>
-              <button type="button" class="division-info-btn absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-black/60 border border-white/25 hover:border-lightgreen hover:bg-lightgreen/20 text-white/70 hover:text-lightergreen flex items-center justify-center transition-all cursor-pointer z-10" data-info-division="KOMINFO" aria-label="Lihat detail divisi KOMINFO" title="Detail KOMINFO">
-                <svg class="w-3 h-3 transition-transform duration-200 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-              </button>
-            </div>
-
-            <!-- Drawer Baris 3 (Membentang 3 kolom) -->
-            <div id="divisionDrawerRow3" class="col-span-3 w-full hidden overflow-hidden transition-all duration-300"></div>
+            <button type="button" class="division-btn" data-division="WEB" aria-label="Divisi Web" aria-pressed="false">
+              <img src="img/icon/web.svg" alt="Web Icon" width="30" height="30" loading="lazy" />
+              WEB
+            </button>
+            <button type="button" class="division-btn" data-division="UI/UX" aria-label="Divisi UI/UX" aria-pressed="false">
+              <img src="img/icon/ui.svg" alt="UI/UX Icon" width="30" height="30" loading="lazy" />
+              UI/UX
+            </button>
+            <button type="button" class="division-btn" data-division="MOBILE" aria-label="Divisi Mobile" aria-pressed="false">
+              <img src="img/icon/mobile.svg" alt="Mobile Icon" width="30" height="30" loading="lazy" />
+              MOBILE
+            </button>
+            <button type="button" class="division-btn" data-division="DEVOPS" aria-label="Divisi DevOps" aria-pressed="false">
+              <img src="img/icon/devops.svg" alt="DevOps Icon" width="30" height="30" loading="lazy" />
+              DEVOPS
+            </button>
+            <button type="button" class="division-btn" data-division="DATA" aria-label="Divisi Data" aria-pressed="false">
+              <img src="img/icon/data.svg" alt="Data Icon" width="30" height="30" loading="lazy" />
+              DATA
+            </button>
+            <button type="button" class="division-btn" data-division="HUMAS" aria-label="Divisi Humas" aria-pressed="false">
+              <img src="img/icon/humas.svg" alt="Public Relations Icon" width="30" height="30" loading="lazy" />
+              HUMAS
+            </button>
+            <button type="button" class="division-btn" data-division="KOMINFO" aria-label="Divisi Kominfo" aria-pressed="false">
+              <img src="img/icon/kominfo.svg" alt="Communication Icon" width="30" height="30" loading="lazy" />
+              KOMINFO
+            </button>
           </div>
 
           <div id="divisionError" class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center animate-fadeIn hidden" role="alert" aria-live="polite"></div>
 
-          <!-- MINIMAL SELECTION STRIP (1 BARIS RINGKAS) -->
-          <div id="divisionPreviewContainer" class="w-full transition-all duration-200" aria-live="polite">
+          <!-- DYNAMIC PREVIEW CARD (OPSI 2) -->
+          <div id="divisionPreviewContainer" class="flex flex-col gap-2.5 transition-all duration-300" aria-live="polite">
             <!-- Disuntikkan secara dinamis oleh JavaScript -->
           </div>
 
@@ -770,11 +710,6 @@
           }
         }
 
-        // Close any open division accordion drawer when moving between steps
-        if (typeof closeDivisionDrawer === "function") {
-          closeDivisionDrawer();
-        }
-
         // Hide current step
         const currentContainer = document.getElementById(`stepContainer${currentStep}`);
         if (currentContainer) {
@@ -864,181 +799,99 @@
         }
       }
 
-      // State & Helper for Inline Division Accordion Drawer
-      let activeDrawerDivision = null;
-
-      function getRowForDivision(divKey) {
-        if (["WEB", "UI/UX", "MOBILE"].includes(divKey)) return 1;
-        if (["DEVOPS", "DATA", "HUMAS"].includes(divKey)) return 2;
-        return 3;
-      }
-
-      window.closeDivisionDrawer = function() {
-        activeDrawerDivision = null;
-        [1, 2, 3].forEach((rowNum) => {
-          const rowEl = document.getElementById(`divisionDrawerRow${rowNum}`);
-          if (rowEl) {
-            rowEl.classList.add("hidden");
-            rowEl.innerHTML = "";
-          }
-        });
-        document.querySelectorAll(".division-info-btn").forEach((btn) => {
-          btn.classList.remove("border-lightgreen", "bg-lightgreen/30", "text-lightergreen");
-          const svg = btn.querySelector("svg");
-          if (svg) svg.classList.remove("rotate-180");
-        });
-      };
-
-      function renderDivisionDrawer(divKey, container) {
-        const info = divisionInfo[divKey];
-        if (!info || !container) return;
-
-        const isSelected = selectedDivisions.includes(divKey);
-        const isMaxAndNotSelected = selectedDivisions.length >= 2 && !isSelected;
-
-        container.innerHTML = `
-          <div class="rounded-lg bg-black/80 border border-lightgreen/40 p-3.5 sm:p-4 shadow-[0_4px_20px_rgba(0,0,0,0.6)] flex flex-col gap-2.5 animate-fadeIn">
-            <div class="flex items-start justify-between gap-3 border-b border-white/10 pb-2">
-              <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-7 h-7 rounded-md bg-black/60 border border-lightgreen/40 flex items-center justify-center shrink-0">
-                  <img src="${info.icon}" alt="" width="16" height="16" />
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <h4 class="font-bold text-xs sm:text-sm text-white tracking-wide truncate">${info.name}</h4>
-                    <span class="text-[10px] bg-lightgreen/20 text-lightergreen font-semibold px-2 py-0.5 rounded border border-lightgreen/30 uppercase tracking-wider shrink-0">
-                      ${isSelected ? 'Sudah Dipilih' : 'Detail Divisi'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                class="text-white/40 hover:text-white text-xs font-bold w-6 h-6 rounded flex items-center justify-center hover:bg-white/10 transition-colors cursor-pointer shrink-0"
-                onclick="closeDivisionDrawer()"
-                aria-label="Tutup detail divisi"
-                title="Tutup"
-              >
-                ✕
-              </button>
-            </div>
-            <p class="text-[11px] sm:text-xs text-white/85 leading-relaxed">
-              ${info.desc}
-            </p>
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 pt-1.5 border-t border-white/10">
-              <div class="text-[10px] sm:text-[11px] text-white/55 font-mono">
-                <span class="text-white/40 font-sans font-medium">Skill:</span> ${info.skills.join(" · ")}
-              </div>
-              <div class="flex items-center gap-2 shrink-0">
-                <button
-                  type="button"
-                  class="py-1.5 px-3 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
-                    isSelected
-                      ? 'bg-red-500/20 text-red-300 border border-red-500/40 hover:bg-red-500/30'
-                      : isMaxAndNotSelected
-                        ? 'opacity-40 cursor-not-allowed bg-white/10 text-white/40 border border-white/10'
-                        : 'bg-lightgreen text-darkgreen font-extrabold hover:brightness-110 shadow-glow'
-                  }"
-                  ${isMaxAndNotSelected ? 'disabled' : ''}
-                  onclick="toggleDivision('${divKey}')"
-                >
-                  <span>${isSelected ? 'Batalkan Pilihan' : '+ Pilih Divisi Ini'}</span>
-                </button>
-                <button
-                  type="button"
-                  class="py-1.5 px-2.5 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/10 border border-transparent transition-all cursor-pointer"
-                  onclick="closeDivisionDrawer()"
-                >
-                  Tutup
-                </button>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      window.toggleDivisionDrawer = function(divisionKey) {
-        if (activeDrawerDivision === divisionKey) {
-          closeDivisionDrawer();
-          return;
-        }
-
-        closeDivisionDrawer();
-
-        activeDrawerDivision = divisionKey;
-        const targetRow = getRowForDivision(divisionKey);
-        const drawerEl = document.getElementById(`divisionDrawerRow${targetRow}`);
-        if (!drawerEl) return;
-
-        renderDivisionDrawer(divisionKey, drawerEl);
-        drawerEl.classList.remove("hidden");
-
-        const activeBtn = document.querySelector(`.division-info-btn[data-info-division="${divisionKey}"]`);
-        if (activeBtn) {
-          activeBtn.classList.add("border-lightgreen", "bg-lightgreen/30", "text-lightergreen");
-          const svg = activeBtn.querySelector("svg");
-          if (svg) svg.classList.add("rotate-180");
-        }
-      };
-
-      // Minimal Selection Strip (1 Baris Ringkas)
+      // Dynamic Division Preview (Versi Terbaik: Unified Compact Panel)
       function updateDivisionPreview() {
         if (!divisionPreviewContainer) return;
 
         if (selectedDivisions.length === 0) {
           divisionPreviewContainer.innerHTML = `
-            <div class="py-2 px-3 rounded-lg bg-white/[0.02] border border-white/10 text-white/45 text-xs text-center flex items-center justify-center gap-2">
+            <div class="py-2.5 px-3.5 rounded-lg bg-white/[0.03] border border-white/10 text-white/50 text-xs text-center flex items-center justify-center gap-2">
               <span class="text-sm" aria-hidden="true">💡</span>
-              <span>Pilih tepat 2 divisi di atas. Tap ikon panah pada kartu untuk melihat rincian tugas.</span>
+              <span>Pilih divisi di atas untuk melihat ringkasan tugas & fokus keahlian.</span>
             </div>
           `;
           return;
         }
 
+        let html = `
+          <div class="rounded-lg bg-black/40 border border-white/15 divide-y divide-white/10 overflow-hidden shadow-md animate-fadeIn">
+        `;
+
+        // Pilihan 1
         const div1Key = selectedDivisions[0];
         const info1 = divisionInfo[div1Key];
-        const name1 = info1 ? info1.name : div1Key;
-
-        if (selectedDivisions.length === 1) {
-          divisionPreviewContainer.innerHTML = `
-            <div class="py-1.5 px-3 rounded-lg bg-black/40 border border-white/15 flex flex-wrap items-center justify-between gap-2 text-xs animate-fadeIn">
-              <div class="flex items-center gap-2 min-w-0">
-                <span class="text-white/50 text-[11px] shrink-0">Pilihan 1:</span>
-                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-lightgreen/20 text-lightergreen font-semibold border border-lightgreen/35 text-xs">
-                  <span class="font-bold text-[10px] w-3.5 h-3.5 rounded bg-lightgreen/30 flex items-center justify-center text-white">1</span>
-                  <span class="truncate">${name1}</span>
-                  <button type="button" class="hover:text-red-400 font-bold ml-1 cursor-pointer" onclick="toggleDivision('${div1Key}')" title="Batalkan Pilihan 1" aria-label="Batalkan Pilihan 1">✕</button>
-                </span>
+        html += `
+          <div class="p-3 flex items-start justify-between gap-2.5 bg-white/[0.01]">
+            <div class="flex items-start gap-2.5 min-w-0">
+              <span class="w-5 h-5 rounded bg-lightgreen/20 text-lightergreen font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+              <div class="min-w-0">
+                <div class="flex items-baseline gap-2">
+                  <h4 class="font-bold text-xs sm:text-sm text-white tracking-wide truncate">${info1.name}</h4>
+                  <span class="text-[10px] text-lightergreen font-semibold uppercase tracking-wider shrink-0">Pilihan 1</span>
+                </div>
+                <p class="text-[11px] sm:text-xs text-white/80 leading-relaxed mt-0.5">
+                  ${info1.desc}
+                </p>
+                <p class="text-[10px] text-white/45 mt-1 font-mono">
+                  Skill: ${info1.skills.join(" · ")}
+                </p>
               </div>
-              <span class="text-[11px] text-white/50 italic shrink-0">Pilih 1 divisi lagi</span>
             </div>
-          `;
-          return;
-        }
-
-        const div2Key = selectedDivisions[1];
-        const info2 = divisionInfo[div2Key];
-        const name2 = info2 ? info2.name : div2Key;
-
-        divisionPreviewContainer.innerHTML = `
-          <div class="py-1.5 px-3 rounded-lg bg-black/40 border border-lightgreen/35 shadow-[0_0_12px_rgba(73,209,133,0.15)] flex flex-wrap items-center justify-between gap-2 text-xs animate-fadeIn">
-            <div class="flex flex-wrap items-center gap-2 min-w-0">
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-lightgreen/20 text-lightergreen font-semibold border border-lightgreen/35 text-xs">
-                <span class="font-bold text-[10px] w-3.5 h-3.5 rounded bg-lightgreen/30 flex items-center justify-center text-white">1</span>
-                <span class="truncate">${name1}</span>
-                <button type="button" class="hover:text-red-400 font-bold ml-1 cursor-pointer" onclick="toggleDivision('${div1Key}')" title="Batalkan Pilihan 1" aria-label="Batalkan Pilihan 1">✕</button>
-              </span>
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-400/35 text-xs">
-                <span class="font-bold text-[10px] w-3.5 h-3.5 rounded bg-emerald-500/30 flex items-center justify-center text-white">2</span>
-                <span class="truncate">${name2}</span>
-                <button type="button" class="hover:text-red-400 font-bold ml-1 cursor-pointer" onclick="toggleDivision('${div2Key}')" title="Batalkan Pilihan 2" aria-label="Batalkan Pilihan 2">✕</button>
-              </span>
-            </div>
-            <span class="text-[11px] text-lightergreen font-semibold flex items-center gap-1 shrink-0">
-              <span>✓ Lengkap (2/2)</span>
-            </span>
+            <button
+              type="button"
+              class="text-white/40 hover:text-red-400 text-xs font-medium py-0.5 px-1.5 rounded hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+              title="Batalkan ${info1.name}"
+              aria-label="Batalkan ${info1.name}"
+              onclick="toggleDivision('${div1Key}')"
+            >
+              Batal
+            </button>
           </div>
         `;
+
+        // Pilihan 2
+        if (selectedDivisions.length > 1) {
+          const div2Key = selectedDivisions[1];
+          const info2 = divisionInfo[div2Key];
+          html += `
+            <div class="p-3 flex items-start justify-between gap-2.5 bg-white/[0.01]">
+              <div class="flex items-start gap-2.5 min-w-0">
+                <span class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                <div class="min-w-0">
+                  <div class="flex items-baseline gap-2">
+                    <h4 class="font-bold text-xs sm:text-sm text-white tracking-wide truncate">${info2.name}</h4>
+                    <span class="text-[10px] text-emerald-400 font-semibold uppercase tracking-wider shrink-0">Pilihan 2</span>
+                  </div>
+                  <p class="text-[11px] sm:text-xs text-white/80 leading-relaxed mt-0.5">
+                    ${info2.desc}
+                  </p>
+                  <p class="text-[10px] text-white/45 mt-1 font-mono">
+                    Skill: ${info2.skills.join(" · ")}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="text-white/40 hover:text-red-400 text-xs font-medium py-0.5 px-1.5 rounded hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+                title="Batalkan ${info2.name}"
+                aria-label="Batalkan ${info2.name}"
+                onclick="toggleDivision('${div2Key}')"
+              >
+                Batal
+              </button>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="py-2 px-3 flex items-center gap-2 text-[11px] sm:text-xs text-white/45 bg-black/20">
+              <span class="w-5 h-5 rounded bg-white/10 text-white/40 font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <span>Pilih 1 divisi lagi di atas sebagai Pilihan 2</span>
+            </div>
+          `;
+        }
+
+        html += `</div>`;
+        divisionPreviewContainer.innerHTML = html;
       }
 
       // Global function to toggle division from buttons or preview card cancel icon
@@ -1092,48 +945,16 @@
             btn.disabled = false;
             btn.classList.remove("disabled");
           }
-
-          // Update rank badge on card
-          const badge = document.querySelector(`.division-rank-badge[data-rank-for="${div}"]`);
-          if (badge) {
-            const index = selectedDivisions.indexOf(div);
-            if (index !== -1) {
-              badge.textContent = index + 1;
-              badge.className = index === 0
-                ? "division-rank-badge absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none"
-                : "division-rank-badge absolute top-1.5 left-1.5 w-5 h-5 rounded bg-emerald-400 text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none";
-            } else {
-              badge.className = "division-rank-badge hidden absolute top-1.5 left-1.5 w-5 h-5 rounded bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow pointer-events-none";
-            }
-          }
         });
-
-        // If drawer is currently open, re-render to update action button state
-        if (activeDrawerDivision) {
-          const targetRow = getRowForDivision(activeDrawerDivision);
-          const drawerEl = document.getElementById(`divisionDrawerRow${targetRow}`);
-          if (drawerEl && !drawerEl.classList.contains("hidden")) {
-            renderDivisionDrawer(activeDrawerDivision, drawerEl);
-          }
-        }
 
         updateDivisionPreview();
         updateStepperVisuals();
       }
 
-      // Division button click events (Card selection)
+      // Division button click events
       divisionButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           toggleDivision(btn.dataset.division);
-        });
-      });
-
-      // Division info toggle buttons (Accordion Drawer)
-      document.querySelectorAll(".division-info-btn").forEach((infoBtn) => {
-        infoBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          const div = infoBtn.dataset.infoDivision;
-          toggleDivisionDrawer(div);
         });
       });
 
