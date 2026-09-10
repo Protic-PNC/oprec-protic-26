@@ -75,27 +75,69 @@
         <p class="text-xs sm:text-sm font-medium uppercase text-center text-lightergreen/90 tracking-wider">Calon Pengurus PROTIC 2026/2027</p>
       </div>
 
-      <!-- VISUAL INTERACTIVE STEPPER -->
-      <div class="w-full max-w-[420px] mx-auto px-6 mb-8 relative z-[1]" aria-label="Tahapan Pendaftaran">
-        <div class="flex items-center justify-between relative">
-          <div class="absolute left-6 right-6 top-4 h-[2px] bg-white/15 z-0"></div>
-          <div id="stepperLine" class="absolute left-6 top-4 h-[2px] bg-gradient-to-r from-lightgreen to-lightergreen z-0 transition-all duration-300 w-0"></div>
-
-          <!-- Step 1 Dot -->
-          <button type="button" id="stepDot1" class="w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 1: Biodata">1</button>
-
-          <!-- Step 2 Dot -->
-          <button type="button" id="stepDot2" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 2: Divisi">2</button>
-
-          <!-- Step 3 Dot -->
-          <button type="button" id="stepDot3" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 3: Berkas & Kontak">3</button>
-        </div>
-        <div class="flex items-center justify-between mt-1.5 px-1 text-[11px] font-semibold uppercase tracking-wider">
-          <span id="stepText1" class="text-lightergreen">Biodata</span>
-          <span id="stepText2" class="text-white/60">Divisi</span>
-          <span id="stepText3" class="text-white/60">Berkas</span>
+      <!-- TAB SWITCHER: DAFTAR BARU vs KELOLA PENDAFTARAN -->
+      <div class="w-full max-w-[440px] mx-auto px-6 mb-6 relative z-[1]">
+        <div class="grid grid-cols-2 p-1 rounded-xl bg-black/50 border border-white/15 backdrop-blur-sm shadow-md" role="tablist" aria-label="Mode Formulir">
+          <button
+            type="button"
+            id="tabRegisterBtn"
+            class="py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow"
+            role="tab"
+            aria-selected="true"
+            aria-controls="registrationSection"
+          >
+            <span>✍️ Daftar Baru</span>
+          </button>
+          <button
+            type="button"
+            id="tabManageBtn"
+            class="py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer"
+            role="tab"
+            aria-selected="false"
+            aria-controls="manageRegistrationSection"
+          >
+            <span>🔍 Kelola Pendaftaran</span>
+          </button>
         </div>
       </div>
+
+      <!-- SECTION 1: PENDAFTARAN (STEPPER & FORM) -->
+      <div id="registrationSection" class="w-full">
+        <!-- MODE UBAH DATA BANNER -->
+        <div id="editModeBanner" class="hidden max-w-[480px] mx-auto mb-6 px-4 py-3 rounded-xl bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-between gap-3 text-xs sm:text-sm text-white animate-fadeIn">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+            <div class="min-w-0">
+              <span class="font-bold text-lightergreen">Mode Ubah Data:</span>
+              <span id="editModeApplicantName" class="text-white font-medium truncate ml-1"></span>
+            </div>
+          </div>
+          <button type="button" id="cancelEditBtn" class="py-1 px-2.5 rounded bg-white/10 hover:bg-white/20 text-white/80 hover:text-white text-xs font-semibold shrink-0 cursor-pointer transition-colors">
+            Batal Ubah
+          </button>
+        </div>
+
+        <!-- VISUAL INTERACTIVE STEPPER -->
+        <div class="w-full max-w-[420px] mx-auto px-6 mb-8 relative z-[1]" aria-label="Tahapan Pendaftaran">
+          <div class="flex items-center justify-between relative">
+            <div class="absolute left-6 right-6 top-4 h-[2px] bg-white/15 z-0"></div>
+            <div id="stepperLine" class="absolute left-6 top-4 h-[2px] bg-gradient-to-r from-lightgreen to-lightergreen z-0 transition-all duration-300 w-0"></div>
+
+            <!-- Step 1 Dot -->
+            <button type="button" id="stepDot1" class="w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 1: Biodata">1</button>
+
+            <!-- Step 2 Dot -->
+            <button type="button" id="stepDot2" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 2: Divisi">2</button>
+
+            <!-- Step 3 Dot -->
+            <button type="button" id="stepDot3" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 3: Berkas & Kontak">3</button>
+          </div>
+          <div class="flex items-center justify-between mt-1.5 px-1 text-[11px] font-semibold uppercase tracking-wider">
+            <span id="stepText1" class="text-lightergreen">Biodata</span>
+            <span id="stepText2" class="text-white/60">Divisi</span>
+            <span id="stepText3" class="text-white/60">Berkas</span>
+          </div>
+        </div>
 
       <div id="formAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
@@ -380,6 +422,129 @@
           </div>
         </div>
       </form>
+      </div> <!-- /registrationSection -->
+
+      <!-- SECTION 2: KELOLA PENDAFTARAN (VERIFIKASI & PREVIEW FIRST) -->
+      <div id="manageRegistrationSection" class="hidden w-full max-w-[500px] mx-auto px-6 sm:px-8 flex flex-col gap-6 relative z-[1]">
+        <!-- KARTU 1: VERIFIKASI IDENTITAS (NPM + 4 DIGIT WA) -->
+        <div id="manageVerifyCard" class="bg-black/50 border border-white/15 rounded-xl p-5 sm:p-6 flex flex-col gap-4 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+          <div class="border-b border-lightgreen/20 pb-3">
+            <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Verifikasi Identitas</span>
+            <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide mt-0.5">Cek Data Pendaftaran</h2>
+            <p class="text-xs text-white/60 mt-1 leading-relaxed">
+              Masukkan NPM dan 4 digit terakhir nomor WhatsApp yang kamu gunakan saat mendaftar.
+            </p>
+          </div>
+
+          <div id="verifyError" class="hidden text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2.5 px-3 text-xs font-medium animate-fadeIn" role="alert"></div>
+
+          <div class="flex flex-col gap-2">
+            <label for="verifyNpm" class="text-xs sm:text-sm font-semibold uppercase text-white/90">NPM / NIM <span class="text-red-500">*</span></label>
+            <input
+              type="text"
+              id="verifyNpm"
+              class="form-input"
+              placeholder="Contoh: 230102001"
+              inputmode="numeric"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <label for="verifyPin" class="text-xs sm:text-sm font-semibold uppercase text-white/90">PIN (4 Digit Terakhir No. WhatsApp) <span class="text-red-500">*</span></label>
+              <span class="text-[11px] text-white/50">Contoh: 7890</span>
+            </div>
+            <input
+              type="password"
+              id="verifyPin"
+              class="form-input tracking-widest text-center text-lg font-mono font-bold"
+              maxlength="4"
+              placeholder="••••"
+              inputmode="numeric"
+              autocomplete="off"
+            />
+          </div>
+
+          <button
+            type="button"
+            id="btnCheckRegistration"
+            class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+          >
+            <span id="btnCheckText">🔍 Temukan Data Pendaftaran</span>
+            <span id="btnCheckLoading" class="hidden inline-flex items-center">
+              <svg class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+              Memeriksa...
+            </span>
+          </button>
+        </div>
+
+        <!-- KARTU 2: PREVIEW FIRST CARD (RINGKASAN DATA TERVERIFIKASI) -->
+        <div id="managePreviewCard" class="hidden bg-black/60 border border-lightgreen/40 rounded-xl p-5 sm:p-6 flex flex-col gap-4 shadow-[0_4px_24px_rgba(73,209,133,0.15)] animate-fadeIn">
+          <div class="flex items-start justify-between border-b border-white/10 pb-3">
+            <div>
+              <div class="inline-flex items-center gap-1.5 py-0.5 px-2.5 rounded-full bg-lightgreen/20 text-lightergreen font-semibold text-[10px] sm:text-[11px] border border-lightgreen/40 mb-1">
+                <span>✓ Data Terverifikasi</span>
+              </div>
+              <h2 id="cardApplicantName" class="text-lg sm:text-xl font-bold text-white tracking-wide"></h2>
+              <p id="cardApplicantNpm" class="text-xs text-white/60 font-mono"></p>
+            </div>
+            <button type="button" id="btnExitManage" class="py-1 px-2.5 rounded bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-xs font-semibold cursor-pointer transition-colors">
+              Ganti NPM
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-white/[0.02] border border-white/10 rounded-lg p-3.5">
+            <div>
+              <span class="text-white/50 block">Kelas & Semester:</span>
+              <span id="cardClassSemester" class="font-semibold text-white text-xs sm:text-sm"></span>
+            </div>
+            <div>
+              <span class="text-white/50 block">Nomor WhatsApp:</span>
+              <span id="cardWhatsapp" class="font-semibold text-white text-xs sm:text-sm font-mono"></span>
+            </div>
+            <div class="sm:col-span-2">
+              <span class="text-white/50 block">Email Aktif:</span>
+              <span id="cardEmail" class="font-semibold text-white text-xs sm:text-sm break-all"></span>
+            </div>
+            <div class="sm:col-span-2">
+              <span class="text-white/50 block mb-1">Pilihan Divisi:</span>
+              <div class="flex flex-wrap gap-2" id="cardDivisionsBadge"></div>
+            </div>
+            <div class="sm:col-span-2">
+              <span class="text-white/50 block">Tautan Portofolio / CV:</span>
+              <a id="cardPortfolioLink" href="#" target="_blank" rel="noopener noreferrer" class="text-lightergreen hover:underline break-all block mt-0.5 font-mono text-[11px]"></a>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+            <button
+              type="button"
+              id="btnStartEdit"
+              class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm shadow-button hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <span>✏️ Ubah Data Pendaftaran</span>
+            </button>
+            <button
+              type="button"
+              id="btnOpenDeleteModal"
+              class="w-full sm:w-auto py-3 px-4 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-300 hover:text-red-200 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <span>🗑️ Hapus Pendaftaran</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- NOTIFIKASI SUKSES HAPUS -->
+        <div id="deleteSuccessBanner" class="hidden p-6 rounded-xl bg-black/60 border border-emerald-400/40 flex flex-col items-center gap-3 text-center shadow-lg animate-fadeIn">
+          <div class="w-12 h-12 rounded-full bg-lightgreen/20 text-lightergreen border border-lightgreen/40 flex items-center justify-center text-2xl font-bold">✓</div>
+          <h3 class="text-base sm:text-lg font-bold text-white">Pendaftaran Berhasil Dihapus</h3>
+          <p class="text-xs sm:text-sm text-white/80 max-w-[360px] leading-relaxed">Seluruh data pendaftaran Anda telah berhasil dihapus secara permanen dari sistem PROTIC.</p>
+          <button type="button" id="btnBackToNewRegister" class="mt-2 py-2.5 px-5 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm hover:brightness-110 shadow-glow cursor-pointer transition-all">
+            ✍️ Buka Pendaftaran Baru &rarr;
+          </button>
+        </div>
+      </div>
 
       <!-- MODAL KONFIRMASI (Native <dialog>) -->
       <dialog id="confirmModal" class="confirm-modal" aria-labelledby="modalTitle">
@@ -430,7 +595,56 @@
               Batalkan
             </button>
             <button type="button" id="modalConfirmBtn" disabled class="flex-[1.2] py-2.5 px-4 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-sm sm:text-base font-semibold cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(73,209,133,0.4)] focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2 opacity-50 cursor-not-allowed">
-              Kirim Sekarang &rarr;
+              <span id="modalConfirmBtnText">Kirim Sekarang &rarr;</span>
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- MODAL KONFIRMASI HAPUS BAHAYA (Native <dialog>) -->
+      <dialog id="deleteModal" class="confirm-modal" aria-labelledby="deleteModalTitle">
+        <div class="p-6 flex flex-col gap-4">
+          <div class="border-b border-red-500/30 pb-2 flex items-center gap-2 text-red-400">
+            <span class="text-xl">⚠️</span>
+            <h3 id="deleteModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-red-400">Konfirmasi Hapus Pendaftaran</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-white/85 leading-relaxed">
+            Apakah Anda yakin ingin menghapus pendaftaran atas nama <strong id="deleteTargetName" class="text-white"></strong> (NPM: <span id="deleteTargetNpm" class="font-mono text-lightergreen"></span>)?
+          </p>
+          <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-xs text-red-200/90 leading-relaxed">
+            ⚠️ <strong>Tindakan ini bersifat permanen (Hard Delete).</strong> Semua data Anda akan dihapus dari Google Sheets dan Anda harus mengisi formulir dari awal jika ingin bergabung kembali.
+          </div>
+          <div class="flex gap-3 justify-end mt-2">
+            <button type="button" id="deleteCancelBtn" class="flex-1 py-2.5 px-4 rounded-full bg-transparent border border-white/30 text-white/85 font-medium text-xs sm:text-sm hover:bg-white/10 cursor-pointer transition-colors">
+              Batal
+            </button>
+            <button type="button" id="deleteConfirmBtn" class="flex-[1.2] py-2.5 px-4 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer">
+              <span id="deleteBtnText">Ya, Hapus Sekarang</span>
+              <span id="deleteBtnLoading" class="hidden inline-flex items-center">
+                <svg class="w-4 h-4 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Menghapus...
+              </span>
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- MODAL DUPLIKASI TERDETEKSI (Native <dialog>) -->
+      <dialog id="duplicateModal" class="confirm-modal" aria-labelledby="duplicateModalTitle">
+        <div class="p-6 flex flex-col gap-4 text-center items-center">
+          <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold border border-amber-500/40">
+            !
+          </div>
+          <h3 id="duplicateModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-white">NPM Sudah Terdaftar</h3>
+          <p class="text-xs sm:text-sm text-white/80 max-w-[340px] leading-relaxed">
+            NPM <span id="duplicateNpmText" class="text-lightergreen font-bold font-mono"></span> sudah memiliki data pendaftaran di sistem. Anda tidak dapat mengirimkan formulir ganda.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2.5 w-full mt-2">
+            <button type="button" id="duplicateCloseBtn" class="py-2.5 px-4 rounded-full border border-white/20 text-white/70 hover:text-white text-xs sm:text-sm cursor-pointer transition-colors">
+              Tutup
+            </button>
+            <button type="button" id="duplicateGoManageBtn" class="py-2.5 px-4 rounded-full bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm cursor-pointer hover:brightness-110 shadow-glow transition-all">
+              🔍 Kelola / Ubah Data Saya &rarr;
             </button>
           </div>
         </div>
@@ -556,6 +770,54 @@
         }
       };
 
+      // Tab Switcher & Sections
+      const tabRegisterBtn = document.getElementById("tabRegisterBtn");
+      const tabManageBtn = document.getElementById("tabManageBtn");
+      const registrationSection = document.getElementById("registrationSection");
+      const manageRegistrationSection = document.getElementById("manageRegistrationSection");
+      const editModeBanner = document.getElementById("editModeBanner");
+      const editModeApplicantName = document.getElementById("editModeApplicantName");
+      const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+      // Manage Section Elements
+      const manageVerifyCard = document.getElementById("manageVerifyCard");
+      const managePreviewCard = document.getElementById("managePreviewCard");
+      const deleteSuccessBanner = document.getElementById("deleteSuccessBanner");
+      const verifyNpm = document.getElementById("verifyNpm");
+      const verifyPin = document.getElementById("verifyPin");
+      const btnCheckRegistration = document.getElementById("btnCheckRegistration");
+      const btnCheckText = document.getElementById("btnCheckText");
+      const btnCheckLoading = document.getElementById("btnCheckLoading");
+      const verifyError = document.getElementById("verifyError");
+      const btnExitManage = document.getElementById("btnExitManage");
+      const btnStartEdit = document.getElementById("btnStartEdit");
+      const btnOpenDeleteModal = document.getElementById("btnOpenDeleteModal");
+      const btnBackToNewRegister = document.getElementById("btnBackToNewRegister");
+
+      // Card Preview Elements
+      const cardApplicantName = document.getElementById("cardApplicantName");
+      const cardApplicantNpm = document.getElementById("cardApplicantNpm");
+      const cardClassSemester = document.getElementById("cardClassSemester");
+      const cardWhatsapp = document.getElementById("cardWhatsapp");
+      const cardEmail = document.getElementById("cardEmail");
+      const cardDivisionsBadge = document.getElementById("cardDivisionsBadge");
+      const cardPortfolioLink = document.getElementById("cardPortfolioLink");
+
+      // Delete Modal Elements
+      const deleteModal = document.getElementById("deleteModal");
+      const deleteTargetName = document.getElementById("deleteTargetName");
+      const deleteTargetNpm = document.getElementById("deleteTargetNpm");
+      const deleteCancelBtn = document.getElementById("deleteCancelBtn");
+      const deleteConfirmBtn = document.getElementById("deleteConfirmBtn");
+      const deleteBtnText = document.getElementById("deleteBtnText");
+      const deleteBtnLoading = document.getElementById("deleteBtnLoading");
+
+      // Duplicate Modal Elements
+      const duplicateModal = document.getElementById("duplicateModal");
+      const duplicateNpmText = document.getElementById("duplicateNpmText");
+      const duplicateCloseBtn = document.getElementById("duplicateCloseBtn");
+      const duplicateGoManageBtn = document.getElementById("duplicateGoManageBtn");
+
       // Step Containers
       const stepContainer1 = document.getElementById("stepContainer1");
       const stepContainer2 = document.getElementById("stepContainer2");
@@ -601,6 +863,9 @@
       const submitError = document.getElementById("submitError");
 
       let pendingFormData = null;
+      let isEditMode = false;
+      let verifiedApplicantData = null;
+      let currentVerifiedPin = null;
 
       function announce(message) {
         if (formAnnouncer) {
@@ -1080,6 +1345,358 @@
         });
       }
 
+      // Tab Switching Logic
+      function switchTab(tabName) {
+        if (tabName === "manage") {
+          tabManageBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow";
+          tabManageBtn.setAttribute("aria-selected", "true");
+          tabRegisterBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer";
+          tabRegisterBtn.setAttribute("aria-selected", "false");
+
+          registrationSection.classList.add("hidden");
+          manageRegistrationSection.classList.remove("hidden");
+          announce("Beralih ke tab Kelola Pendaftaran.");
+        } else {
+          tabRegisterBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow";
+          tabRegisterBtn.setAttribute("aria-selected", "true");
+          tabManageBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer";
+          tabManageBtn.setAttribute("aria-selected", "false");
+
+          registrationSection.classList.remove("hidden");
+          manageRegistrationSection.classList.add("hidden");
+          announce("Beralih ke tab Formulir Pendaftaran.");
+        }
+      }
+
+      if (tabRegisterBtn) tabRegisterBtn.addEventListener("click", () => switchTab("register"));
+      if (tabManageBtn) tabManageBtn.addEventListener("click", () => switchTab("manage"));
+
+      // Sub-view Switcher inside Manage Section
+      function showManageView(viewName) {
+        if (viewName === "preview") {
+          manageVerifyCard.classList.add("hidden");
+          managePreviewCard.classList.remove("hidden");
+          deleteSuccessBanner.classList.add("hidden");
+        } else if (viewName === "deleteSuccess") {
+          manageVerifyCard.classList.add("hidden");
+          managePreviewCard.classList.add("hidden");
+          deleteSuccessBanner.classList.remove("hidden");
+        } else {
+          manageVerifyCard.classList.remove("hidden");
+          managePreviewCard.classList.add("hidden");
+          deleteSuccessBanner.classList.add("hidden");
+          if (verifyPin) verifyPin.value = "";
+        }
+      }
+
+      function showVerifyError(msg) {
+        if (verifyError) {
+          verifyError.textContent = msg;
+          verifyError.classList.remove("hidden");
+          announce(msg);
+        }
+      }
+
+      function clearVerifyError() {
+        if (verifyError) {
+          verifyError.textContent = "";
+          verifyError.classList.add("hidden");
+        }
+      }
+
+      function setVerifyLoading(loading) {
+        if (!btnCheckRegistration || !btnCheckText || !btnCheckLoading) return;
+        btnCheckRegistration.disabled = loading;
+        if (loading) {
+          btnCheckText.classList.add("hidden");
+          btnCheckLoading.classList.remove("hidden");
+        } else {
+          btnCheckText.classList.remove("hidden");
+          btnCheckLoading.classList.add("hidden");
+        }
+      }
+
+      function setDeleteLoading(loading) {
+        if (!deleteConfirmBtn || !deleteBtnText || !deleteBtnLoading) return;
+        deleteConfirmBtn.disabled = loading;
+        if (loading) {
+          deleteBtnText.classList.add("hidden");
+          deleteBtnLoading.classList.remove("hidden");
+        } else {
+          deleteBtnText.classList.remove("hidden");
+          deleteBtnLoading.classList.add("hidden");
+        }
+      }
+
+      // Populate Data ke Kartu Ringkasan (Preview First)
+      function populatePreviewCard(data) {
+        if (!data) return;
+        if (cardApplicantName) cardApplicantName.textContent = data.fullname || "-";
+        if (cardApplicantNpm) cardApplicantNpm.textContent = `NPM: ${data.npm || "-"}`;
+        if (cardClassSemester) cardClassSemester.textContent = `${data.class || "-"} (Semester ${data.semester || "-"})`;
+        if (cardWhatsapp) cardWhatsapp.textContent = data.whatsapp || "-";
+        if (cardEmail) cardEmail.textContent = data.email || "-";
+
+        if (cardPortfolioLink) {
+          if (data.portfolio && data.portfolio.trim()) {
+            cardPortfolioLink.href = data.portfolio.trim();
+            cardPortfolioLink.textContent = data.portfolio.trim();
+            cardPortfolioLink.classList.remove("opacity-50", "pointer-events-none");
+          } else {
+            cardPortfolioLink.href = "#";
+            cardPortfolioLink.textContent = "(Tidak mencantumkan tautan portofolio)";
+            cardPortfolioLink.classList.add("opacity-50", "pointer-events-none");
+          }
+        }
+
+        if (cardDivisionsBadge) {
+          cardDivisionsBadge.innerHTML = "";
+          const divs = [data.division1, data.division2].filter(Boolean);
+          divs.forEach((d, idx) => {
+            const badge = document.createElement("span");
+            badge.className = "inline-flex items-center gap-1.5 py-1 px-2.5 rounded bg-lightgreen/20 text-lightergreen font-semibold text-xs border border-lightgreen/35";
+            badge.innerHTML = `<span class="w-4 h-4 rounded bg-lightgreen/30 text-white font-bold text-[10px] flex items-center justify-center">${idx + 1}</span> <span>${d}</span>`;
+            cardDivisionsBadge.appendChild(badge);
+          });
+        }
+      }
+
+      // Verifikasi Identitas Pendaftar (NPM + 4 Digit WA)
+      async function handleVerifyRegistration() {
+        const npm = verifyNpm ? verifyNpm.value.trim() : "";
+        const pin = verifyPin ? verifyPin.value.trim() : "";
+
+        if (!npm) {
+          showVerifyError("Harap masukkan NPM Anda!");
+          if (verifyNpm) verifyNpm.focus();
+          return;
+        }
+
+        if (!pin || pin.length !== 4) {
+          showVerifyError("PIN verifikasi harus berupa 4 digit terakhir nomor WhatsApp Anda!");
+          if (verifyPin) verifyPin.focus();
+          return;
+        }
+
+        clearVerifyError();
+        setVerifyLoading(true);
+        announce("Memeriksa data pendaftaran ke server, mohon tunggu...");
+
+        try {
+          const res = await fetch(scriptURL, {
+            method: "POST",
+            body: JSON.stringify({
+              action: "verify",
+              npm: npm,
+              pin: pin,
+            }),
+          });
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const result = await res.json();
+
+          if (result.result === "success" && result.data) {
+            verifiedApplicantData = result.data;
+            currentVerifiedPin = pin;
+            populatePreviewCard(result.data);
+            showManageView("preview");
+            announce(`Data pendaftaran atas nama ${result.data.fullname} berhasil diverifikasi.`);
+          } else if (result.result === "not_found") {
+            showVerifyError("❌ Data pendaftaran dengan NPM tersebut tidak ditemukan.");
+          } else if (result.result === "invalid_pin") {
+            showVerifyError("❌ 4 digit nomor WhatsApp tidak cocok dengan data pendaftaran yang tersimpan.");
+          } else {
+            showVerifyError(result.message || "Gagal memverifikasi identitas.");
+          }
+        } catch (err) {
+          console.error("Error verifying:", err);
+          showVerifyError("Gagal menghubungi server. Pastikan koneksi internet aktif dan coba lagi.");
+        } finally {
+          setVerifyLoading(false);
+        }
+      }
+
+      if (btnCheckRegistration) {
+        btnCheckRegistration.addEventListener("click", handleVerifyRegistration);
+      }
+
+      if (verifyPin) {
+        verifyPin.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleVerifyRegistration();
+          }
+        });
+      }
+
+      // Tombol Ganti NPM / Keluar dari Preview
+      if (btnExitManage) {
+        btnExitManage.addEventListener("click", () => {
+          verifiedApplicantData = null;
+          currentVerifiedPin = null;
+          showManageView("verify");
+        });
+      }
+
+      // Tombol Kembali ke Pendaftaran Baru setelah Hapus Sukses
+      if (btnBackToNewRegister) {
+        btnBackToNewRegister.addEventListener("click", () => {
+          cancelEditMode(true);
+          switchTab("register");
+          showManageView("verify");
+        });
+      }
+
+      // Mode Edit: Mengisi Data Lama ke Form & Beralih ke Form Step 1
+      function startEditMode(data) {
+        if (!data) return;
+        isEditMode = true;
+
+        if (form.fullname) form.fullname.value = data.fullname || "";
+        if (form.npm) {
+          form.npm.value = data.npm || "";
+          form.npm.readOnly = true;
+          form.npm.classList.add("opacity-70", "cursor-not-allowed");
+        }
+        if (form.class) form.class.value = data.class || "";
+        if (form.semester) form.semester.value = data.semester || "";
+        if (form.portfolio) form.portfolio.value = data.portfolio || "";
+        if (form.whatsapp) form.whatsapp.value = data.whatsapp || "";
+        if (form.email) form.email.value = data.email || "";
+
+        selectedDivisions = [data.division1, data.division2].filter(Boolean);
+
+        updateDivisionUI();
+        updateStepperVisuals();
+
+        if (editModeBanner) editModeBanner.classList.remove("hidden");
+        if (editModeApplicantName) {
+          editModeApplicantName.textContent = `${data.fullname} (${data.npm})`;
+        }
+
+        if (btnText) btnText.innerHTML = "Simpan Perubahan &rarr;";
+        const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
+        if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Simpan Perubahan &rarr;";
+
+        switchTab("register");
+        goToStep(1);
+        announce("Mode Ubah Data aktif. Silakan perbarui data Anda dan kirim kembali.");
+      }
+
+      function cancelEditMode(resetAll = false) {
+        isEditMode = false;
+        if (form.npm) {
+          form.npm.readOnly = false;
+          form.npm.classList.remove("opacity-70", "cursor-not-allowed");
+        }
+        if (editModeBanner) editModeBanner.classList.add("hidden");
+        if (btnText) btnText.innerHTML = "Kirim Pendaftaran &rarr;";
+        const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
+        if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Kirim Sekarang &rarr;";
+
+        if (resetAll) {
+          clearDraft();
+          form.reset();
+          selectedDivisions = [];
+          updateDivisionUI();
+          updateStepperVisuals();
+          goToStep(1);
+        }
+      }
+
+      if (btnStartEdit) {
+        btnStartEdit.addEventListener("click", () => {
+          if (verifiedApplicantData) {
+            startEditMode(verifiedApplicantData);
+          }
+        });
+      }
+
+      if (cancelEditBtn) {
+        cancelEditBtn.addEventListener("click", () => {
+          cancelEditMode(true);
+          announce("Mode ubah data dibatalkan.");
+        });
+      }
+
+      // Hard Delete Modal Handling
+      if (btnOpenDeleteModal && deleteModal) {
+        btnOpenDeleteModal.addEventListener("click", () => {
+          if (!verifiedApplicantData) return;
+          if (deleteTargetName) deleteTargetName.textContent = verifiedApplicantData.fullname || "Pendaftar";
+          if (deleteTargetNpm) deleteTargetNpm.textContent = verifiedApplicantData.npm || "-";
+          if (typeof deleteModal.showModal === "function") {
+            deleteModal.showModal();
+          }
+        });
+      }
+
+      if (deleteCancelBtn && deleteModal) {
+        deleteCancelBtn.addEventListener("click", () => {
+          deleteModal.close();
+        });
+      }
+
+      if (deleteConfirmBtn) {
+        deleteConfirmBtn.addEventListener("click", async () => {
+          if (!verifiedApplicantData || !currentVerifiedPin) return;
+
+          setDeleteLoading(true);
+          announce("Menghapus data pendaftaran secara permanen...");
+
+          try {
+            const res = await fetch(scriptURL, {
+              method: "POST",
+              body: JSON.stringify({
+                action: "delete",
+                npm: verifiedApplicantData.npm,
+                pin: currentVerifiedPin,
+              }),
+            });
+
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const result = await res.json();
+
+            if (result.result === "success") {
+              if (deleteModal && deleteModal.open) deleteModal.close();
+              clearDraft();
+              cancelEditMode(true);
+              verifiedApplicantData = null;
+              currentVerifiedPin = null;
+              showManageView("deleteSuccess");
+              announce("Pendaftaran Anda telah berhasil dihapus secara permanen dari sistem.");
+            } else {
+              alert(result.message || "Gagal menghapus pendaftaran.");
+            }
+          } catch (err) {
+            console.error("Error deleting:", err);
+            alert("Terjadi kesalahan jaringan saat menghapus pendaftaran. Silakan coba lagi.");
+          } finally {
+            setDeleteLoading(false);
+          }
+        });
+      }
+
+      // Duplicate Modal Handlers
+      if (duplicateCloseBtn && duplicateModal) {
+        duplicateCloseBtn.addEventListener("click", () => {
+          duplicateModal.close();
+        });
+      }
+
+      if (duplicateGoManageBtn && duplicateModal) {
+        duplicateGoManageBtn.addEventListener("click", () => {
+          duplicateModal.close();
+          const attemptedNpm = form.npm ? form.npm.value.trim() : "";
+          switchTab("manage");
+          showManageView("verify");
+          if (verifyNpm && attemptedNpm) {
+            verifyNpm.value = attemptedNpm;
+            if (verifyPin) verifyPin.focus();
+          }
+        });
+      }
+
       // Form submit: validasi Step 3 & buka modal konfirmasi
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -1155,11 +1772,18 @@
 
       function executeFormSubmit(formData) {
         setLoading(true);
-        announce("Mengirim formulir pendaftaran, mohon tunggu...");
+        announce(isEditMode ? "Menyimpan perubahan data pendaftaran..." : "Mengirim formulir pendaftaran, mohon tunggu...");
+
+        const actionType = isEditMode ? "update" : "register";
+        const payload = {
+          ...formData,
+          action: actionType,
+          pin: isEditMode ? currentVerifiedPin : undefined,
+        };
 
         fetch(scriptURL, {
           method: "POST",
-          body: JSON.stringify(formData),
+          body: JSON.stringify(payload),
         })
           .then((res) => {
             if (!res.ok) {
@@ -1168,6 +1792,48 @@
             return res.json();
           })
           .then((data) => {
+            // Kasus 1: Pendaftaran Baru tapi NPM Sudah Terdaftar (Duplikasi)
+            if (data.result === "duplicate") {
+              if (duplicateNpmText) duplicateNpmText.textContent = formData.npm;
+              if (duplicateModal && typeof duplicateModal.showModal === "function") {
+                duplicateModal.showModal();
+              } else {
+                showSubmitError(
+                  `<strong>NPM ${formData.npm} sudah terdaftar!</strong><br />Anda tidak dapat mengirimkan formulir ganda. Silakan beralih ke tab 'Kelola Pendaftaran' untuk mengubah data.`,
+                  "NPM sudah terdaftar."
+                );
+              }
+              return;
+            }
+
+            // Kasus 2: Gagal Update karena Otorisasi Tidak Cocok
+            if (data.result === "invalid_pin" || data.result === "not_found") {
+              showSubmitError(
+                `<strong>Gagal memperbarui data:</strong> ${data.message || "Otorisasi tidak valid."}`,
+                data.message
+              );
+              return;
+            }
+
+            // Kasus 3: Berhasil Update Data
+            if (isEditMode) {
+              clearDraft();
+              announce("Perubahan data pendaftaran berhasil disimpan ke Google Sheets!");
+              alert("✅ Perubahan data pendaftaran Anda berhasil disimpan!");
+
+              // Update data lokal & segarkan kartu ringkasan
+              verifiedApplicantData = {
+                ...verifiedApplicantData,
+                ...formData,
+              };
+              populatePreviewCard(verifiedApplicantData);
+              cancelEditMode(false);
+              switchTab("manage");
+              showManageView("preview");
+              return;
+            }
+
+            // Kasus 4: Berhasil Pendaftaran Baru
             clearDraft();
             announce("Pendaftaran berhasil! Mengalihkan ke halaman terima kasih.");
             window.location.href = "thankyou.html";

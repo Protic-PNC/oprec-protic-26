@@ -104,13 +104,29 @@ npm run build:css
 
 Backend sistem ini terletak di direktori [script/](script/) dan terdiri dari dua file script Google Apps Script:
 
-### 3.1 Pendaftaran (`script/regist.gs`)
-Menerima payload HTTP POST berformat JSON dari [form.html](form.html) dan menyimpannya ke sheet bernama **`Pendaftar`**.
+### 3.1 Pendaftaran & Manajemen Pendaftar (`script/regist.gs`)
+Menerima payload HTTP POST berformat JSON dari [form.html](form.html) untuk mengelola data di sheet bernama **`Pendaftar`**.
+
+Script ini mendukung 4 aksi operasi (*Action Contract*):
+1. **`action: "register"`** (Pendaftaran Baru):
+   * Memeriksa apakah NPM sudah terdaftar di Kolom C.
+   * Jika sudah ada, mengembalikan `{ result: "duplicate", message: "NPM sudah terdaftar..." }`.
+   * Jika belum ada, menambahkan baris baru dengan `sheet.appendRow(...)`.
+2. **`action: "verify"`** (Verifikasi Identitas & Ambil Data):
+   * Menerima parameter `npm` dan `pin` (4 digit terakhir nomor WhatsApp pendaftar).
+   * Memvalidasi kecocokan data. Jika valid, mengembalikan data lengkap pendaftar `{ result: "success", data: { ... } }`.
+3. **`action: "update"`** (Pembaruan Data):
+   * Menerima parameter `npm`, `pin`, dan kolom yang diperbarui.
+   * Memvalidasi otorisasi via PIN WhatsApp.
+   * Menimpa (*overwrite*) baris yang bersangkutan di sheet `Pendaftar` dengan data terbaru dan memperbarui timestamp.
+4. **`action: "delete"`** (Pembatalan / Hard Delete):
+   * Menerima parameter `npm` dan `pin`.
+   * Menghapus baris secara permanen dari Google Sheets menggunakan `sheet.deleteRow(rowIndex)`.
 
 **Skema Kolom di Sheet `Pendaftar`**:
 | Kolom | Nama Field | Keterangan |
 |---|---|---|
-| A | Timestamp | Waktu pendaftaran otomatis (`new Date()`) |
+| A | Timestamp | Waktu pendaftaran / pembaruan otomatis (`new Date()`) |
 | B | Nama Lengkap | String nama pendaftar (`data.fullname`) |
 | C | NPM / NIM | Nomor Pokok Mahasiswa (`data.npm`) |
 | D | Kelas | Contoh: `TI-2A` (`data.class`) |
