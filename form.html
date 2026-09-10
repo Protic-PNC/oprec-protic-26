@@ -54,6 +54,32 @@
         <div class="w-[344px] max-w-full h-[1px] bg-gradient-to-r from-darkgreen via-accentgreen to-black shadow-glow"></div>
       </div>
 
+      <!-- VISUAL FORM STEPPER -->
+      <div class="w-full max-w-[420px] mx-auto px-6 mb-8 relative z-[1]" aria-label="Tahapan Pendaftaran">
+        <div class="flex items-center justify-between relative">
+          <div class="absolute left-6 right-6 top-4 h-[2px] bg-white/20 z-0"></div>
+          <div id="stepperLine" class="absolute left-6 top-4 h-[2px] bg-gradient-to-r from-lightgreen to-lightergreen z-0 transition-all duration-300 w-0"></div>
+
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
+            <div id="stepDot1" class="w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300">1</div>
+            <span id="stepText1" class="text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors">Biodata</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
+            <div id="stepDot2" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300">2</div>
+            <span id="stepText2" class="text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors">Divisi</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
+            <div id="stepDot3" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300">3</div>
+            <span id="stepText3" class="text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors">Berkas</span>
+          </div>
+        </div>
+      </div>
+
       <div id="formAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
       <form id="registrationForm" class="px-6 sm:px-8 flex flex-col gap-10 relative z-[1]">
@@ -387,28 +413,31 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-8 px-6 sm:px-8 flex flex-col justify-between mt-8">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-[1200px] w-full mx-auto">
-        <div class="flex items-center gap-4">
-          <div class="footer-logo">
+    <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-5 px-4 sm:px-8 mt-12">
+      <div class="flex items-center justify-between gap-3 sm:gap-6 max-w-[1200px] w-full mx-auto">
+        <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div class="shrink-0">
             <img
               src="img/Protic.png"
               alt="PROTIC Logo"
               width="85"
               height="95"
-              class="w-[85px] h-[95px]"
+              class="w-[55px] h-[62px] sm:w-[75px] sm:h-[84px]"
               loading="lazy"
             />
           </div>
-          <div>
-            <h3 class="font-cinzel font-bold text-3xl sm:text-4xl leading-tight mb-1">PROTIC</h3>
-            <p class="text-xs text-white/90">
+          <div class="min-w-0">
+            <h3 class="font-cinzel font-bold text-2xl sm:text-3xl leading-tight mb-0.5 tracking-wide">PROTIC</h3>
+            <p class="text-[11px] sm:text-xs text-white/90 leading-tight">
               Programming Technology Informatics Club
             </p>
+            <p class="text-[10px] sm:text-xs text-white/70 mt-1">© 2026 Protic | All Right Reserved</p>
           </div>
         </div>
-        <div class="w-full h-px md:w-px md:h-16 bg-white shadow-glow hidden md:block"></div>
-        <div class="flex flex-row md:flex-col gap-3">
+
+        <div class="h-14 sm:h-16 w-px bg-white/50 shadow-glow shrink-0"></div>
+
+        <div class="flex flex-col gap-2 shrink-0">
           <a href="https://github.com/Protic-PNC" aria-label="Github" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
             ><img
               src="img/icon/github.svg"
@@ -444,7 +473,6 @@
           /></a>
         </div>
       </div>
-      <p class="text-xs font-medium text-center mt-6 pt-2 text-white/80">© 2026 Protic | All Right Reserved</p>
     </footer>
 
     <!-- SCRIPT -->
@@ -483,6 +511,67 @@
         }
       }
 
+      function updateStepper() {
+        const biodataFilled = Boolean(
+          form.fullname && form.fullname.value.trim() &&
+          form.npm && form.npm.value.trim() &&
+          form.class && form.class.value.trim() &&
+          form.semester && form.semester.value.trim()
+        );
+        const divisionFilled = selectedDivisions.length === 2;
+        const berkasFilled = Boolean(
+          form.whatsapp && form.whatsapp.value.trim() &&
+          form.email && form.email.value.trim()
+        );
+
+        const stepperLine = document.getElementById("stepperLine");
+        const dot1 = document.getElementById("stepDot1");
+        const dot2 = document.getElementById("stepDot2");
+        const dot3 = document.getElementById("stepDot3");
+        const text2 = document.getElementById("stepText2");
+        const text3 = document.getElementById("stepText3");
+
+        if (!dot1 || !dot2 || !dot3 || !stepperLine) return;
+
+        // Step 1 status
+        dot1.textContent = biodataFilled ? "✓" : "1";
+
+        // Stepper line and Step 2 / 3 status
+        if (biodataFilled && divisionFilled && berkasFilled) {
+          stepperLine.style.width = "100%";
+          dot2.textContent = "✓";
+          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
+          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
+          dot3.textContent = "✓";
+          dot3.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
+          if (text3) text3.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
+        } else if (biodataFilled && divisionFilled) {
+          stepperLine.style.width = "100%";
+          dot2.textContent = "✓";
+          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
+          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
+          dot3.textContent = "3";
+          dot3.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
+          if (text3) text3.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
+        } else if (biodataFilled) {
+          stepperLine.style.width = "50%";
+          dot2.textContent = "2";
+          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
+          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
+          dot3.textContent = "3";
+          dot3.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
+          if (text3) text3.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
+        } else {
+          stepperLine.style.width = "0%";
+          dot2.textContent = "2";
+          dot2.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
+          if (text2) text2.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
+          dot3.textContent = "3";
+          dot3.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
+          if (text3) text3.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
+        }
+      }
+
       function updateDivisionUI() {
         const count = selectedDivisions.length;
         if (divisionCounter) {
@@ -507,6 +596,8 @@
             btn.classList.remove("disabled");
           }
         });
+
+        updateStepper();
       }
 
       divisionButtons.forEach((btn) => {
@@ -534,7 +625,9 @@
         });
       });
 
+      form.addEventListener("input", updateStepper);
       updateDivisionUI();
+      updateStepper();
 
       const submitBtn = document.getElementById("submitBtn");
       const btnText = document.getElementById("btnText");
