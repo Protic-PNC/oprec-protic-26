@@ -70,49 +70,50 @@
         </div>
       </header>
 
-      <div class="px-6 flex flex-col items-center gap-6 mb-8 relative z-[1]">
-        <h2 class="font-cinzel text-2xl font-bold leading-[27px] uppercase text-center">FORMULIR PENDAFTARAN</h2>
-        <p class="text-base font-normal leading-[27px] uppercase text-center text-textgray">Pengurus Protic tahun 2026/2027</p>
-        <div class="w-[344px] max-w-full h-[1px] bg-gradient-to-r from-darkgreen via-accentgreen to-black shadow-glow"></div>
+      <div class="px-6 flex flex-col items-center gap-2 mb-6 relative z-[1]">
+        <h1 class="font-cinzel text-2xl sm:text-3xl font-bold leading-tight uppercase text-center tracking-wide">FORMULIR PENDAFTARAN</h1>
+        <p class="text-xs sm:text-sm font-medium uppercase text-center text-lightergreen/90 tracking-wider">Calon Pengurus PROTIC 2026/2027</p>
       </div>
 
-      <!-- VISUAL FORM STEPPER -->
+      <!-- VISUAL INTERACTIVE STEPPER -->
       <div class="w-full max-w-[420px] mx-auto px-6 mb-8 relative z-[1]" aria-label="Tahapan Pendaftaran">
         <div class="flex items-center justify-between relative">
-          <div class="absolute left-6 right-6 top-4 h-[2px] bg-white/20 z-0"></div>
+          <div class="absolute left-6 right-6 top-4 h-[2px] bg-white/15 z-0"></div>
           <div id="stepperLine" class="absolute left-6 top-4 h-[2px] bg-gradient-to-r from-lightgreen to-lightergreen z-0 transition-all duration-300 w-0"></div>
 
-          <!-- Step 1 -->
-          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
-            <div id="stepDot1" class="w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300">1</div>
-            <span id="stepText1" class="text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors">Biodata</span>
-          </div>
+          <!-- Step 1 Dot -->
+          <button type="button" id="stepDot1" class="w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 1: Biodata">1</button>
 
-          <!-- Step 2 -->
-          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
-            <div id="stepDot2" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300">2</div>
-            <span id="stepText2" class="text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors">Divisi</span>
-          </div>
+          <!-- Step 2 Dot -->
+          <button type="button" id="stepDot2" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 2: Divisi">2</button>
 
-          <!-- Step 3 -->
-          <div class="flex flex-col items-center relative z-10 gap-1.5 cursor-default">
-            <div id="stepDot3" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300">3</div>
-            <span id="stepText3" class="text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors">Berkas</span>
-          </div>
+          <!-- Step 3 Dot -->
+          <button type="button" id="stepDot3" class="w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accentgreen" aria-label="Langkah 3: Berkas & Kontak">3</button>
+        </div>
+        <div class="flex items-center justify-between mt-1.5 px-1 text-[11px] font-semibold uppercase tracking-wider">
+          <span id="stepText1" class="text-lightergreen">Biodata</span>
+          <span id="stepText2" class="text-white/60">Divisi</span>
+          <span id="stepText3" class="text-white/60">Berkas</span>
         </div>
       </div>
 
       <div id="formAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-      <form id="registrationForm" class="px-6 sm:px-8 flex flex-col gap-10 relative z-[1]">
-        <!-- BIODATA -->
-        <div class="flex flex-col gap-4">
-          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
-            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">BIODATA</h3>
+      <form id="registrationForm" class="px-6 sm:px-8 flex flex-col relative z-[1]">
+        <!-- LANGKAH 1: BIODATA -->
+        <div id="stepContainer1" class="form-step active flex flex-col gap-6">
+          <div class="flex items-center justify-between border-b border-lightgreen/20 pb-3">
+            <div>
+              <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Langkah 1 dari 3</span>
+              <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Data Diri Calon Pengurus</h2>
+            </div>
+            <span class="text-xs text-white/60 font-medium">Semua wajib diisi</span>
           </div>
 
+          <div id="step1Error" class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center animate-fadeIn hidden" role="alert" aria-live="polite"></div>
+
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="fullname" class="text-base font-semibold leading-[27px] uppercase">Nama Lengkap <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="fullname" class="text-sm sm:text-base font-semibold uppercase">Nama Lengkap <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="fullname"
@@ -125,7 +126,7 @@
           </div>
 
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="npm" class="text-base font-semibold leading-[27px] uppercase">NPM/NIM <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="npm" class="text-sm sm:text-base font-semibold uppercase">NPM / NIM <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="npm"
@@ -140,7 +141,7 @@
           </div>
 
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="class" class="text-base font-semibold leading-[27px] uppercase">Kelas <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="class" class="text-sm sm:text-base font-semibold uppercase">Kelas <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="class"
@@ -153,7 +154,7 @@
           </div>
 
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="semester" class="text-base font-semibold leading-[27px] uppercase">Semester <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="semester" class="text-sm sm:text-base font-semibold uppercase">Semester <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="number"
               id="semester"
@@ -166,152 +167,110 @@
               required
             />
           </div>
+
+          <div class="flex justify-end mt-4">
+            <button
+              type="button"
+              id="toStep2Btn"
+              class="w-full sm:w-auto min-w-[220px] py-3.5 px-6 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Lanjut ke Pilihan Divisi</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
         </div>
 
-        <!-- PILIHAN DIVISI -->
-        <div class="flex flex-col gap-4">
-          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
-            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">PILIHAN DIVISI</h3>
-          </div>
-          <div class="flex flex-col items-center gap-2 mb-6">
-            <p class="text-sm font-semibold leading-[27px] uppercase text-center">
-              Pilih 2 Divisi yang sesuai dengan minat dan bakatmu!
-            </p>
-            <span id="divisionCounter" class="division-counter" aria-live="polite">
-              0 / 2 dipilih
-            </span>
+        <!-- LANGKAH 2: PILIHAN DIVISI -->
+        <div id="stepContainer2" class="form-step hidden flex flex-col gap-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-lightgreen/20 pb-3">
+            <div>
+              <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Langkah 2 dari 3</span>
+              <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Pilih 2 Divisi Minatmu</h2>
+            </div>
+            <button
+              type="button"
+              id="openDivisionDetailBtn"
+              class="inline-flex items-center gap-1.5 py-1.5 px-3.5 rounded-full bg-lightgreen/10 border border-lightgreen/35 text-lightergreen hover:bg-lightgreen/20 hover:text-white text-xs font-semibold tracking-wide transition-all self-start sm:self-auto cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>ℹ Detail Penjelasan Divisi</span>
+            </button>
           </div>
 
-          <div class="grid grid-cols-3 gap-4 justify-items-center" role="group" aria-label="Pilihan Divisi">
-            <button
-              type="button"
-              class="division-btn"
-              data-division="WEB"
-              aria-label="Divisi Web"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/web.svg"
-                alt="Web Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+          <div class="flex items-center justify-between px-1">
+            <p class="text-xs sm:text-sm text-white/80">Pilih tepat 2 divisi minat & bakatmu:</p>
+            <span id="divisionCounter" class="division-counter" aria-live="polite">0 / 2 dipilih</span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 sm:gap-4 justify-items-center" role="group" aria-label="Pilihan Divisi">
+            <button type="button" class="division-btn" data-division="WEB" aria-label="Divisi Web" aria-pressed="false">
+              <img src="img/icon/web.svg" alt="Web Icon" width="30" height="30" loading="lazy" />
               WEB
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="UI/UX"
-              aria-label="Divisi UI/UX"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/ui.svg"
-                alt="UI/UX Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="UI/UX" aria-label="Divisi UI/UX" aria-pressed="false">
+              <img src="img/icon/ui.svg" alt="UI/UX Icon" width="30" height="30" loading="lazy" />
               UI/UX
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="MOBILE"
-              aria-label="Divisi Mobile"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/mobile.svg"
-                alt="Mobile Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="MOBILE" aria-label="Divisi Mobile" aria-pressed="false">
+              <img src="img/icon/mobile.svg" alt="Mobile Icon" width="30" height="30" loading="lazy" />
               MOBILE
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="DEVOPS"
-              aria-label="Divisi DevOps"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/devops.svg"
-                alt="DevOps Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="DEVOPS" aria-label="Divisi DevOps" aria-pressed="false">
+              <img src="img/icon/devops.svg" alt="DevOps Icon" width="30" height="30" loading="lazy" />
               DEVOPS
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="DATA"
-              aria-label="Divisi Data"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/data.svg"
-                alt="Data Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="DATA" aria-label="Divisi Data" aria-pressed="false">
+              <img src="img/icon/data.svg" alt="Data Icon" width="30" height="30" loading="lazy" />
               DATA
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="HUMAS"
-              aria-label="Divisi Humas"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/humas.svg"
-                alt="Public Relations Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="HUMAS" aria-label="Divisi Humas" aria-pressed="false">
+              <img src="img/icon/humas.svg" alt="Public Relations Icon" width="30" height="30" loading="lazy" />
               HUMAS
             </button>
-            <button
-              type="button"
-              class="division-btn"
-              data-division="KOMINFO"
-              aria-label="Divisi Kominfo"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/kominfo.svg"
-                alt="Communication Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
+            <button type="button" class="division-btn" data-division="KOMINFO" aria-label="Divisi Kominfo" aria-pressed="false">
+              <img src="img/icon/kominfo.svg" alt="Communication Icon" width="30" height="30" loading="lazy" />
               KOMINFO
             </button>
           </div>
-          <div
-            id="divisionError"
-            class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center mt-3 animate-fadeIn hidden"
-            role="alert"
-            aria-live="polite"
-          ></div>
+
+          <div id="divisionError" class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center animate-fadeIn hidden" role="alert" aria-live="polite"></div>
+
+          <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 mt-4">
+            <button
+              type="button"
+              id="backToStep1Btn"
+              class="w-full sm:w-auto py-3 px-5 rounded-xl border border-white/30 text-white/85 font-semibold text-sm hover:bg-white/10 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span aria-hidden="true">&larr;</span>
+              <span>Kembali ke Biodata</span>
+            </button>
+            <button
+              type="button"
+              id="toStep3Btn"
+              class="w-full sm:w-auto min-w-[220px] py-3.5 px-6 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Lanjut ke Berkas & Kontak</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
         </div>
 
-        <!-- BERKAS -->
-        <div class="flex flex-col gap-4">
-          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
-            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">BERKAS</h3>
+        <!-- LANGKAH 3: BERKAS & KONTAK -->
+        <div id="stepContainer3" class="form-step hidden flex flex-col gap-6">
+          <div class="flex items-center justify-between border-b border-lightgreen/20 pb-3">
+            <div>
+              <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Langkah 3 dari 3</span>
+              <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Berkas & Kontak Aktif</h2>
+            </div>
+            <span class="text-xs text-white/60 font-medium">Langkah Terakhir</span>
           </div>
 
+          <!-- Portofolio / CV Link -->
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="portfolio" class="text-base font-semibold leading-[27px] uppercase">Portofolio / CV</label>
+            <label for="portfolio" class="text-sm sm:text-base font-semibold uppercase flex items-center justify-between">
+              <span>Tautan Portofolio / CV</span>
+              <span class="text-xs text-white/50 lowercase font-normal">(opsional)</span>
+            </label>
             <input
               type="url"
               id="portfolio"
@@ -321,8 +280,34 @@
             />
           </div>
 
+          <!-- CALLOUT PANDUAN IZIN GOOGLE DRIVE -->
+          <div class="drive-callout flex flex-col gap-2.5 text-xs sm:text-[13px] text-white/90">
+            <div class="flex items-center gap-2 text-lightergreen font-semibold">
+              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"></path></svg>
+              <span>Penting: Pastikan Izin Google Drive Terbuka Publik</span>
+            </div>
+            <p class="text-white/75 leading-relaxed text-[11px] sm:text-xs">
+              Agar berkas dapat dibuka oleh panitia seleksi, pastikan izin file Anda tidak terkunci (*restricted*):
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-0.5">
+              <div class="bg-black/35 border border-white/10 rounded-lg p-2.5 flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-lightgreen/25 text-lightergreen font-bold text-xs flex items-center justify-center shrink-0">1</span>
+                <span class="text-[11px] leading-tight text-white/85">Klik tombol <strong>Bagikan (Share)</strong> di file Drive</span>
+              </div>
+              <div class="bg-black/35 border border-white/10 rounded-lg p-2.5 flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-lightgreen/25 text-lightergreen font-bold text-xs flex items-center justify-center shrink-0">2</span>
+                <span class="text-[11px] leading-tight text-white/85">Ubah Akses Umum ke <strong>"Siapa saja yang memiliki tautan"</strong></span>
+              </div>
+              <div class="bg-black/35 border border-white/10 rounded-lg p-2.5 flex items-start gap-2">
+                <span class="w-5 h-5 rounded-full bg-lightgreen/25 text-lightergreen font-bold text-xs flex items-center justify-center shrink-0">3</span>
+                <span class="text-[11px] leading-tight text-white/85">Klik <strong>Salin Tautan</strong> lalu tempel di kolom atas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- WhatsApp Input -->
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="whatsapp" class="text-base font-semibold leading-[27px] uppercase">Nomor Whatsapp <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="whatsapp" class="text-sm sm:text-base font-semibold uppercase">Nomor WhatsApp <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="tel"
               id="whatsapp"
@@ -336,8 +321,9 @@
             />
           </div>
 
+          <!-- Email Input -->
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="email" class="text-base font-semibold leading-[27px] uppercase">Email Aktif <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
+            <label for="email" class="text-sm sm:text-base font-semibold uppercase">Email Aktif <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="email"
               id="email"
@@ -349,46 +335,225 @@
             />
           </div>
 
-          <div class="w-[344px] max-w-full h-[1px] bg-gradient-to-r from-darkgreen via-accentgreen to-black shadow-glow mx-auto my-2"></div>
-
           <div
             id="submitError"
-            class="text-[#ff8080] bg-[#ff6b6b]/10 border border-[#ff6b6b]/35 rounded-md p-3 sm:p-4 text-xs leading-relaxed text-center my-3 animate-fadeIn hidden"
+            class="text-[#ff8080] bg-[#ff6b6b]/10 border border-[#ff6b6b]/35 rounded-md p-3 sm:p-4 text-xs leading-relaxed text-center animate-fadeIn hidden"
             role="alert"
             aria-live="assertive"
           ></div>
 
-          <button
-            type="submit"
-            id="submitBtn"
-            class="self-center mt-6 mb-8 w-[200px] py-3 px-6 rounded-[10px] bg-gradient-to-b from-lightergreen to-[#23824C] text-white text-base font-semibold shadow-button cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-accentgreen focus-visible:outline-offset-2"
-          >
-            <span id="btnText">Kirim</span>
-            <span id="btnLoading" class="hidden inline-flex items-center">
-              <svg
-                class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Memproses...
-            </span>
-          </button>
+          <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 mt-4">
+            <button
+              type="button"
+              id="backToStep2Btn"
+              class="w-full sm:w-auto py-3 px-5 rounded-xl border border-white/30 text-white/85 font-semibold text-sm hover:bg-white/10 hover:text-white transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span aria-hidden="true">&larr;</span>
+              <span>Kembali ke Pilihan Divisi</span>
+            </button>
+            <button
+              type="submit"
+              id="submitBtn"
+              class="w-full sm:w-auto min-w-[220px] py-3.5 px-6 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              <span id="btnText">Kirim Pendaftaran &rarr;</span>
+              <span id="btnLoading" class="hidden inline-flex items-center">
+                <svg
+                  class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Memproses...
+              </span>
+            </button>
+          </div>
         </div>
       </form>
+
+      <!-- MODAL PANDUAN PENJELASAN DIVISI (Native <dialog>) -->
+      <dialog id="divisionDetailModal" class="detail-modal" aria-labelledby="divisionModalTitle">
+        <div class="p-5 sm:p-6 flex flex-col max-h-[85vh]">
+          <!-- Modal Header -->
+          <div class="flex items-center justify-between border-b border-lightgreen/25 pb-3 shrink-0">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-lightgreen/20 text-lightergreen flex items-center justify-center font-bold text-sm">ℹ</span>
+              <div>
+                <h3 id="divisionModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-white tracking-wide">Panduan & Rincian Divisi</h3>
+                <p class="text-xs text-lightergreen font-medium">Kenali tugas & keahlian 7 divisi yang dibuka</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="closeDetailModalTopBtn"
+              class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white flex items-center justify-center text-lg transition-colors cursor-pointer"
+              aria-label="Tutup Dialog"
+            >
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal Scrollable Content -->
+          <div class="overflow-y-auto py-4 pr-1 space-y-3 my-1">
+            <!-- WEB -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/web.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">WEB DEVELOPMENT</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Pengembangan website responsif organisasi, rancang bangun frontend & backend, dan integrasi sistem informasi berbasis web.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">HTML/CSS</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">JavaScript</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Frameworks</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">REST API</span>
+              </div>
+            </div>
+
+            <!-- UI/UX -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/ui.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">UI/UX DESIGN</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Perancangan antarmuka pengguna & riset pengalaman pengguna, penyusunan wireframe sistematis, serta pembuatan prototipe interaktif.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Figma</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Wireframing</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">UX Research</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Prototyping</span>
+              </div>
+            </div>
+
+            <!-- MOBILE -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/mobile.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">MOBILE DEVELOPMENT</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Pengembangan aplikasi mobile modern untuk platform Android & iOS, integrasi layanan API, dan optimalisasi arsitektur performa aplikasi.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Flutter / Kotlin</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Mobile UI</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">App Testing</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">State Management</span>
+              </div>
+            </div>
+
+            <!-- DEVOPS -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/devops.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">DEVOPS & SYSTEM ADMIN</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Pengelolaan infrastruktur IT dan server Linux/Cloud, implementasi otomasi CI/CD, deployment aplikasi, serta monitoring keandalan sistem.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Linux</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Git & CI/CD</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Cloud / Server</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Docker</span>
+              </div>
+            </div>
+
+            <!-- DATA -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/data.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">DATA & ARTIFICIAL INTELLIGENCE</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Pengolahan & analisis data organisasi, otomasi alur kerja analitik, visualisasi data interaktif, dan eksplorasi dasar kecerdasan buatan.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Python</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Data Mining</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">AI Basics</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Data Visualization</span>
+              </div>
+            </div>
+
+            <!-- HUMAS -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/humas.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">HUMAS (HUBUNGAN MASYARAKAT)</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Menjalin komunikasi internal antar pengurus & eksternal dengan organisasi lain, memperluas networking industri, dan kolaborasi kepengurusan.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Public Relations</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Networking</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Partnership</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Event Handling</span>
+              </div>
+            </div>
+
+            <!-- KOMINFO -->
+            <div class="bg-darkgreen/60 border border-lightgreen/25 rounded-xl p-3.5 flex flex-col gap-2">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-black/40 border border-lightgreen/30 flex items-center justify-center shrink-0">
+                  <img src="img/icon/kominfo.svg" alt="" width="20" height="20" />
+                </div>
+                <h4 class="font-bold text-sm text-lightergreen">KOMINFO</h4>
+              </div>
+              <p class="text-xs text-white/85 leading-relaxed">
+                Publikasi media sosial dan branding visual PROTIC, kreasi konten grafis kreatif, dokumentasi multimedia, dan penulisan informasi publik.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-0.5">
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Content Creation</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Social Media</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Desain Grafis</span>
+                <span class="text-[10px] bg-white/10 text-white/90 px-2 py-0.5 rounded-md font-mono">Copywriting</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="pt-3 border-t border-lightgreen/20 flex justify-end shrink-0">
+            <button
+              type="button"
+              id="closeDetailModalBottomBtn"
+              class="w-full sm:w-auto py-2.5 px-6 rounded-full bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm hover:brightness-110 transition-all cursor-pointer"
+            >
+              Paham, Lanjut Memilih Divisi &rarr;
+            </button>
+          </div>
+        </div>
+      </dialog>
 
       <!-- MODAL KONFIRMASI (Native <dialog>) -->
       <dialog id="confirmModal" class="confirm-modal" aria-labelledby="modalTitle">
@@ -422,11 +587,23 @@
             </div>
           </div>
 
+          <!-- CHECKLIST WAJIB AKSES DRIVE TERBUKA -->
+          <div class="mt-1 flex items-start gap-2.5 bg-black/40 border border-lightgreen/35 rounded-lg p-3">
+            <input
+              type="checkbox"
+              id="confirmDriveAccess"
+              class="w-4 h-4 mt-0.5 accent-lightgreen rounded cursor-pointer shrink-0"
+            />
+            <label for="confirmDriveAccess" class="text-xs text-white/90 cursor-pointer select-none leading-relaxed">
+              Saya telah memastikan izin tautan berkas CV / Portofolio (Google Drive) telah diatur ke <strong class="text-lightergreen">"Siapa saja yang memiliki link"</strong> (Akses Terbuka / Viewer).
+            </label>
+          </div>
+
           <div class="flex gap-3 justify-end mt-2">
             <button type="button" id="modalCancelBtn" class="flex-1 py-2.5 px-4 rounded-full bg-transparent border border-white/30 text-white/85 font-poppins text-sm sm:text-base font-medium cursor-pointer transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/60 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">
               Batalkan
             </button>
-            <button type="button" id="modalConfirmBtn" class="flex-[1.2] py-2.5 px-4 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-sm sm:text-base font-semibold cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(73,209,133,0.4)] focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2">
+            <button type="button" id="modalConfirmBtn" disabled class="flex-[1.2] py-2.5 px-4 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-sm sm:text-base font-semibold cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(73,209,133,0.4)] focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2 opacity-50 cursor-not-allowed">
               Kirim Sekarang &rarr;
             </button>
           </div>
@@ -503,11 +680,60 @@
         "https://script.google.com/macros/s/AKfycbwIQSXMYo9amj9RHuLhKVcUNThJNoF2sn64q2GhZekD0nsCh4cCO5tcO0MrxMygBV-Z/exec";
       const form = document.getElementById("registrationForm");
 
+      let currentStep = 1;
       let selectedDivisions = [];
+      const DRAFT_KEY = "protic_oprec_draft";
+
+      // Step Containers
+      const stepContainer1 = document.getElementById("stepContainer1");
+      const stepContainer2 = document.getElementById("stepContainer2");
+      const stepContainer3 = document.getElementById("stepContainer3");
+
+      // Stepper Elements
+      const stepDot1 = document.getElementById("stepDot1");
+      const stepDot2 = document.getElementById("stepDot2");
+      const stepDot3 = document.getElementById("stepDot3");
+      const stepperLine = document.getElementById("stepperLine");
+      const stepText1 = document.getElementById("stepText1");
+      const stepText2 = document.getElementById("stepText2");
+      const stepText3 = document.getElementById("stepText3");
+
+      // Error and notification elements
+      const step1Error = document.getElementById("step1Error");
       const divisionError = document.getElementById("divisionError");
       const divisionCounter = document.getElementById("divisionCounter");
       const divisionButtons = document.querySelectorAll(".division-btn");
       const formAnnouncer = document.getElementById("formAnnouncer");
+
+      // Step Navigation Buttons
+      const toStep2Btn = document.getElementById("toStep2Btn");
+      const backToStep1Btn = document.getElementById("backToStep1Btn");
+      const toStep3Btn = document.getElementById("toStep3Btn");
+      const backToStep2Btn = document.getElementById("backToStep2Btn");
+
+      // Division Detail Modal
+      const divisionDetailModal = document.getElementById("divisionDetailModal");
+      const openDivisionDetailBtn = document.getElementById("openDivisionDetailBtn");
+      const closeDetailModalTopBtn = document.getElementById("closeDetailModalTopBtn");
+      const closeDetailModalBottomBtn = document.getElementById("closeDetailModalBottomBtn");
+
+      // Confirm Modal & Elements
+      const confirmModal = document.getElementById("confirmModal");
+      const modalCancelBtn = document.getElementById("modalCancelBtn");
+      const modalConfirmBtn = document.getElementById("modalConfirmBtn");
+      const confirmDriveAccess = document.getElementById("confirmDriveAccess");
+      const summaryName = document.getElementById("summaryName");
+      const summaryNpm = document.getElementById("summaryNpm");
+      const summaryClass = document.getElementById("summaryClass");
+      const summaryDivisions = document.getElementById("summaryDivisions");
+
+      // Submit State Elements
+      const submitBtn = document.getElementById("submitBtn");
+      const btnText = document.getElementById("btnText");
+      const btnLoading = document.getElementById("btnLoading");
+      const submitError = document.getElementById("submitError");
+
+      let pendingFormData = null;
 
       function announce(message) {
         if (formAnnouncer) {
@@ -533,129 +759,6 @@
         }
       }
 
-      function updateStepper() {
-        const biodataFilled = Boolean(
-          form.fullname && form.fullname.value.trim() &&
-          form.npm && form.npm.value.trim() &&
-          form.class && form.class.value.trim() &&
-          form.semester && form.semester.value.trim()
-        );
-        const divisionFilled = selectedDivisions.length === 2;
-        const berkasFilled = Boolean(
-          form.whatsapp && form.whatsapp.value.trim() &&
-          form.email && form.email.value.trim()
-        );
-
-        const stepperLine = document.getElementById("stepperLine");
-        const dot1 = document.getElementById("stepDot1");
-        const dot2 = document.getElementById("stepDot2");
-        const dot3 = document.getElementById("stepDot3");
-        const text2 = document.getElementById("stepText2");
-        const text3 = document.getElementById("stepText3");
-
-        if (!dot1 || !dot2 || !dot3 || !stepperLine) return;
-
-        // Step 1 status
-        dot1.textContent = biodataFilled ? "✓" : "1";
-
-        // Stepper line and Step 2 / 3 status
-        if (biodataFilled && divisionFilled && berkasFilled) {
-          stepperLine.style.width = "100%";
-          dot2.textContent = "✓";
-          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
-          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
-          dot3.textContent = "✓";
-          dot3.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
-          if (text3) text3.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
-        } else if (biodataFilled && divisionFilled) {
-          stepperLine.style.width = "100%";
-          dot2.textContent = "✓";
-          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
-          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
-          dot3.textContent = "3";
-          dot3.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
-          if (text3) text3.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
-        } else if (biodataFilled) {
-          stepperLine.style.width = "50%";
-          dot2.textContent = "2";
-          dot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300";
-          if (text2) text2.className = "text-[11px] font-semibold tracking-wider uppercase text-lightergreen transition-colors";
-          dot3.textContent = "3";
-          dot3.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
-          if (text3) text3.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
-        } else {
-          stepperLine.style.width = "0%";
-          dot2.textContent = "2";
-          dot2.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
-          if (text2) text2.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
-          dot3.textContent = "3";
-          dot3.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300";
-          if (text3) text3.className = "text-[11px] font-medium tracking-wider uppercase text-white/60 transition-colors";
-        }
-      }
-
-      function updateDivisionUI() {
-        const count = selectedDivisions.length;
-        if (divisionCounter) {
-          divisionCounter.textContent = `${count} / 2 dipilih`;
-          if (count === 2) {
-            divisionCounter.classList.add("complete");
-          } else {
-            divisionCounter.classList.remove("complete");
-          }
-        }
-
-        divisionButtons.forEach((btn) => {
-          const div = btn.dataset.division;
-          const isSelected = selectedDivisions.includes(div);
-          btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
-
-          if (count >= 2 && !isSelected) {
-            btn.disabled = true;
-            btn.classList.add("disabled");
-          } else {
-            btn.disabled = false;
-            btn.classList.remove("disabled");
-          }
-        });
-
-        updateStepper();
-      }
-
-      divisionButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const division = btn.dataset.division;
-
-          if (selectedDivisions.includes(division)) {
-            // batalin pilihan
-            selectedDivisions = selectedDivisions.filter((d) => d !== division);
-            btn.classList.remove("active", "selected");
-            clearDivisionError();
-            updateDivisionUI();
-            announce(`Pilihan divisi ${division} dibatalkan. ${selectedDivisions.length} dari 2 divisi terpilih.`);
-          } else {
-            if (selectedDivisions.length < 2) {
-              selectedDivisions.push(division);
-              btn.classList.add("active", "selected");
-              clearDivisionError();
-              updateDivisionUI();
-              announce(`Divisi ${division} dipilih. ${selectedDivisions.length} dari 2 divisi terpilih.`);
-            } else {
-              showDivisionError("Kamu hanya boleh memilih maksimal 2 divisi!");
-            }
-          }
-        });
-      });
-
-      form.addEventListener("input", updateStepper);
-      updateDivisionUI();
-      updateStepper();
-
-      const submitBtn = document.getElementById("submitBtn");
-      const btnText = document.getElementById("btnText");
-      const btnLoading = document.getElementById("btnLoading");
-      const submitError = document.getElementById("submitError");
-
       function showSubmitError(htmlContent, textSummary) {
         if (submitError) {
           submitError.innerHTML = htmlContent;
@@ -672,16 +775,346 @@
         }
       }
 
-      // Confirmation Modal Elements
-      const confirmModal = document.getElementById("confirmModal");
-      const modalCancelBtn = document.getElementById("modalCancelBtn");
-      const modalConfirmBtn = document.getElementById("modalConfirmBtn");
-      const summaryName = document.getElementById("summaryName");
-      const summaryNpm = document.getElementById("summaryNpm");
-      const summaryClass = document.getElementById("summaryClass");
-      const summaryDivisions = document.getElementById("summaryDivisions");
+      // Step Validation Logic
+      function validateStep(step) {
+        if (step === 1) {
+          const fullname = form.fullname.value.trim();
+          const npm = form.npm.value.trim();
+          const cls = form.class.value.trim();
+          const semester = form.semester.value.trim();
 
-      let pendingFormData = null;
+          if (!fullname || !npm || !cls || !semester) {
+            if (step1Error) {
+              step1Error.textContent = "Harap lengkapi semua kolom biodata diri sebelum melanjutkan!";
+              step1Error.classList.remove("hidden");
+            }
+            if (!fullname) form.fullname.focus();
+            else if (!npm) form.npm.focus();
+            else if (!cls) form.class.focus();
+            else if (!semester) form.semester.focus();
+            announce("Harap lengkapi semua kolom biodata diri.");
+            return false;
+          }
+
+          if (isNaN(semester) || Number(semester) < 1 || Number(semester) > 8) {
+            if (step1Error) {
+              step1Error.textContent = "Semester harus berupa angka antara 1 sampai 8!";
+              step1Error.classList.remove("hidden");
+            }
+            form.semester.focus();
+            return false;
+          }
+
+          if (step1Error) step1Error.classList.add("hidden");
+          return true;
+        }
+
+        if (step === 2) {
+          if (selectedDivisions.length !== 2) {
+            showDivisionError("Harap pilih tepat 2 divisi (Pilihan 1 & Pilihan 2)!");
+            return false;
+          }
+          clearDivisionError();
+          return true;
+        }
+
+        if (step === 3) {
+          const whatsapp = form.whatsapp.value.trim();
+          const email = form.email.value.trim();
+          if (!whatsapp || !email) {
+            showSubmitError("Harap lengkapi nomor WhatsApp dan Email aktif Anda!", "Kolom kontak wajib diisi.");
+            return false;
+          }
+          clearSubmitError();
+          return true;
+        }
+
+        return true;
+      }
+
+      // Transition between Steps
+      function goToStep(targetStep) {
+        if (targetStep === currentStep) return;
+
+        // If navigating forward, validate preceding steps
+        if (targetStep > currentStep) {
+          for (let s = currentStep; s < targetStep; s++) {
+            if (!validateStep(s)) return;
+          }
+        }
+
+        // Hide current step
+        const currentContainer = document.getElementById(`stepContainer${currentStep}`);
+        if (currentContainer) {
+          currentContainer.classList.remove("active");
+          currentContainer.classList.add("hidden");
+        }
+
+        // Show target step
+        const targetContainer = document.getElementById(`stepContainer${targetStep}`);
+        if (targetContainer) {
+          targetContainer.classList.remove("hidden");
+          // slight frame timeout for smooth opacity animation
+          requestAnimationFrame(() => {
+            targetContainer.classList.add("active");
+          });
+        }
+
+        currentStep = targetStep;
+        updateStepperVisuals();
+        saveDraft();
+
+        // Scroll to form smoothly
+        const formTop = form.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: Math.max(0, formTop), behavior: "smooth" });
+
+        const stepNames = ["", "Biodata Diri", "Pilihan Divisi", "Berkas & Kontak"];
+        announce(`Beralih ke Langkah ${targetStep}: ${stepNames[targetStep]}`);
+      }
+
+      // Update Visual Stepper
+      function updateStepperVisuals() {
+        if (!stepperLine || !stepDot1 || !stepDot2 || !stepDot3) return;
+
+        const isStep1Valid = Boolean(
+          form.fullname && form.fullname.value.trim() &&
+          form.npm && form.npm.value.trim() &&
+          form.class && form.class.value.trim() &&
+          form.semester && form.semester.value.trim()
+        );
+        const isStep2Valid = selectedDivisions.length === 2;
+
+        // Stepper Progress Line
+        if (currentStep === 1) {
+          stepperLine.style.width = "0%";
+        } else if (currentStep === 2) {
+          stepperLine.style.width = "50%";
+        } else if (currentStep === 3) {
+          stepperLine.style.width = "100%";
+        }
+
+        // Step 1 Indicator
+        if (currentStep > 1 && isStep1Valid) {
+          stepDot1.innerHTML = "✓";
+          stepDot1.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer";
+          if (stepText1) stepText1.className = "text-lightergreen font-semibold";
+        } else {
+          stepDot1.textContent = "1";
+          stepDot1.className = currentStep === 1
+            ? "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer ring-2 ring-lightergreen/60"
+            : "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer";
+          if (stepText1) stepText1.className = currentStep === 1 ? "text-lightergreen font-bold" : "text-white/60";
+        }
+
+        // Step 2 Indicator
+        if (currentStep > 2 && isStep2Valid) {
+          stepDot2.innerHTML = "✓";
+          stepDot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer";
+          if (stepText2) stepText2.className = "text-lightergreen font-semibold";
+        } else if (currentStep === 2) {
+          stepDot2.textContent = "2";
+          stepDot2.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer ring-2 ring-lightergreen/60";
+          if (stepText2) stepText2.className = "text-lightergreen font-bold";
+        } else {
+          stepDot2.textContent = "2";
+          stepDot2.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer";
+          if (stepText2) stepText2.className = "text-white/60";
+        }
+
+        // Step 3 Indicator
+        if (currentStep === 3) {
+          stepDot3.textContent = "3";
+          stepDot3.className = "w-8 h-8 rounded-full bg-lightgreen text-darkgreen font-bold text-xs flex items-center justify-center shadow-glow transition-all duration-300 cursor-pointer ring-2 ring-lightergreen/60";
+          if (stepText3) stepText3.className = "text-lightergreen font-bold";
+        } else {
+          stepDot3.textContent = "3";
+          stepDot3.className = "w-8 h-8 rounded-full bg-darkgreen border border-white/30 text-white/70 font-semibold text-xs flex items-center justify-center transition-all duration-300 cursor-pointer";
+          if (stepText3) stepText3.className = "text-white/60";
+        }
+      }
+
+      // Division UI update
+      function updateDivisionUI() {
+        const count = selectedDivisions.length;
+        if (divisionCounter) {
+          divisionCounter.textContent = `${count} / 2 dipilih`;
+          if (count === 2) {
+            divisionCounter.classList.add("complete");
+          } else {
+            divisionCounter.classList.remove("complete");
+          }
+        }
+
+        divisionButtons.forEach((btn) => {
+          const div = btn.dataset.division;
+          const isSelected = selectedDivisions.includes(div);
+          btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+          if (isSelected) {
+            btn.classList.add("active", "selected");
+          } else {
+            btn.classList.remove("active", "selected");
+          }
+
+          if (count >= 2 && !isSelected) {
+            btn.disabled = true;
+            btn.classList.add("disabled");
+          } else {
+            btn.disabled = false;
+            btn.classList.remove("disabled");
+          }
+        });
+
+        updateStepperVisuals();
+      }
+
+      // Division button click events
+      divisionButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const division = btn.dataset.division;
+
+          if (selectedDivisions.includes(division)) {
+            selectedDivisions = selectedDivisions.filter((d) => d !== division);
+            clearDivisionError();
+            updateDivisionUI();
+            saveDraft();
+            announce(`Pilihan divisi ${division} dibatalkan. ${selectedDivisions.length} dari 2 divisi terpilih.`);
+          } else {
+            if (selectedDivisions.length < 2) {
+              selectedDivisions.push(division);
+              clearDivisionError();
+              updateDivisionUI();
+              saveDraft();
+              announce(`Divisi ${division} dipilih. ${selectedDivisions.length} dari 2 divisi terpilih.`);
+            } else {
+              showDivisionError("Kamu hanya boleh memilih maksimal 2 divisi!");
+            }
+          }
+        });
+      });
+
+      // Stepper dot click handlers
+      if (stepDot1) stepDot1.addEventListener("click", () => goToStep(1));
+      if (stepDot2) {
+        stepDot2.addEventListener("click", () => {
+          if (currentStep === 3) goToStep(2);
+          else if (validateStep(1)) goToStep(2);
+        });
+      }
+      if (stepDot3) {
+        stepDot3.addEventListener("click", () => {
+          if (validateStep(1) && validateStep(2)) goToStep(3);
+        });
+      }
+
+      // Navigation button click handlers
+      if (toStep2Btn) toStep2Btn.addEventListener("click", () => goToStep(2));
+      if (backToStep1Btn) backToStep1Btn.addEventListener("click", () => goToStep(1));
+      if (toStep3Btn) toStep3Btn.addEventListener("click", () => goToStep(3));
+      if (backToStep2Btn) backToStep2Btn.addEventListener("click", () => goToStep(2));
+
+      // Division Detail Modal handlers
+      function openDetailModal() {
+        if (divisionDetailModal && typeof divisionDetailModal.showModal === "function") {
+          divisionDetailModal.showModal();
+          announce("Modal panduan rincian divisi dibuka.");
+        }
+      }
+
+      function closeDetailModal() {
+        if (divisionDetailModal && divisionDetailModal.open) {
+          divisionDetailModal.close();
+          if (openDivisionDetailBtn) openDivisionDetailBtn.focus();
+        }
+      }
+
+      if (openDivisionDetailBtn) openDivisionDetailBtn.addEventListener("click", openDetailModal);
+      if (closeDetailModalTopBtn) closeDetailModalTopBtn.addEventListener("click", closeDetailModal);
+      if (closeDetailModalBottomBtn) closeDetailModalBottomBtn.addEventListener("click", closeDetailModal);
+
+      if (divisionDetailModal) {
+        divisionDetailModal.addEventListener("click", (e) => {
+          const rect = divisionDetailModal.getBoundingClientRect();
+          const isInDialog =
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width;
+          if (!isInDialog) closeDetailModal();
+        });
+      }
+
+      // Auto-Save Draft Functions
+      function saveDraft() {
+        try {
+          const draft = {
+            fullname: form.fullname ? form.fullname.value : "",
+            npm: form.npm ? form.npm.value : "",
+            class: form.class ? form.class.value : "",
+            semester: form.semester ? form.semester.value : "",
+            selectedDivisions: selectedDivisions,
+            portfolio: form.portfolio ? form.portfolio.value : "",
+            whatsapp: form.whatsapp ? form.whatsapp.value : "",
+            email: form.email ? form.email.value : "",
+            currentStep: currentStep,
+            savedAt: Date.now(),
+          };
+          localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+        } catch (e) {
+          console.warn("Gagal menyimpan draf form ke localStorage", e);
+        }
+      }
+
+      function loadDraft() {
+        try {
+          const raw = localStorage.getItem(DRAFT_KEY);
+          if (!raw) return;
+          const draft = JSON.parse(raw);
+          if (!draft) return;
+
+          if (draft.fullname && form.fullname) form.fullname.value = draft.fullname;
+          if (draft.npm && form.npm) form.npm.value = draft.npm;
+          if (draft.class && form.class) form.class.value = draft.class;
+          if (draft.semester && form.semester) form.semester.value = draft.semester;
+          if (draft.portfolio && form.portfolio) form.portfolio.value = draft.portfolio;
+          if (draft.whatsapp && form.whatsapp) form.whatsapp.value = draft.whatsapp;
+          if (draft.email && form.email) form.email.value = draft.email;
+
+          if (Array.isArray(draft.selectedDivisions)) {
+            const validDivisions = ["WEB", "UI/UX", "MOBILE", "DEVOPS", "DATA", "HUMAS", "KOMINFO"];
+            selectedDivisions = draft.selectedDivisions.filter((d) => validDivisions.includes(d)).slice(0, 2);
+          }
+        } catch (e) {
+          console.warn("Gagal memuat draf form dari localStorage", e);
+        }
+      }
+
+      function clearDraft() {
+        try {
+          localStorage.removeItem(DRAFT_KEY);
+        } catch (e) {
+          console.warn("Gagal menghapus draf form", e);
+        }
+      }
+
+      // Input listener to auto-save and update visuals
+      form.addEventListener("input", () => {
+        updateStepperVisuals();
+        saveDraft();
+      });
+
+      // Drive Access Checklist Listener inside confirmModal
+      if (confirmDriveAccess && modalConfirmBtn) {
+        confirmDriveAccess.addEventListener("change", () => {
+          if (confirmDriveAccess.checked) {
+            modalConfirmBtn.disabled = false;
+            modalConfirmBtn.classList.remove("opacity-50", "cursor-not-allowed");
+          } else {
+            modalConfirmBtn.disabled = true;
+            modalConfirmBtn.classList.add("opacity-50", "cursor-not-allowed");
+          }
+        });
+      }
 
       // Close modal on cancel button
       if (modalCancelBtn && confirmModal) {
@@ -706,7 +1139,6 @@
           }
         });
 
-        // Handle native escape close event to return focus
         confirmModal.addEventListener("close", () => {
           if (!pendingFormData) {
             submitBtn.focus();
@@ -714,14 +1146,21 @@
         });
       }
 
-      // Form submit: validasi & buka modal konfirmasi
+      // Form submit: validasi Step 3 & buka modal konfirmasi
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         clearSubmitError();
 
-        if (selectedDivisions.length !== 2) {
-          showDivisionError("Harap pilih tepat 2 divisi sebelum mengirim formulir!");
-          divisionError.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Validate all 3 steps
+        if (!validateStep(1)) {
+          goToStep(1);
+          return;
+        }
+        if (!validateStep(2)) {
+          goToStep(2);
+          return;
+        }
+        if (!validateStep(3)) {
           return;
         }
 
@@ -737,7 +1176,7 @@
           email: form.email.value.trim(),
         };
 
-        // Isi ringkasan di modal
+        // Isi ringkasan di modal konfirmasi
         if (summaryName) summaryName.textContent = pendingFormData.fullname;
         if (summaryNpm) summaryNpm.textContent = pendingFormData.npm;
         if (summaryClass) summaryClass.textContent = `${pendingFormData.class} (Semester ${pendingFormData.semester})`;
@@ -752,12 +1191,18 @@
           });
         }
 
+        // Reset checklist izin Drive ke unchecked dan disable tombol konfirmasi
+        if (confirmDriveAccess) confirmDriveAccess.checked = false;
+        if (modalConfirmBtn) {
+          modalConfirmBtn.disabled = true;
+          modalConfirmBtn.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
         // Buka modal native
         if (confirmModal && typeof confirmModal.showModal === "function") {
           confirmModal.showModal();
           announce("Modal konfirmasi terbuka. Silakan periksa kembali data Anda.");
         } else {
-          // Fallback jika browser tidak support dialog
           executeFormSubmit(pendingFormData);
         }
       });
@@ -765,15 +1210,17 @@
       // Konfirmasi kirim dari dalam modal
       if (modalConfirmBtn && confirmModal) {
         modalConfirmBtn.addEventListener("click", () => {
-          confirmModal.close();
-          if (pendingFormData) {
-            executeFormSubmit(pendingFormData);
+          if (!confirmDriveAccess || confirmDriveAccess.checked) {
+            confirmModal.close();
+            if (pendingFormData) {
+              executeFormSubmit(pendingFormData);
+            }
           }
         });
       }
 
       function executeFormSubmit(formData) {
-        setLoading(true); // aktifkan loading
+        setLoading(true);
         announce("Mengirim formulir pendaftaran, mohon tunggu...");
 
         fetch(scriptURL, {
@@ -787,6 +1234,7 @@
             return res.json();
           })
           .then((data) => {
+            clearDraft();
             announce("Pendaftaran berhasil! Mengalihkan ke halaman terima kasih.");
             window.location.href = "thankyou.html";
           })
@@ -798,7 +1246,7 @@
             );
           })
           .finally(() => {
-            setLoading(false); // matikan loading kalau gagal
+            setLoading(false);
             pendingFormData = null;
           });
       }
@@ -814,6 +1262,12 @@
           btnLoading.classList.add("hidden");
         }
       }
+
+      // Inisialisasi awal saat halaman dibuka
+      loadDraft();
+      updateDivisionUI();
+      updateStepperVisuals();
     </script>
   </body>
 </html>
+

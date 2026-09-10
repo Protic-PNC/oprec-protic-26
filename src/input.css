@@ -172,6 +172,45 @@
     border: 1px solid #87EBB3;
     text-transform: uppercase;
   }
+
+  /* Multi-Step Wizard Step Transitions */
+  .form-step {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.28s ease-out, transform 0.28s ease-out;
+  }
+  .form-step.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Division Detail Dialog */
+  dialog.detail-modal {
+    background: #0b1711;
+    color: #ffffff;
+    border: 1px solid rgba(73, 209, 133, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(73, 209, 133, 0.25);
+    padding: 0;
+    max-width: 580px;
+    width: calc(100% - 32px);
+    margin: auto;
+    overflow: hidden;
+    max-height: 85vh;
+  }
+  dialog.detail-modal::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* Drive Permission Callout Box */
+  .drive-callout {
+    background: linear-gradient(135deg, rgba(17, 75, 42, 0.5), rgba(8, 40, 26, 0.7));
+    border: 1px solid rgba(73, 209, 133, 0.35);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
