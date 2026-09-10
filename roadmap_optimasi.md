@@ -107,7 +107,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ✅ Selesai |
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ✅ Selesai |
 | 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ✅ Selesai |
-| 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ⬜ Belum |
+| 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ✅ Selesai |
 | 21 | P-02/U-01 | Perbaiki splash screen (skip + delay lebih pendek) | 🅐 | ⬜ Belum |
 | 22 | U-02 | Perbaiki layout desktop (2-kolom) | 🅐 | ⬜ Belum |
 | 23 | U-04 | Tambah navigasi / tombol kembali antar halaman | 🅒 | ⬜ Belum |
@@ -375,9 +375,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.css`, `form.css`, `thankyou.css`
 
 **Yang dilakukan:**
-- [ ] Tambah hover effect pada link sosial (opacity 0.7, scale 1.1, atau filter brightness)
-- [ ] Transisi smooth `0.2s ease`
-- [ ] Tambah `:focus-visible` state untuk keyboard navigation
+- [x] Tambah hover effect pada link sosial (opacity 0.7, scale 1.1, atau filter brightness)
+- [x] Transisi smooth `0.2s ease`
+- [x] Tambah `:focus-visible` state untuk keyboard navigation
 
 **Estimasi:** 10 menit
 
