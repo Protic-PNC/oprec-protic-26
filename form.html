@@ -117,9 +117,14 @@
           <div class="section-header">
             <h3 class="section-title">PILIHAN DIVISI</h3>
           </div>
-          <p class="division-instruction">
-            Pilih 2 Divisi yang sesuai dengan minat dan bakatmu!
-          </p>
+          <div class="division-header-status">
+            <p class="division-instruction">
+              Pilih 2 Divisi yang sesuai dengan minat dan bakatmu!
+            </p>
+            <span id="divisionCounter" class="division-counter" aria-live="polite">
+              0 / 2 dipilih
+            </span>
+          </div>
 
           <div class="division-grid">
             <button type="button" class="division-btn" data-division="WEB">
@@ -373,6 +378,8 @@
 
       let selectedDivisions = [];
       const divisionError = document.getElementById("divisionError");
+      const divisionCounter = document.getElementById("divisionCounter");
+      const divisionButtons = document.querySelectorAll(".division-btn");
 
       function showDivisionError(msg) {
         if (divisionError) {
@@ -388,28 +395,53 @@
         }
       }
 
-      document.querySelectorAll(".division-btn").forEach((btn) => {
+      function updateDivisionUI() {
+        const count = selectedDivisions.length;
+        if (divisionCounter) {
+          divisionCounter.textContent = `${count} / 2 dipilih`;
+          if (count === 2) {
+            divisionCounter.classList.add("complete");
+          } else {
+            divisionCounter.classList.remove("complete");
+          }
+        }
+
+        divisionButtons.forEach((btn) => {
+          const div = btn.dataset.division;
+          if (count >= 2 && !selectedDivisions.includes(div)) {
+            btn.disabled = true;
+            btn.classList.add("disabled");
+          } else {
+            btn.disabled = false;
+            btn.classList.remove("disabled");
+          }
+        });
+      }
+
+      divisionButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const division = btn.dataset.division;
 
           if (selectedDivisions.includes(division)) {
             // batalin pilihan
             selectedDivisions = selectedDivisions.filter((d) => d !== division);
-            btn.classList.remove("active");
-            btn.classList.remove("selected");
+            btn.classList.remove("active", "selected");
             clearDivisionError();
+            updateDivisionUI();
           } else {
             if (selectedDivisions.length < 2) {
               selectedDivisions.push(division);
-              btn.classList.add("active");
-              btn.classList.add("selected");
+              btn.classList.add("active", "selected");
               clearDivisionError();
+              updateDivisionUI();
             } else {
               showDivisionError("Kamu hanya boleh memilih maksimal 2 divisi!");
             }
           }
         });
       });
+
+      updateDivisionUI();
 
       form.addEventListener("submit", (e) => {
         e.preventDefault();

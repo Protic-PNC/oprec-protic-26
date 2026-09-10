@@ -233,13 +233,43 @@ img {
   }
   
 /* Division Selection (FINAL REVISED) */
+.division-header-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-2xl);
+}
+
 .division-instruction {
   font-size: var(--font-md);
   font-weight: 600;
   line-height: 27px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: 0;
+}
+
+.division-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-white);
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.division-counter.complete {
+  background: rgba(59, 174, 109, 0.25);
+  border-color: var(--light-green);
+  color: var(--lighter-green);
+  box-shadow: 0 0 10px rgba(73, 209, 133, 0.35);
 }
 
 .hidden {
@@ -310,7 +340,8 @@ img {
 }
 
 /* Tombol terpilih */
-.division-btn.selected {
+.division-btn.selected,
+.division-btn.active {
   background: linear-gradient(
     180deg,
     var(--accent-green) 42.31%,
@@ -322,9 +353,20 @@ img {
 }
 
 /* Jika tombol terpilih di-hover, tetap sama */
-.division-btn.selected:hover {
+.division-btn.selected:hover,
+.division-btn.active:hover {
   transform: translateY(-2px); /* tetap stabil */
   box-shadow: var(--shadow-green-strong, 0px 0px 27.3px rgba(48, 126, 82, 0.43));
+}
+
+/* Tombol dinonaktifkan (ketika kuota 2 divisi sudah terpenuhi) */
+.division-btn:disabled,
+.division-btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+  filter: grayscale(0.5);
 }
 
 /* Icon di tombol */

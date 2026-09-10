@@ -101,7 +101,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 11 | U-05 | Ganti `type="number"` → `type="tel"` / `type="text"` | 🅑 | ✅ Selesai |
 | 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ✅ Selesai |
 | 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ✅ Selesai |
-| 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ⬜ Belum |
+| 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ✅ Selesai |
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ⬜ Belum |
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ⬜ Belum |
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ⬜ Belum |
@@ -295,10 +295,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html`, `form.css`
 
 **Yang dilakukan:**
-- [ ] Tambah badge/counter di atas grid divisi: `"0 / 2 dipilih"`
-- [ ] Update counter setiap kali divisi dipilih/dibatalkan
-- [ ] Visual berbeda saat sudah mencapai 2 (badge hijau)
-- [ ] Disable tombol divisi lain saat sudah 2 terpilih (preventif, bukan reaktif)
+- [x] Tambah badge/counter di atas grid divisi: `"0 / 2 dipilih"`
+- [x] Update counter setiap kali divisi dipilih/dibatalkan
+- [x] Visual berbeda saat sudah mencapai 2 (badge hijau)
+- [x] Disable tombol divisi lain saat sudah 2 terpilih (preventif, bukan reaktif)
 
 **Estimasi:** 25 menit
 
