@@ -510,48 +510,48 @@
       let selectedDivisions = [];
       const DRAFT_KEY = "protic_oprec_draft";
 
-      // Division Information Dictionary for Dynamic Preview (Opsi 2)
+      // Division Information Dictionary for Dynamic Preview (Versi Terbaik)
       const divisionInfo = {
         "WEB": {
           name: "Web Development",
           icon: "img/icon/web.svg",
-          desc: "Pengembangan website responsif organisasi, rancang bangun frontend & backend, dan integrasi sistem informasi berbasis web.",
+          desc: "Pengembangan website responsif organisasi, rancang bangun frontend & backend, dan integrasi API web.",
           skills: ["HTML/CSS", "JavaScript", "Frameworks", "REST API"]
         },
         "UI/UX": {
           name: "UI/UX Design",
           icon: "img/icon/ui.svg",
-          desc: "Perancangan antarmuka & riset pengalaman pengguna, penyusunan wireframe sistematis, serta pembuatan prototipe interaktif.",
+          desc: "Riset kebutuhan pengguna, perancangan antarmuka visual UI, wireframing sistematis, dan prototipe interaktif.",
           skills: ["Figma", "Wireframing", "UX Research", "Prototyping"]
         },
         "MOBILE": {
           name: "Mobile Development",
           icon: "img/icon/mobile.svg",
-          desc: "Pengembangan aplikasi mobile modern untuk Android & iOS, integrasi layanan API, dan optimalisasi performa aplikasi.",
-          skills: ["Flutter / Kotlin", "Mobile UI", "App Testing", "State Management"]
+          desc: "Pengembangan aplikasi mobile Android & iOS, integrasi layanan API, dan arsitektur performa app.",
+          skills: ["Flutter", "Kotlin", "Mobile UI", "API Integration"]
         },
         "DEVOPS": {
           name: "DevOps & System Admin",
           icon: "img/icon/devops.svg",
-          desc: "Pengelolaan server Linux/Cloud, implementasi otomasi CI/CD, deployment aplikasi, serta monitoring keandalan infrastruktur IT.",
-          skills: ["Linux", "Git & CI/CD", "Cloud / Server", "Docker"]
+          desc: "Pengelolaan server Linux/Cloud, otomasi CI/CD, deployment aplikasi, serta pemantauan keandalan sistem.",
+          skills: ["Linux", "Git & CI/CD", "Cloud/Server", "Docker"]
         },
         "DATA": {
           name: "Data & Artificial Intelligence",
           icon: "img/icon/data.svg",
-          desc: "Pengolahan & analisis data organisasi, otomasi alur kerja analitik, visualisasi data interaktif, dan eksplorasi dasar AI.",
-          skills: ["Python", "Data Mining", "AI Basics", "Data Visualization"]
+          desc: "Pengolahan & visualisasi data organisasi, otomasi analitik, serta pengenalan dasar kecerdasan buatan.",
+          skills: ["Python", "Data Mining", "AI Basics", "Visualization"]
         },
         "HUMAS": {
           name: "Humas (Hubungan Masyarakat)",
           icon: "img/icon/humas.svg",
-          desc: "Menjalin komunikasi internal antar pengurus & eksternal dengan organisasi lain, memperluas networking industri, dan kemitraan.",
+          desc: "Komunikasi eksternal & internal organisasi, perluasan networking industri, dan kolaborasi kemitraan.",
           skills: ["Public Relations", "Networking", "Partnership", "Event Handling"]
         },
         "KOMINFO": {
           name: "Kominfo",
           icon: "img/icon/kominfo.svg",
-          desc: "Publikasi media sosial dan branding visual PROTIC, kreasi konten grafis kreatif, dokumentasi multimedia, dan penulisan informasi publik.",
+          desc: "Branding media sosial organisasi, pembuatan konten grafis kreatif, dokumentasi multimedia, dan publikasi.",
           skills: ["Content Creation", "Social Media", "Desain Grafis", "Copywriting"]
         }
       };
@@ -799,64 +799,97 @@
         }
       }
 
-      // Dynamic Division Preview (Opsi 2)
+      // Dynamic Division Preview (Versi Terbaik: Unified Compact Panel)
       function updateDivisionPreview() {
         if (!divisionPreviewContainer) return;
 
         if (selectedDivisions.length === 0) {
           divisionPreviewContainer.innerHTML = `
-            <div class="py-3 px-4 rounded-xl bg-black/25 border border-white/10 text-center text-white/60 text-xs flex items-center justify-center gap-2">
+            <div class="py-2.5 px-3.5 rounded-lg bg-white/[0.03] border border-white/10 text-white/50 text-xs text-center flex items-center justify-center gap-2">
               <span class="text-sm" aria-hidden="true">💡</span>
-              <span>Pilih salah satu divisi di atas untuk melihat ringkasan tugas & keahliannya.</span>
+              <span>Pilih divisi di atas untuk melihat ringkasan tugas & fokus keahlian.</span>
             </div>
           `;
           return;
         }
 
-        let html = `<div class="flex flex-col gap-2.5">`;
-        selectedDivisions.forEach((divKey, index) => {
-          const info = divisionInfo[divKey];
-          if (!info) return;
+        let html = `
+          <div class="rounded-lg bg-black/40 border border-white/15 divide-y divide-white/10 overflow-hidden shadow-md animate-fadeIn">
+        `;
 
-          const isChoice1 = index === 0;
-          const badgeClass = isChoice1
-            ? "bg-lightgreen/20 text-lightergreen border-lightgreen/40"
-            : "bg-emerald-500/20 text-emerald-300 border-emerald-400/40";
-
-          html += `
-            <div class="bg-gradient-to-r from-darkgreen/80 to-black/70 border border-lightgreen/35 rounded-xl p-3 sm:p-3.5 animate-fadeIn flex flex-col gap-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-lg bg-black/40 border border-lightgreen/35 flex items-center justify-center shrink-0">
-                    <img src="${info.icon}" alt="" width="14" height="14" />
-                  </div>
-                  <h4 class="font-bold text-xs sm:text-sm text-lightergreen tracking-wide">${info.name}</h4>
+        // Pilihan 1
+        const div1Key = selectedDivisions[0];
+        const info1 = divisionInfo[div1Key];
+        html += `
+          <div class="p-3 flex items-start justify-between gap-2.5 bg-white/[0.01]">
+            <div class="flex items-start gap-2.5 min-w-0">
+              <span class="w-5 h-5 rounded bg-lightgreen/20 text-lightergreen font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+              <div class="min-w-0">
+                <div class="flex items-baseline gap-2">
+                  <h4 class="font-bold text-xs sm:text-sm text-white tracking-wide truncate">${info1.name}</h4>
+                  <span class="text-[10px] text-lightergreen font-semibold uppercase tracking-wider shrink-0">Pilihan 1</span>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="text-[10px] font-bold uppercase tracking-wider ${badgeClass} px-2 py-0.5 rounded-full border">
-                    Pilihan ${index + 1}
-                  </span>
-                  <button
-                    type="button"
-                    class="text-white/40 hover:text-red-400 text-xs font-bold w-5 h-5 flex items-center justify-center rounded hover:bg-white/10 transition-colors cursor-pointer"
-                    title="Batalkan pilihan ${info.name}"
-                    aria-label="Batalkan pilihan ${info.name}"
-                    onclick="toggleDivision('${divKey}')"
-                  >
-                    ✕
-                  </button>
-                </div>
-              </div>
-              <p class="text-[11px] sm:text-xs text-white/85 leading-relaxed">
-                ${info.desc}
-              </p>
-              <div class="flex flex-wrap items-center gap-1 pt-0.5">
-                <span class="text-[10px] text-white/50 font-medium">Skill:</span>
-                ${info.skills.map(s => `<span class="text-[10px] bg-white/10 text-white/90 px-1.5 py-0.5 rounded font-mono">${s}</span>`).join('')}
+                <p class="text-[11px] sm:text-xs text-white/80 leading-relaxed mt-0.5">
+                  ${info1.desc}
+                </p>
+                <p class="text-[10px] text-white/45 mt-1 font-mono">
+                  Skill: ${info1.skills.join(" · ")}
+                </p>
               </div>
             </div>
+            <button
+              type="button"
+              class="text-white/40 hover:text-red-400 text-xs font-medium py-0.5 px-1.5 rounded hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+              title="Batalkan ${info1.name}"
+              aria-label="Batalkan ${info1.name}"
+              onclick="toggleDivision('${div1Key}')"
+            >
+              Batal
+            </button>
+          </div>
+        `;
+
+        // Pilihan 2
+        if (selectedDivisions.length > 1) {
+          const div2Key = selectedDivisions[1];
+          const info2 = divisionInfo[div2Key];
+          html += `
+            <div class="p-3 flex items-start justify-between gap-2.5 bg-white/[0.01]">
+              <div class="flex items-start gap-2.5 min-w-0">
+                <span class="w-5 h-5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                <div class="min-w-0">
+                  <div class="flex items-baseline gap-2">
+                    <h4 class="font-bold text-xs sm:text-sm text-white tracking-wide truncate">${info2.name}</h4>
+                    <span class="text-[10px] text-emerald-400 font-semibold uppercase tracking-wider shrink-0">Pilihan 2</span>
+                  </div>
+                  <p class="text-[11px] sm:text-xs text-white/80 leading-relaxed mt-0.5">
+                    ${info2.desc}
+                  </p>
+                  <p class="text-[10px] text-white/45 mt-1 font-mono">
+                    Skill: ${info2.skills.join(" · ")}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="text-white/40 hover:text-red-400 text-xs font-medium py-0.5 px-1.5 rounded hover:bg-white/10 transition-colors shrink-0 cursor-pointer"
+                title="Batalkan ${info2.name}"
+                aria-label="Batalkan ${info2.name}"
+                onclick="toggleDivision('${div2Key}')"
+              >
+                Batal
+              </button>
+            </div>
           `;
-        });
+        } else {
+          html += `
+            <div class="py-2 px-3 flex items-center gap-2 text-[11px] sm:text-xs text-white/45 bg-black/20">
+              <span class="w-5 h-5 rounded bg-white/10 text-white/40 font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <span>Pilih 1 divisi lagi di atas sebagai Pilihan 2</span>
+            </div>
+          `;
+        }
+
         html += `</div>`;
         divisionPreviewContainer.innerHTML = html;
       }
