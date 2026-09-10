@@ -31,12 +31,15 @@
       rel="stylesheet"
     />
 
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="img/header.png" type="image/png" />
+
     <link rel="stylesheet" href="form.css" />
   </head>
   <body>
     <section class="registration-section">
       <header class="header">
-        <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" />
+        <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" fetchpriority="high" />
       </header>
 
       <div class="form-title-section">

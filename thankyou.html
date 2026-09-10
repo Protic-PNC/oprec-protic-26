@@ -22,12 +22,15 @@
     rel="stylesheet"
   />
 
+  <!-- Preload Critical Assets -->
+  <link rel="preload" as="image" href="img/header.png" type="image/png" />
+
   <link rel="stylesheet" href="thankyou.css">
 </head>
 <body>
   <!-- Header with Logo -->
   <header class="header">
-     <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147"/>
+     <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" fetchpriority="high" />
   </header>
     <!-- Thank You Section -->
   <section class="thankyou-section">

@@ -32,6 +32,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
 
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="img/Protic.png" type="image/png" />
+    <link rel="preload" as="image" href="img/circle.png" type="image/png" />
+
     <link rel="stylesheet" href="index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,7 +47,7 @@
   <body>
     <section class="landing-page" id="landingPage">
       <div class="hero-image">
-        <img src="img/Protic.png" alt="PROTIC Hero" width="353" height="376" />
+        <img src="img/Protic.png" alt="PROTIC Hero" width="353" height="376" fetchpriority="high" />
       </div>
       <div class="hero-content">
         <h1 class="hero-title">PROTIC</h1>

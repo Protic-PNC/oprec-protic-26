@@ -22,6 +22,9 @@
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <!-- Preload Critical Assets -->
+    <link rel="preload" as="image" href="img/header.png" type="image/png" />
+
     <!-- <link rel="stylesheet" href="/src/output.css"> -->
 
     <!-- Tailwind CDN -->
@@ -62,7 +65,7 @@
     <main class="flex flex-col items-center">
       <!-- HEADER -->
       <header class="flex justify-center w-full max-w-sm">
-        <img src="img/header.png" alt="PROTIC Header" class="w-full" width="334" height="147" />
+        <img src="img/header.png" alt="PROTIC Header" class="w-full" width="334" height="147" fetchpriority="high" />
       </header>
 
       <div class="px-6">
