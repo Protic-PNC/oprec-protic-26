@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
 
 <head>
@@ -82,23 +82,20 @@
 
             <div
               class="bg-gradient-to-b from-[#80C89F] via-[#114B2A] to-[#06291E] border-[1px] border-solid border-t-[linear-gradient(180deg,_#06291E_3.58%,_#227D4A_27.28%,_#80C89F_45.91%,_#227D4A_57.31%,_#000000_90.67%)] rounded-[12px] shadow-[0px_0px_27.3px_rgba(48,126,82,0.33)] py-[16px] px-[48px] flex items-center justify-center w-full">
-              <h3 class="text-xl font-semibold text-center">Nama</h3>
+              <h3 id="studentName" class="text-xl font-semibold text-center">—</h3>
             </div>
             <div
               class="bg-gradient-to-b from-[#80C89F] via-[#114B2A] to-[#06291E] border-[1px] border-solid border-t-[linear-gradient(180deg,_#06291E_3.58%,_#227D4A_27.28%,_#80C89F_45.91%,_#227D4A_57.31%,_#000000_90.67%)] rounded-[12px] shadow-[0px_0px_27.3px_rgba(48,126,82,0.33)] py-[16px] px-[48px] flex items-center justify-center w-full">
-              <h3 class="text-xl font-semibold text-center">
-                Divisi {{ $divisi }}
+              <h3 id="studentDivision" class="text-xl font-semibold text-center">
+                Divisi —
               </h3>
             </div>
           </div>
 
           <div
+            id="studentInfo"
             class="w-full py-5 bg-gradient-to-b from-[#114B2A] to-[#000000] border-[1px] border-solid border-[linear-gradient(180deg,_#06291E_1.44%,_#227D4A_12.75%,_#80C89F_24.43%,_#227D4A_39.47%,_#151515_87.33%)] rounded-[8px] px-[13px] text-white font-[300] text-[13px] leading-[27px] text-center items-center flex justify-center">
-            <!-- Anda resmi bergabung dengan Divisi {{ divisi }} Protic<br>
-                2026/2027!<br>
-                Terima kasih telah menjadi bagian dari kami.<br>
-                Klik tombol di bawah untuk masuk ke grup<br>
-                pengurus! -->
+            <p>Memuat data kelolosan...</p>
           </div>
         </div>
         <div
@@ -106,6 +103,7 @@
         </div>
 
         <button
+          id="groupBtn"
           class="px-8 py-4 text-sm font-bold rounded-[60px] bg-[linear-gradient(180deg,_#87EBB3_0%,_#23824C_100%)] border border-solid border-[linear-gradient(180deg,_#06291E_1.44%,_#227D4A_21.84%,_#80C89F_41.5%,_#227D4A_62.27%,_#000000_91.61%)] shadow-[0px_-1px_13.6px_rgba(108,184,141,0.43)] text-white font-sans text-[24px] leading-[27px] uppercase cursor-pointer transition-all duration-300 ease-in-out self-center mt-[24px] mb-[30px] hover:-translate-y-[2px] hover:shadow-[0px_-1px_13.6px_rgba(108,184,141,0.43),0px_4px_8px_rgba(0,0,0,0.2)] focus:outline focus:outline-[2px] focus:outline-[#80C89F] focus:outline-offset-[2px]">
           Join Group Division
         </button>
@@ -158,43 +156,55 @@
   </main>
   <script>
     // Ambil data dari sessionStorage
-    const studentData = JSON.parse(sessionStorage.getItem("studentData"));
+    let studentData = null;
+    try {
+      studentData = JSON.parse(sessionStorage.getItem("studentData"));
+    } catch (e) {
+      console.error("Gagal membaca studentData:", e);
+    }
 
-    if (!studentData) {
-      alert("Data tidak ditemukan. Silakan kembali ke halaman utama.");
-      window.location.href = "index.html";
+    const namaEl = document.getElementById("studentName");
+    const divisiEl = document.getElementById("studentDivision");
+    const infoEl = document.getElementById("studentInfo");
+    const groupBtn = document.getElementById("groupBtn");
+
+    if (!studentData || !studentData.Nama || !studentData.Divisi) {
+      if (namaEl) namaEl.textContent = "Data Tidak Ditemukan";
+      if (divisiEl) divisiEl.textContent = "Status Belum Tersedia";
+      if (infoEl) {
+        infoEl.innerHTML = `
+          <div class="flex flex-col items-center gap-2 leading-relaxed">
+            <p class="text-[14px] text-textgray">Silakan periksa kembali melalui halaman pengumuman untuk melihat status kelolosan.</p>
+            <a href="pengumuman.html" class="text-lightergreen underline font-medium hover:text-white mt-1">Kembali ke Pengumuman</a>
+          </div>
+        `;
+      }
+      if (groupBtn) {
+        groupBtn.textContent = "Ke Halaman Pengumuman";
+        groupBtn.addEventListener("click", () => {
+          window.location.href = "pengumuman.html";
+        });
+      }
     } else {
-      // Ambil elemen
-      const namaEl = document.querySelectorAll(
-        "h3.text-xl.font-semibold.text-center",
-      )[0];
-      const divisiEl = document.querySelectorAll(
-        "h3.text-xl.font-semibold.text-center",
-      )[1];
-      const infoEl = document.querySelector(
-        ".text-center.items-center.flex.justify-center",
-      );
-      const groupBtn = document.querySelector("button");
-
       // Isi nama & divisi
       namaEl.textContent = studentData.Nama;
       divisiEl.textContent = `Divisi ${studentData.Divisi}`;
 
       // Ubah isi info agar lebih rapi dan proporsional
       infoEl.innerHTML = `
-      <div class="flex flex-col items-center gap-2 leading-relaxed">
-        <p class="text-[15px]">Anda resmi bergabung dengan</p>
-        <p class="text-[18px] font-semibold text-lightgreen">Divisi ${studentData.Divisi} PROTIC 2026/2027</p>
-        <p class="text-[14px] mt-2 text-textgray">Terima kasih telah menjadi bagian dari kami.</p>
-        <p class="text-[14px] text-textgray">Klik tombol di bawah untuk masuk ke grup pengurus!</p>
-      </div>
-    `;
+        <div class="flex flex-col items-center gap-2 leading-relaxed">
+          <p class="text-[15px]">Anda resmi bergabung dengan</p>
+          <p class="text-[18px] font-semibold text-lightgreen">Divisi ${studentData.Divisi} PROTIC 2026/2027</p>
+          <p class="text-[14px] mt-2 text-textgray">Terima kasih telah menjadi bagian dari kami.</p>
+          <p class="text-[14px] text-textgray">Klik tombol di bawah untuk masuk ke grup pengurus!</p>
+        </div>
+      `;
 
       // text message whatsapp
       const info = `Halo Kak! Sebelumnya perkenalkan, saya
 
 Nama   : ${studentData.Nama}
-NIM    : ${studentData.NPM}
+NPM    : ${studentData.NPM || "-"}
 Divisi : ${studentData.Divisi}
 
 Saya sudah dinyatakan DITERIMA sebagai Pengurus Protic 2026/2027 pada divisi ${studentData.Divisi}.  

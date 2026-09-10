@@ -99,7 +99,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 09 | U-09/U-14 | Fix typo "Portofoliov" + label NPM salah | 🅑 | ✅ Selesai |
 | 10 | U-13 | Fix HTML tidak valid (`</body>` hilang) | 🅒 | ✅ Selesai |
 | 11 | U-05 | Ganti `type="number"` → `type="tel"` / `type="text"` | 🅑 | ✅ Selesai |
-| 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ⬜ Belum |
+| 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ✅ Selesai |
 | 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ⬜ Belum |
 | 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ⬜ Belum |
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ⬜ Belum |
@@ -269,9 +269,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `success.html`
 
 **Yang dilakukan:**
-- [ ] Ganti `Divisi {{ $divisi }}` → `Divisi -` sebagai nilai default di HTML
-- [ ] Ganti placeholder `Nama` statis → nilai default bermakna (misal `—`)
-- [ ] Pastikan JavaScript masih menimpa nilai ini dengan benar saat data ada
+- [x] Ganti `Divisi {{ $divisi }}` → `Divisi -` sebagai nilai default di HTML
+- [x] Ganti placeholder `Nama` statis → nilai default bermakna (misal `—`)
+- [x] Pastikan JavaScript masih menimpa nilai ini dengan benar saat data ada
 
 **Estimasi:** 10 menit
 
