@@ -445,8 +445,8 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`, `thankyou.html`
 
 **Yang dilakukan:**
-- [ ] Ganti `<div class="flex flex-row md:flex-col gap-2">` → `.footer-social` class yang sudah ada di CSS
-- [ ] Ganti `class="w-[20px] h-[20px]"` → inline style atau class di file CSS masing-masing
+- [x] Ganti `<div class="flex flex-row md:flex-col gap-2">` → `.footer-social` class yang sudah ada di CSS
+- [x] Ganti `class="w-[20px] h-[20px]"` → inline style atau class di file CSS masing-masing
 
 **Estimasi:** 15 menit
 
