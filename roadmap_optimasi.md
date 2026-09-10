@@ -102,7 +102,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ✅ Selesai |
 | 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ✅ Selesai |
 | 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ✅ Selesai |
-| 15 | U-08 | Perbaiki error handling form submission | 🅑 | ⬜ Belum |
+| 15 | U-08 | Perbaiki error handling form submission | 🅑 | ✅ Selesai |
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ⬜ Belum |
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ⬜ Belum |
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ⬜ Belum |
@@ -308,9 +308,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html` (inline script)
 
 **Yang dilakukan:**
-- [ ] Ganti `alert()` error submission → pesan error inline di atas tombol Submit
-- [ ] Tambah petunjuk langkah selanjutnya: "Cek koneksi dan coba lagi. Masalah berlanjut? Hubungi panitia."
-- [ ] Tampilkan pesan error dibersihkan saat submit berhasil/retry
+- [x] Ganti `alert()` error submission → pesan error inline di atas tombol Submit
+- [x] Tambah petunjuk langkah selanjutnya: "Cek koneksi dan coba lagi. Masalah berlanjut? Hubungi panitia."
+- [x] Tampilkan pesan error dibersihkan saat submit berhasil/retry
 
 **Estimasi:** 15 menit
 

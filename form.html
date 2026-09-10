@@ -281,6 +281,13 @@
 
           <div class="form-divider"></div>
 
+          <div
+            id="submitError"
+            class="submit-error-banner hidden"
+            role="alert"
+            aria-live="assertive"
+          ></div>
+
           <button type="submit" id="submitBtn" class="submit-btn">
             <span id="btnText">Kirim</span>
             <span id="btnLoading" class="hidden">
@@ -443,8 +450,29 @@
 
       updateDivisionUI();
 
+      const submitBtn = document.getElementById("submitBtn");
+      const btnText = document.getElementById("btnText");
+      const btnLoading = document.getElementById("btnLoading");
+      const submitError = document.getElementById("submitError");
+
+      function showSubmitError(htmlContent) {
+        if (submitError) {
+          submitError.innerHTML = htmlContent;
+          submitError.classList.remove("hidden");
+          submitError.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      function clearSubmitError() {
+        if (submitError) {
+          submitError.innerHTML = "";
+          submitError.classList.add("hidden");
+        }
+      }
+
       form.addEventListener("submit", (e) => {
         e.preventDefault();
+        clearSubmitError();
 
         if (selectedDivisions.length !== 2) {
           showDivisionError("Harap pilih tepat 2 divisi sebelum mengirim formulir!");
@@ -453,15 +481,15 @@
         }
 
         const formData = {
-          fullname: form.fullname.value,
-          npm: form.npm.value,
-          class: form.class.value,
-          semester: form.semester.value,
+          fullname: form.fullname.value.trim(),
+          npm: form.npm.value.trim(),
+          class: form.class.value.trim(),
+          semester: form.semester.value.trim(),
           division1: selectedDivisions[0],
           division2: selectedDivisions[1],
-          portfolio: form.portfolio.value,
-          whatsapp: form.whatsapp.value,
-          email: form.email.value,
+          portfolio: form.portfolio.value.trim(),
+          whatsapp: form.whatsapp.value.trim(),
+          email: form.email.value.trim(),
         };
 
         setLoading(true); // aktifkan loading
@@ -470,22 +498,25 @@
           method: "POST",
           body: JSON.stringify(formData),
         })
-          .then((res) => res.json())
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`Server status: ${res.status}`);
+            }
+            return res.json();
+          })
           .then((data) => {
             window.location.href = "thankyou.html";
           })
           .catch((err) => {
-            console.error("Error!", err.message);
-            alert("Terjadi kesalahan, coba lagi!");
+            console.error("Error submitting form:", err);
+            showSubmitError(
+              "<strong>Gagal mengirim formulir.</strong><br />Cek koneksi internet Anda dan coba lagi. Masalah berlanjut? Hubungi panitia."
+            );
           })
           .finally(() => {
             setLoading(false); // matikan loading kalau gagal
           });
       });
-
-      const submitBtn = document.getElementById("submitBtn");
-      const btnText = document.getElementById("btnText");
-      const btnLoading = document.getElementById("btnLoading");
 
       function setLoading(loading) {
         if (loading) {
