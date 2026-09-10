@@ -48,6 +48,8 @@
         <div class="form-divider"></div>
       </div>
 
+      <div id="formAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
       <form id="registrationForm" class="registration-form">
         <!-- BIODATA -->
         <div class="form-section">
@@ -126,8 +128,14 @@
             </span>
           </div>
 
-          <div class="division-grid">
-            <button type="button" class="division-btn" data-division="WEB">
+          <div class="division-grid" role="group" aria-label="Pilihan Divisi">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="WEB"
+              aria-label="Divisi Web"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/web.svg"
                 alt="Web Icon"
@@ -137,7 +145,13 @@
               />
               WEB
             </button>
-            <button type="button" class="division-btn" data-division="UI/UX">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="UI/UX"
+              aria-label="Divisi UI/UX"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/ui.svg"
                 alt="UI/UX Icon"
@@ -147,7 +161,13 @@
               />
               UI/UX
             </button>
-            <button type="button" class="division-btn" data-division="MOBILE">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="MOBILE"
+              aria-label="Divisi Mobile"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/mobile.svg"
                 alt="Mobile Icon"
@@ -157,7 +177,13 @@
               />
               MOBILE
             </button>
-            <button type="button" class="division-btn" data-division="DEVOPS">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="DEVOPS"
+              aria-label="Divisi DevOps"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/devops.svg"
                 alt="DevOps Icon"
@@ -167,7 +193,13 @@
               />
               DEVOPS
             </button>
-            <button type="button" class="division-btn" data-division="DATA">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="DATA"
+              aria-label="Divisi Data"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/data.svg"
                 alt="Data Icon"
@@ -177,7 +209,13 @@
               />
               DATA
             </button>
-            <button type="button" class="division-btn" data-division="HUMAS">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="HUMAS"
+              aria-label="Divisi Humas"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/humas.svg"
                 alt="Public Relations Icon"
@@ -191,6 +229,8 @@
               type="button"
               class="division-btn"
               data-division="SEKRETARIS"
+              aria-label="Divisi Sekretaris"
+              aria-pressed="false"
             >
               <img
                 src="img/icon/sekretaris.svg"
@@ -201,7 +241,13 @@
               />
               SEKRETARIS
             </button> -->
-            <button type="button" class="division-btn" data-division="KOMINFO">
+            <button
+              type="button"
+              class="division-btn"
+              data-division="KOMINFO"
+              aria-label="Divisi Kominfo"
+              aria-pressed="false"
+            >
               <img
                 src="img/icon/kominfo.svg"
                 alt="Communication Icon"
@@ -215,6 +261,8 @@
               type="button"
               class="division-btn"
               data-division="BENDAHARA"
+              aria-label="Divisi Bendahara"
+              aria-pressed="false"
             > 
              <img
                 src="img/icon/bendahara.svg"
@@ -387,11 +435,22 @@
       const divisionError = document.getElementById("divisionError");
       const divisionCounter = document.getElementById("divisionCounter");
       const divisionButtons = document.querySelectorAll(".division-btn");
+      const formAnnouncer = document.getElementById("formAnnouncer");
+
+      function announce(message) {
+        if (formAnnouncer) {
+          formAnnouncer.textContent = "";
+          setTimeout(() => {
+            formAnnouncer.textContent = message;
+          }, 50);
+        }
+      }
 
       function showDivisionError(msg) {
         if (divisionError) {
           divisionError.textContent = msg;
           divisionError.classList.remove("hidden");
+          announce(msg);
         }
       }
 
@@ -415,7 +474,10 @@
 
         divisionButtons.forEach((btn) => {
           const div = btn.dataset.division;
-          if (count >= 2 && !selectedDivisions.includes(div)) {
+          const isSelected = selectedDivisions.includes(div);
+          btn.setAttribute("aria-pressed", isSelected ? "true" : "false");
+
+          if (count >= 2 && !isSelected) {
             btn.disabled = true;
             btn.classList.add("disabled");
           } else {
@@ -435,12 +497,14 @@
             btn.classList.remove("active", "selected");
             clearDivisionError();
             updateDivisionUI();
+            announce(`Pilihan divisi ${division} dibatalkan. ${selectedDivisions.length} dari 2 divisi terpilih.`);
           } else {
             if (selectedDivisions.length < 2) {
               selectedDivisions.push(division);
               btn.classList.add("active", "selected");
               clearDivisionError();
               updateDivisionUI();
+              announce(`Divisi ${division} dipilih. ${selectedDivisions.length} dari 2 divisi terpilih.`);
             } else {
               showDivisionError("Kamu hanya boleh memilih maksimal 2 divisi!");
             }
@@ -455,11 +519,12 @@
       const btnLoading = document.getElementById("btnLoading");
       const submitError = document.getElementById("submitError");
 
-      function showSubmitError(htmlContent) {
+      function showSubmitError(htmlContent, textSummary) {
         if (submitError) {
           submitError.innerHTML = htmlContent;
           submitError.classList.remove("hidden");
           submitError.scrollIntoView({ behavior: "smooth", block: "center" });
+          announce(textSummary || "Gagal mengirim formulir.");
         }
       }
 
@@ -493,6 +558,7 @@
         };
 
         setLoading(true); // aktifkan loading
+        announce("Mengirim formulir pendaftaran, mohon tunggu...");
 
         fetch(scriptURL, {
           method: "POST",
@@ -505,12 +571,14 @@
             return res.json();
           })
           .then((data) => {
+            announce("Pendaftaran berhasil! Mengalihkan ke halaman terima kasih.");
             window.location.href = "thankyou.html";
           })
           .catch((err) => {
             console.error("Error submitting form:", err);
             showSubmitError(
-              "<strong>Gagal mengirim formulir.</strong><br />Cek koneksi internet Anda dan coba lagi. Masalah berlanjut? Hubungi panitia."
+              "<strong>Gagal mengirim formulir.</strong><br />Cek koneksi internet Anda dan coba lagi. Masalah berlanjut? Hubungi panitia.",
+              "Gagal mengirim formulir. Cek koneksi internet Anda dan coba lagi."
             );
           })
           .finally(() => {

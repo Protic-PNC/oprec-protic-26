@@ -105,7 +105,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ✅ Selesai |
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ✅ Selesai |
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ✅ Selesai |
-| 18 | U-11 | Tambah `aria-live` region | 🅑 | ⬜ Belum |
+| 18 | U-11 | Tambah `aria-live` region | 🅑 | ✅ Selesai |
 | 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ⬜ Belum |
 | 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ⬜ Belum |
 | 21 | P-02/U-01 | Perbaiki splash screen (skip + delay lebih pendek) | 🅐 | ⬜ Belum |
@@ -349,10 +349,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html`
 
 **Yang dilakukan:**
-- [ ] Tambah `<div aria-live="polite" id="form-announcer" class="sr-only"></div>`
-- [ ] Update JS untuk mengisi announcer saat divisi dipilih/dibatalkan
-- [ ] Update saat loading dan error submission
-- [ ] Tambah `aria-label` pada tombol divisi
+- [x] Tambah `<div aria-live="polite" id="form-announcer" class="sr-only"></div>`
+- [x] Update JS untuk mengisi announcer saat divisi dipilih/dibatalkan
+- [x] Update saat loading dan error submission
+- [x] Tambah `aria-label` pada tombol divisi
 
 **Estimasi:** 20 menit
 
