@@ -97,7 +97,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 07 | P-08 | Tambah `loading="lazy"` pada gambar non-kritis | 🅐 | ✅ Selesai |
 | 08 | P-03 | Unduh & host lokal semua ikon dari S3 Codia | 🅐 | ✅ Selesai |
 | 09 | U-09/U-14 | Fix typo "Portofoliov" + label NPM salah | 🅑 | ✅ Selesai |
-| 10 | U-13 | Fix HTML tidak valid (`</body>` hilang) | 🅒 | ⬜ Belum |
+| 10 | U-13 | Fix HTML tidak valid (`</body>` hilang) | 🅒 | ✅ Selesai |
 | 11 | U-05 | Ganti `type="number"` → `type="tel"` / `type="text"` | 🅑 | ⬜ Belum |
 | 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ⬜ Belum |
 | 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ⬜ Belum |
