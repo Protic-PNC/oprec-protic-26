@@ -95,7 +95,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 05 | P-01 | Compress & resize `fotbar.webp` (<300KB) | 🅑 | ✅ Selesai (108 KB) |
 | 06 | P-04 | Tambah `<link rel="preload">` untuk aset kritis | 🅐 | ✅ Selesai |
 | 07 | P-08 | Tambah `loading="lazy"` pada gambar non-kritis | 🅐 | ✅ Selesai |
-| 08 | P-03 | Unduh & host lokal semua ikon dari S3 Codia | 🅐 | ⬜ Belum |
+| 08 | P-03 | Unduh & host lokal semua ikon dari S3 Codia | 🅐 | ✅ Selesai |
 | 09 | U-09/U-14 | Fix typo "Portofoliov" + label NPM salah | 🅑 | ⬜ Belum |
 | 10 | U-13 | Fix HTML tidak valid (`</body>` hilang) | 🅒 | ⬜ Belum |
 | 11 | U-05 | Ganti `type="number"` → `type="tel"` / `type="text"` | 🅑 | ⬜ Belum |
