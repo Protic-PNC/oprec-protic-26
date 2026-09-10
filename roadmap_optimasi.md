@@ -403,11 +403,11 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.css`
 
 **Yang dilakukan:**
-- [ ] Update `@media (min-width: 1024px)` untuk `.intro-section`:
+- [x] Update `@media (min-width: 1024px)` untuk `.intro-section`:
   - `flex-direction: row` (teks kiri, gambar+kartu kanan)
-- [ ] Update `.divisions-container`:
+- [x] Update `.divisions-container`:
   - `flex-direction: row` (Technical | Non-Technical berdampingan)
-- [ ] Verifikasi di 1280px, 1440px, 1920px
+- [x] Verifikasi di 1280px, 1440px, 1920px
 
 **Estimasi:** 30 menit
 

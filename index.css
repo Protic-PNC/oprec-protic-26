@@ -375,37 +375,66 @@ a {
 
 /* --- Aturan untuk Desktop (1024px ke atas) --- */
 @media (min-width: 1024px) {
+  /* 2-Kolom Intro Section: Teks Kiri, Gambar & About Us Kanan */
   .intro-section {
-    display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-3xl);
+    gap: var(--spacing-4xl);
   }
-  .intro-text-content, .intro-image-group {
-    max-width: 700px;
+  .intro-text-content {
+    flex: 1;
+    max-width: 520px;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .intro-text-content .section-title {
+    text-align: left;
+    font-size: var(--font-5xl);
+  }
+  .intro-text-content .divider {
+    max-width: 100%;
+    margin: 0;
+  }
+  .intro-image-group {
+    flex: 1;
+    max-width: 560px;
     align-items: center;
   }
-  .intro-text-content .section-title,
-  .intro-image-group .card-title,
-  .intro-image-group .card-text {
+  .intro-image {
+    max-width: 100%;
+  }
+  .about-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  .intro-image-group .card-title {
     text-align: center;
   }
-  .divider {
-    max-width: 700px;
+  .intro-image-group .card-text {
+    text-align: left;
   }
 
+  /* 2-Kolom Divisions Container: Technical & Non-Technical Berdampingan */
+  .divisions-description {
+    max-width: 800px;
+  }
   .divisions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
     gap: var(--spacing-2xl);
+    width: 100%;
   }
   .division-card {
-    max-width: 700px;
+    flex: 1;
+    max-width: 580px;
     height: auto;
+    display: flex;
+    flex-direction: column;
   }
-  .divisions-description {
-    max-width: 700px;
+  .division-items {
+    flex-grow: 1;
   }
 
   /* Footer Layout for Desktop */
