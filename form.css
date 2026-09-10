@@ -33,7 +33,7 @@ Fonts: Poppins (base), Cinzel (headings)
   --background-dark: #161616;
   --background-darker: #444444;
   --text-white: #FFFFFF;
-  --text-gray: rgba(255, 255, 255, 0.35);
+  --text-gray: rgba(255, 255, 255, 0.72);
   --black: #000000;
 
   /* Font Sizes */
@@ -348,16 +348,8 @@ img {
 .division-btn {
   width: 90px; 
   height: 90px;
-  background: linear-gradient(180deg, #2aac63 42.31%, var(--darker-green) 100%);
-  border: 1px solid;
-  border-image: linear-gradient(
-    180deg,
-    var(--dark-green) 3.58%,
-    var(--medium-green) 27.28%,
-    var(--accent-green) 45.91%,
-    var(--medium-green) 57.31%,
-    var(--black) 90.67%
-  ) 1;
+  background: linear-gradient(180deg, #185a34 0%, #08281a 100%);
+  border: 1.5px solid rgba(73, 209, 133, 0.4);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-green);
   display: flex;
@@ -369,37 +361,39 @@ img {
   transition: all 0.3s ease;
   color: var(--text-white);
   font-family: "Poppins", sans-serif;
+  font-size: var(--font-xs);
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* Hover tombol biasa */
-.division-btn:hover {
+.division-btn:hover:not(:disabled) {
+  background: linear-gradient(180deg, #1f7243 0%, #0c3825 100%);
+  border-color: rgba(73, 209, 133, 0.7);
   transform: translateY(-4px); 
   box-shadow: var(--shadow-green-strong, 0px 0px 27.3px rgba(48, 126, 82, 0.43));
 }
 
 /* Fokus */
-.division-btn:focus {
-  outline-offset: 1px;
+.division-btn:focus-visible {
+  outline: 2px solid var(--light-green);
+  outline-offset: 2px;
 }
 
 /* Tombol terpilih */
 .division-btn.selected,
 .division-btn.active {
-  background: linear-gradient(
-    180deg,
-    var(--accent-green) 42.31%,
-    var(--medium-dark-green) 100%
-  );
-  border-color: var(--accent-green);
+  background: linear-gradient(180deg, #1d6e3f 0%, #09321e 100%);
+  border: 2px solid var(--light-green);
   transform: translateY(-2px); /* fix, tidak membesar */
-  box-shadow: var(--shadow-green-strong, 0px 0px 27.3px rgba(48, 126, 82, 0.43));
+  box-shadow: 0 0 16px rgba(73, 209, 133, 0.5);
 }
 
 /* Jika tombol terpilih di-hover, tetap sama */
 .division-btn.selected:hover,
 .division-btn.active:hover {
   transform: translateY(-2px); /* tetap stabil */
-  box-shadow: var(--shadow-green-strong, 0px 0px 27.3px rgba(48, 126, 82, 0.43));
+  box-shadow: 0 0 16px rgba(73, 209, 133, 0.5);
 }
 
 /* Tombol dinonaktifkan (ketika kuota 2 divisi sudah terpenuhi) */

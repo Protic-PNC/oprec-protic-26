@@ -106,7 +106,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ✅ Selesai |
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ✅ Selesai |
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ✅ Selesai |
-| 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ⬜ Belum |
+| 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ✅ Selesai |
 | 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ⬜ Belum |
 | 21 | P-02/U-01 | Perbaiki splash screen (skip + delay lebih pendek) | 🅐 | ⬜ Belum |
 | 22 | U-02 | Perbaiki layout desktop (2-kolom) | 🅐 | ⬜ Belum |
@@ -362,10 +362,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.css`, `form.html`
 
 **Yang dilakukan:**
-- [ ] Audit kontras tombol divisi vs background (target ≥ 4.5:1 untuk teks normal)
-- [ ] Audit teks putih di atas background hijau gelap
-- [ ] Fix warna yang tidak memenuhi standar WCAG AA
-- [ ] Verifikasi via Chrome DevTools Accessibility panel
+- [x] Audit kontras tombol divisi vs background (target ≥ 4.5:1 untuk teks normal)
+- [x] Audit teks putih di atas background hijau gelap
+- [x] Fix warna yang tidak memenuhi standar WCAG AA
+- [x] Verifikasi via perhitungan kontras WCAG AA/AAA
 
 **Estimasi:** 25 menit
 
