@@ -36,7 +36,7 @@
     <link rel="preload" as="image" href="img/Protic.png" type="image/png" />
     <link rel="preload" as="image" href="img/circle.png" type="image/png" />
 
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="dist/output.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,15 +44,16 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="font-poppins bg-bgdark text-white overflow-x-hidden min-h-screen">
+    <!-- SPLASH SCREEN -->
     <section class="landing-page" id="landingPage">
       <button type="button" class="skip-splash-btn" id="skipSplashBtn" aria-label="Lewati splash screen">Lewati &rarr;</button>
       <div class="hero-image">
-        <img src="img/Protic.png" alt="PROTIC Hero" width="353" height="376" fetchpriority="high" />
+        <img src="img/Protic.png" alt="PROTIC Hero" width="353" height="376" class="w-[210px] drop-shadow-[0_0_25px_rgba(0,255,100,0.4)]" fetchpriority="high" />
       </div>
-      <div class="hero-content">
-        <h1 class="hero-title">PROTIC</h1>
-        <p class="hero-subtitle">Improve Skill To Innovate</p>
+      <div class="hero-content relative z-[2] flex flex-col items-center">
+        <h1 class="hero-title font-cinzel text-5xl sm:text-6xl font-bold leading-tight mb-2">PROTIC</h1>
+        <p class="hero-subtitle font-poppins text-sm sm:text-base font-normal text-white/85">Improve Skill To Innovate</p>
         <div class="splash-progress-container" aria-hidden="true">
           <div class="splash-progress-bar" id="splashProgressBar"></div>
         </div>
@@ -61,37 +62,37 @@
       <div class="bg-ellipse bg-ellipse-2"></div>
     </section>
 
+    <!-- MAIN CONTENT -->
     <main class="main-content">
-      <header class="header">
-        <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" />
+      <header class="header w-full flex justify-center py-4">
+        <img src="img/header.png" alt="PROTIC Header" class="header-image max-w-full h-auto" width="334" height="147" />
       </header>
 
-      <div class="page-wrapper">
-        <section class="intro-section">
-          <div class="intro-text-content">
-            <h2 class="section-title">
+      <div class="page-wrapper max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- INTRO SECTION (2-Kolom Desktop) -->
+        <section class="intro-section py-12 lg:py-16 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+          <div class="intro-text-content flex-1 max-w-[520px] flex flex-col items-center lg:items-start text-center lg:text-left gap-6 w-full">
+            <h2 class="section-title font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold uppercase leading-tight">
               PROGRAMMING TECHNOLOGY INFORMATICS CLUB
             </h2>
             <button
-              class="join-btn"
+              class="join-btn w-40 h-11 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-lg font-semibold uppercase flex items-center justify-center cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-lightergreen"
               onclick="window.location.href = 'form.html'"
             >
               Join Now
             </button>
-            <div class="divider"></div>
+            <div class="divider w-full max-w-[500px] h-px bg-gradient-to-r from-darkgreen to-black shadow-glow"></div>
           </div>
 
-          <div class="intro-image-group">
-            <div class="intro-image">
-              <img src="img/fotbar.webp" alt="PROTIC Team" width="1200" height="800" />
+          <div class="intro-image-group flex-1 max-w-[560px] flex flex-col items-center gap-6 w-full">
+            <div class="intro-image w-full max-w-[500px] aspect-video rounded-lg overflow-hidden bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-darkgreen shadow-green p-1">
+              <img src="img/fotbar.webp" alt="PROTIC Team" class="w-full h-full object-cover rounded-[5px]" width="1200" height="800" />
             </div>
-            <div class="about-card">
-              <h3 class="card-title">"About Us"</h3>
-              <p class="card-text">
-                <span class="highlight">Protic</span> atau
-                <span class="highlight"
-                  >Programming Technology Informatics Club</span
-                >
+            <div class="about-card w-full max-w-[500px] bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-6">
+              <h3 class="card-title font-cinzel text-2xl sm:text-3xl font-semibold mb-3 text-center">"About Us"</h3>
+              <p class="card-text text-sm sm:text-base text-white/90 leading-relaxed text-center lg:text-left">
+                <span class="font-semibold text-white">Protic</span> atau
+                <span class="font-semibold text-white">Programming Technology Informatics Club</span>
                 merupakan Unit Kegiatan Mahasiswa yang mewadahi minat dan bakat
                 mahasiswa Politeknik Negeri Cilacap di bidang pemrograman.
               </p>
@@ -99,12 +100,13 @@
           </div>
         </section>
 
-        <section class="divisions-section">
-          <div class="divisions-header">
-            <h2 class="section-title">DIVISI</h2>
-            <div class="divider-small"></div>
-            <p class="divisions-description">
-              <span class="highlight">Protic</span> terdiri dari dua divisi
+        <!-- DIVISIONS SECTION (2-Kolom Desktop) -->
+        <section class="divisions-section py-12 lg:py-16 flex flex-col items-center gap-8">
+          <div class="divisions-header text-center w-full max-w-[800px] mx-auto px-4">
+            <h2 class="section-title font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold uppercase">DIVISI</h2>
+            <div class="divider-small w-36 h-px bg-gradient-to-r from-darkgreen to-black shadow-glow my-4 mx-auto"></div>
+            <p class="divisions-description text-xs sm:text-sm text-white/85 leading-relaxed">
+              <span class="font-semibold text-white">Protic</span> terdiri dari dua divisi
               utama yaitu Divisi Teknikal dan Divisi Non-Teknikal. Kedua divisi
               ini saling berkolaborasi dalam mendukung jalannya program dan
               kegiatan, memastikan setiap aspek organisasi berjalan sesuai
@@ -112,96 +114,81 @@
             </p>
           </div>
 
-          <div class="divisions-container">
-            <div class="division-card technical-division">
-              <div class="division-header">
-                <div class="division-icon">
+          <div class="divisions-container flex flex-col lg:flex-row items-stretch justify-center gap-6 w-full">
+            <!-- TECHNICAL DIVISION -->
+            <div class="division-card technical-division flex-1 max-w-[580px] w-full bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-6 flex flex-col">
+              <div class="division-header flex items-center justify-center gap-3 mb-6">
+                <div class="division-icon w-11 h-11 flex items-center justify-center">
                   <img src="img/icon/tech.png" alt="Technical Icon" width="44" height="43" loading="lazy" />
                 </div>
-                <h3 class="division-title">Technical</h3>
+                <h3 class="division-title font-cinzel text-2xl sm:text-3xl font-semibold">Technical</h3>
               </div>
-              <div class="division-items">
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/web.svg"
-                      alt="Web Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">WEB</span>
+              <div class="division-items flex flex-col gap-4 flex-grow w-full">
+                <!-- WEB -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/web.svg" alt="Web Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">WEB</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Mengembangkan dan memelihara situs web/aplikasi<br />Riset
                       web technology<br />Memastikan desain situs web responsif
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/ui.svg"
-                      alt="UI/UX Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">UI/UX</span>
+
+                <!-- UI/UX -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/ui.svg" alt="UI/UX Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">UI/UX</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Research kebutuhan pengguna web/aplikasi<br />Desain
                       tampilan web/aplikasi<br />Merancang wireframe dan
                       prototype
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/mobile.svg"
-                      alt="Mobile Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">MOBILE</span>
+
+                <!-- MOBILE -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/mobile.svg" alt="Mobile Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">MOBILE</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Pengembangan aplikasi di platform Android/IOS<br />Pengembangan
                       aplikasi cross-platform
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/data.svg"
-                      alt="Data Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">DATA</span>
+
+                <!-- DATA -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/data.svg" alt="Data Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">DATA</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Pengolahan big data<br />Riset dan pengembangan AI<br />Data
                       mining
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/devops.svg"
-                      alt="DevOps Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">DEVOPS</span>
+
+                <!-- DEVOPS -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/devops.svg" alt="DevOps Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">DEVOPS</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Pengelolaan infrastruktur IT<br />System administration<br />Managemen
                       project deployment
                     </p>
@@ -210,83 +197,65 @@
               </div>
             </div>
 
-            <div class="division-card non-technical-division">
-              <div class="division-header">
-                <div class="division-icon">
-                  <img
-                    src="img/icon/Nontech-btn.svg"
-                    alt="Non-Technical Icon"
-                    width="43"
-                    height="43"
-                    loading="lazy"
-                  />
+            <!-- NON-TECHNICAL DIVISION -->
+            <div class="division-card non-technical-division flex-1 max-w-[580px] w-full bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-6 flex flex-col">
+              <div class="division-header flex items-center justify-center gap-3 mb-6">
+                <div class="division-icon w-11 h-11 flex items-center justify-center">
+                  <img src="img/icon/Nontech-btn.svg" alt="Non-Technical Icon" width="43" height="43" loading="lazy" />
                 </div>
-                <h3 class="division-title">Non-Technical</h3>
+                <h3 class="division-title font-cinzel text-2xl sm:text-3xl font-semibold">Non-Technical</h3>
               </div>
-              <div class="division-items">
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/sekretaris.svg"
-                      alt="Secretary Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label small">Sekretaris</span>
+              <div class="division-items flex flex-col gap-4 flex-grow w-full">
+                <!-- SEKRETARIS -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/sekretaris.svg" alt="Secretary Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-[10px] sm:text-xs font-semibold uppercase text-center">Sekretaris</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Mengelola korespondensi, jadwal, dan dokumentasi<br />Menyiapkan
                       notulensi rapat dan laporan
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/bendahara.svg"
-                      alt="Treasurer Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label small">BENDAHARA</span>
+
+                <!-- BENDAHARA -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/bendahara.svg" alt="Treasurer Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-[10px] sm:text-xs font-semibold uppercase text-center">BENDAHARA</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Mengelola keuangan, termasuk pencatatan pemasukan dan
                       pengeluaran<br />Membuat laporan keuangan rutin
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/humas.svg"
-                      alt="Public Relations Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label">HUMAS</span>
+
+                <!-- HUMAS -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/humas.svg" alt="Public Relations Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-xs font-semibold uppercase text-center">HUMAS</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Mengelola komunikasi internal dan eksternal<br />Membangun
                       dan menjaga citra positif organisasi
                     </p>
                   </div>
                 </div>
-                <div class="division-item">
-                  <div class="item-icon">
-                    <img
-                      src="img/icon/kominfo.svg"
-                      alt="Communication Icon"
-                      width="30"
-                      height="30"
-                      loading="lazy"
-                    /><span class="item-label small">KOMINFO</span>
+
+                <!-- KOMINFO -->
+                <div class="division-item flex gap-4 w-full items-center">
+                  <div class="item-icon w-20 h-20 bg-gradient-to-b from-meddarkgreen to-darker border border-darkgreen rounded-lg shadow-green flex flex-col items-center justify-center gap-1.5 shrink-0">
+                    <img src="img/icon/kominfo.svg" alt="Communication Icon" width="30" height="30" loading="lazy" />
+                    <span class="item-label text-[10px] sm:text-xs font-semibold uppercase text-center">KOMINFO</span>
                   </div>
-                  <div class="item-description">
-                    <p>
+                  <div class="item-description flex-grow bg-gradient-to-b from-meddarkgreen to-darkgreen border border-darkgreen rounded-lg shadow-green p-3 flex items-center min-h-[80px]">
+                    <p class="text-xs font-medium leading-relaxed">
                       Mengelola platform komunikasi, seperti media sosial dan
                       situs web<br />Membuat dan menyebarkan informasi
                     </p>
@@ -297,58 +266,68 @@
           </div>
         </section>
       </div>
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-main">
+
+      <!-- FOOTER -->
+      <footer class="footer w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-8 px-6 sm:px-8 flex flex-col justify-between mt-8">
+        <div class="footer-content flex flex-col md:flex-row justify-between items-center gap-8 max-w-[1200px] w-full mx-auto">
+          <div class="footer-main flex items-center gap-4">
             <div class="footer-logo">
               <img
                 src="img/Protic.png"
                 alt="PROTIC Logo"
                 width="85"
                 height="95"
+                class="w-[85px] h-[95px]"
                 loading="lazy"
               />
             </div>
             <div class="footer-text">
-              <h3 class="footer-title">PROTIC</h3>
-              <p class="footer-subtitle">
+              <h3 class="footer-title font-cinzel font-bold text-3xl sm:text-4xl leading-tight mb-1">PROTIC</h3>
+              <p class="footer-subtitle text-xs text-white/90">
                 Programming Technology Informatics Club
               </p>
             </div>
           </div>
-          <div class="footer-divider"></div>
-          <div class="footer-social">
-            <a href="https://github.com/Protic-PNC" aria-label="Github"
+
+          <div class="footer-divider w-full h-px md:w-px md:h-16 bg-white shadow-glow hidden md:block"></div>
+
+          <div class="footer-social flex flex-row md:flex-col gap-3">
+            <a href="https://github.com/Protic-PNC" aria-label="Github" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
               ><img
                 src="img/icon/github.svg"
                 alt="GitHub"
                 width="20"
                 height="20"
+                class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
                 loading="lazy"
             /></a>
             <a
               href="https://www.instagram.com/protic_pnc?stkn=anlzMDhlMzlucmJh"
               aria-label="Instagram"
+              class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
               ><img
                 src="img/icon/instagram.svg"
                 alt="Instagram"
                 width="20"
                 height="20"
+                class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
                 loading="lazy"
             /></a>
             <a
               href="https://www.linkedin.com/company/proticpnc/"
               aria-label="Linkedin"
+              class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
               ><img
                 src="img/icon/linkedin.svg"
                 alt="LinkedIn"
                 width="20"
                 height="20"
+                class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
                 loading="lazy"
             /></a>
           </div>
         </div>
-        <p class="footer-copyright">© 2026 Protic | All Right Reserved</p>
+        <p class="footer-copyright text-xs font-medium text-center mt-6 pt-2 text-white/80">© 2026 Protic | All Right Reserved</p>
       </footer>
     </main>
 

@@ -470,9 +470,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 - [x] Hapus/deprecate `thankyou.css`
 
 #### Sesi 26C — Migrasi `index.html`
-- [ ] Migrasi landing page, hero, splash progress, dan 2-kolom desktop ke Tailwind
-- [ ] Verifikasi animasi dan responsive breakpoints
-- [ ] Hapus/deprecate `index.css`
+- [x] Migrasi landing page, hero, splash progress, dan 2-kolom desktop ke Tailwind
+- [x] Verifikasi animasi dan responsive breakpoints
+- [x] Hapus/deprecate `index.css`
 
 #### Sesi 26D — Migrasi `form.html`
 - [ ] Migrasi formulir pendaftaran, floating validation, dan dialog modal ke Tailwind

@@ -2,6 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Splash Screen */
+  .landing-page {
+    @apply fixed inset-0 w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-[#0b0f0d] z-[9999] transition-opacity duration-700;
+  }
+  .landing-page.fade-out {
+    @apply opacity-0 pointer-events-none;
+  }
+  .main-content {
+    @apply hidden opacity-0 transition-opacity duration-1000;
+  }
+  .main-content.show {
+    @apply block opacity-100;
+  }
+  .skip-splash-btn {
+    @apply absolute top-6 right-6 z-10 bg-white/10 backdrop-blur-md border border-white/20 text-white font-poppins text-xs sm:text-sm font-medium py-1.5 px-3.5 rounded-full cursor-pointer opacity-0 invisible transition-all duration-300 hover:bg-primary/20 hover:border-primary hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-lightergreen;
+  }
+  .skip-splash-btn.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .splash-progress-container {
+    @apply w-40 h-[3px] bg-white/15 rounded-full overflow-hidden mt-4;
+  }
+  .splash-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #3BAE6D, #87EBB3);
+    border-radius: 9999px;
+    box-shadow: 0 0 8px rgba(73, 209, 133, 0.8);
+    animation: splashProgress 1.5s ease-out forwards;
+  }
+
+  /* Ellipse background in splash */
+  .bg-ellipse {
+    @apply absolute w-[360px] h-[360px] z-0 opacity-80;
+    background: url("../img/circle.png") no-repeat center/contain;
+    filter: drop-shadow(0 0 40px rgba(0, 255, 100, 0.55));
+  }
+  .bg-ellipse-1 {
+    @apply -top-40 left-1/2 -translate-x-1/2;
+  }
+  .bg-ellipse-2 {
+    @apply -bottom-40 left-1/2 -translate-x-1/2 rotate-180;
+  }
+
+  /* Fade-in on scroll animation (IntersectionObserver in script.js) */
+  .section-title, .division-card, .about-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .section-title.fade-in, .division-card.fade-in, .about-card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Click effect for join-btn */
+  .join-btn.clicked {
+    transform: scale(0.95);
+  }
+
+  /* Division item hover effect */
+  .division-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .division-item.active,
+  .division-item:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page {
+    display: none !important;
+    opacity: 0 !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
+  .main-content {
+    display: block !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .splash-progress-bar {
+    animation: none !important;
+  }
+  .section-title, .division-card, .about-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* Custom keyframes & animations */
 @keyframes splashProgress {
   from {
