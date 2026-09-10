@@ -474,9 +474,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `script.js`
 
 **Yang dilakukan:**
-- [ ] Hapus baris 74–115 (division selection logic — tidak pernah dieksekusi di `form.html`)
-- [ ] Verifikasi `index.html` masih berfungsi normal
-- [ ] Verifikasi `form.html` masih berfungsi normal (inline script-nya independen)
+- [x] Hapus baris 74–115 (division selection logic — tidak pernah dieksekusi di `form.html`)
+- [x] Verifikasi `index.html` masih berfungsi normal
+- [x] Verifikasi `form.html` masih berfungsi normal (inline script-nya independen)
 
 **Estimasi:** 10 menit
 
