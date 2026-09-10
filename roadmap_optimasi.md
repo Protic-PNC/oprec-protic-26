@@ -108,14 +108,14 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ✅ Selesai |
 | 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ✅ Selesai |
 | 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ✅ Selesai |
-| 21 | P-02/U-01 | Perbaiki splash screen (skip + delay lebih pendek) | 🅐 | ⬜ Belum |
-| 22 | U-02 | Perbaiki layout desktop (2-kolom) | 🅐 | ⬜ Belum |
-| 23 | U-04 | Tambah navigasi / tombol kembali antar halaman | 🅒 | ⬜ Belum |
-| 24 | U-17 | Tambah modal konfirmasi sebelum submit form | 🅑 | ⬜ Belum |
-| 25 | U-12 | Fix Tailwind classes di halaman non-Tailwind | 🅐 | ⬜ Belum |
-| 26 | P-06/P-07 | Migrasi CSS → unifikasi semua halaman ke Tailwind | 🅐+Semua | ⬜ Belum |
-| 27 | U-19 | Hapus dead code division selection di script.js | 🅐 | ⬜ Belum |
-| 28 | U-20 | Hardening sessionStorage | 🅒 | ⬜ Belum |
+| 21 | P-02/U-01 | Perbaiki splash screen (skip + delay lebih pendek) | 🅐 | ✅ Selesai |
+| 22 | U-02 | Perbaiki layout desktop (2-kolom) | 🅐 | ✅ Selesai |
+| 23 | U-04 | Tambah navigasi / tombol kembali antar halaman | 🅒 | ✅ Selesai |
+| 24 | U-17 | Tambah modal konfirmasi sebelum submit form | 🅑 | ✅ Selesai |
+| 25 | U-12 | Fix Tailwind classes di halaman non-Tailwind | 🅐 | ✅ Selesai |
+| 26 | P-06/P-07 | Migrasi CSS → unifikasi semua halaman ke Tailwind | 🅐+Semua | ✅ Selesai |
+| 27 | U-19 | Hapus dead code division selection di script.js | 🅐 | ✅ Selesai |
+| 28 | U-20 | Hardening sessionStorage | 🅒 | ✅ Selesai |
 
 ---
 
@@ -126,10 +126,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`, `thankyou.html`, `success.html`, `denied.html`, `pengumuman.html`
 
 **Yang dilakukan:**
-- [ ] Fix `charset="UTF--8"` → `charset="UTF-8"` di `index.html` baris 4
-- [ ] Tambah `<meta name="description">` di semua halaman
-- [ ] Tambah Open Graph tags (`og:title`, `og:description`, `og:image`) di `index.html`
-- [ ] Tambah `<title>` yang deskriptif dan unik di setiap halaman
+- [x] Fix `charset="UTF--8"` → `charset="UTF-8"` di `index.html` baris 4
+- [x] Tambah `<meta name="description">` di semua halaman
+- [x] Tambah Open Graph tags (`og:title`, `og:description`, `og:image`) di `index.html`
+- [x] Tambah `<title>` yang deskriptif dan unik di setiap halaman
 
 **Estimasi:** 15 menit
 
@@ -139,9 +139,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`, `thankyou.html`
 
 **Yang dilakukan:**
-- [ ] Tambah atribut `width` dan `height` pada semua tag `<img>` yang belum punya
-- [ ] Prioritas: `img/Protic.png`, `img/header.png`, `img/fotbar.webp`
-- [ ] Ini mencegah CLS (layout shift) saat gambar dimuat
+- [x] Tambah atribut `width` dan `height` pada semua tag `<img>` yang belum punya
+- [x] Prioritas: `img/Protic.png`, `img/header.png`, `img/fotbar.webp`
+- [x] Ini mencegah CLS (layout shift) saat gambar dimuat
 
 **Estimasi:** 20 menit
 
@@ -151,9 +151,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`, `thankyou.html`, `success.html`, `denied.html`, `pengumuman.html`
 
 **Yang dilakukan:**
-- [ ] Generate favicon dari `img/Protic.png`
-- [ ] Tambah `<link rel="icon" href="img/favicon.ico">` di semua halaman
-- [ ] Opsional: tambah apple-touch-icon untuk iOS
+- [x] Generate favicon dari `img/Protic.png`
+- [x] Tambah `<link rel="icon" href="img/favicon.ico">` di semua halaman
+- [x] Opsional: tambah apple-touch-icon untuk iOS
 
 **Estimasi:** 10 menit
 
@@ -163,10 +163,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.css`, `form.css`, `thankyou.css`
 
 **Yang dilakukan:**
-- [ ] Cari font Dungeon yang tersedia secara bebas
-- [ ] Tambah `@font-face` declaration dengan file lokal, atau
-- [ ] Ganti dengan alternatif dari Google Fonts (misal `Cinzel` — vibe serupa)
-- [ ] Verifikasi heading "PROTIC" tampil dengan font yang benar
+- [x] Cari font Dungeon yang tersedia secara bebas
+- [x] Tambah `@font-face` declaration dengan file lokal, atau
+- [x] Ganti dengan alternatif dari Google Fonts (misal `Cinzel` — vibe serupa)
+- [x] Verifikasi heading "PROTIC" tampil dengan font yang benar
 
 **Estimasi:** 20 menit
 
@@ -179,10 +179,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `img/fotbar.webp` (3.29 MB → target <300 KB)
 
 **Yang dilakukan:**
-- [ ] Resize ke max-width 1000px (container max 500px, 2x retina = cukup)
-- [ ] Re-export ke WebP dengan kualitas 75–80%
-- [ ] Update path gambar jika diganti nama
-- [ ] Verifikasi tidak terlalu blur
+- [x] Resize ke max-width 1000px (container max 500px, 2x retina = cukup)
+- [x] Re-export ke WebP dengan kualitas 75–80%
+- [x] Update path gambar jika diganti nama
+- [x] Verifikasi tidak terlalu blur
 
 **Tools yang dipakai:** Script Python (Pillow) atau sharp (Node.js)
 **Estimasi:** 15 menit
@@ -193,9 +193,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`
 
 **Yang dilakukan:**
-- [ ] Tambah `<link rel="preload" as="image" href="img/fotbar.webp">` di `index.html`
-- [ ] Tambah `<link rel="preload" as="image" href="img/header.png">` di `index.html` dan `form.html`
-- [ ] Pastikan urutan di `<head>` benar (preload sebelum stylesheet)
+- [x] Tambah `<link rel="preload" as="image" href="img/fotbar.webp">` di `index.html`
+- [x] Tambah `<link rel="preload" as="image" href="img/header.png">` di `index.html` dan `form.html`
+- [x] Pastikan urutan di `<head>` benar (preload sebelum stylesheet)
 
 **Estimasi:** 10 menit
 
@@ -205,9 +205,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`
 
 **Yang dilakukan:**
-- [ ] Tambah `loading="lazy"` pada semua ikon divisi (gambar dari S3)
-- [ ] Tambah `loading="lazy"` pada logo footer
-- [ ] **JANGAN** tambahkan ke `fotbar.webp`, `header.png`, `Protic.png` (above-the-fold/LCP)
+- [x] Tambah `loading="lazy"` pada semua ikon divisi (gambar dari S3)
+- [x] Tambah `loading="lazy"` pada logo footer
+- [x] **JANGAN** tambahkan ke `fotbar.webp`, `header.png`, `Protic.png` (above-the-fold/LCP)
 
 **Estimasi:** 10 menit
 
@@ -217,10 +217,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `form.html`, `success.html`, `denied.html`, `pengumuman.html`, `thankyou.html`
 
 **Yang dilakukan:**
-- [ ] Download semua ~15 SVG/PNG dari `codia-f2c.s3.us-west-1.amazonaws.com`
-- [ ] Simpan ke `img/icons/` dengan nama meaningful (`web.svg`, `uiux.svg`, dst.)
-- [ ] Update semua referensi URL di semua halaman ke path lokal
-- [ ] Verifikasi semua ikon tampil dengan benar
+- [x] Download semua ~15 SVG/PNG dari `codia-f2c.s3.us-west-1.amazonaws.com`
+- [x] Simpan ke `img/icons/` dengan nama meaningful (`web.svg`, `uiux.svg`, dst.)
+- [x] Update semua referensi URL di semua halaman ke path lokal
+- [x] Verifikasi semua ikon tampil dengan benar
 
 **Estimasi:** 30 menit
 
@@ -233,9 +233,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html`, `pengumuman.html`
 
 **Yang dilakukan:**
-- [ ] Fix typo `"Portofoliov"` → `"Portofolio / CV"` di `form.html` baris 164
-- [ ] Fix `id="fullname"` → `id="npm"` pada input NPM di `pengumuman.html`
-- [ ] Update `name="fullname"` → `name="npm"` dan label `for`-nya
+- [x] Fix typo `"Portofoliov"` → `"Portofolio / CV"` di `form.html` baris 164
+- [x] Fix `id="fullname"` → `id="npm"` pada input NPM di `pengumuman.html`
+- [x] Update `name="fullname"` → `name="npm"` dan label `for`-nya
 
 **Estimasi:** 5 menit
 
@@ -245,8 +245,8 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `thankyou.html`
 
 **Yang dilakukan:**
-- [ ] Tambah tag `</body>` yang hilang sebelum `</html>` di baris 69
-- [ ] Verifikasi struktur HTML lengkap dan valid
+- [x] Tambah tag `</body>` yang hilang sebelum `</html>` di baris 69
+- [x] Verifikasi struktur HTML lengkap dan valid
 
 **Estimasi:** 5 menit
 
