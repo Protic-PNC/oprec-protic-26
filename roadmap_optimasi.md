@@ -417,9 +417,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html`, `thankyou.html`, `success.html`, `denied.html`, `pengumuman.html`
 
 **Yang dilakukan:**
-- [ ] Tambah tombol "← Kembali ke Beranda" di `form.html` dan `pengumuman.html`
-- [ ] Tambah navigasi yang jelas di `denied.html` (selain "Join Community")
-- [ ] Verifikasi semua halaman punya jalur keluar yang jelas
+- [x] Tambah tombol "← Kembali ke Beranda" di `form.html` dan `pengumuman.html`
+- [x] Tambah navigasi yang jelas di `denied.html` (selain "Join Community")
+- [x] Verifikasi semua halaman punya jalur keluar yang jelas
 
 **Estimasi:** 20 menit
 
