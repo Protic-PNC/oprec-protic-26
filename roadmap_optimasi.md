@@ -89,7 +89,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | Sesi | ID | Judul | PIC | Status |
 |---|---|---|---|---|
 | 01 | P-10 | Perbaiki charset typo + tambah meta SEO | 🅐 | ✅ Selesai |
-| 02 | P-05 | Tambah `width` & `height` pada semua `<img>` | 🅐 | ⬜ Belum |
+| 02 | P-05 | Tambah `width` & `height` pada semua `<img>` | 🅐 | ✅ Selesai |
 | 03 | P-09 | Tambah favicon | 🅐 | ⬜ Belum |
 | 04 | P-11 | Sediakan font Dungeon | 🅒 | ⬜ Belum |
 | 05 | P-01 | Compress & resize `fotbar.webp` (<300KB) | 🅑 | ⬜ Belum |
