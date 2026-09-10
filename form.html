@@ -73,35 +73,21 @@
       <div class="px-6 flex flex-col items-center gap-2 mb-6 relative z-[1]">
         <h1 class="font-cinzel text-2xl sm:text-3xl font-bold leading-tight uppercase text-center tracking-wide">FORMULIR PENDAFTARAN</h1>
         <p class="text-xs sm:text-sm font-medium uppercase text-center text-lightergreen/90 tracking-wider">Calon Pengurus PROTIC 2026/2027</p>
-      </div>
-
-      <!-- TAB SWITCHER: DAFTAR BARU vs KELOLA PENDAFTARAN -->
-      <div class="w-full max-w-[440px] mx-auto px-6 mb-6 relative z-[1]">
-        <div class="grid grid-cols-2 p-1 rounded-xl bg-black/50 border border-white/15 backdrop-blur-sm shadow-md" role="tablist" aria-label="Mode Formulir">
+        
+        <!-- SUBTLE LINK: OPSI C (Pintu Masuk Tersembunyi & Rapi) -->
+        <p class="text-xs text-white/55 text-center mt-1">
+          Sudah pernah mendaftar?
           <button
             type="button"
-            id="tabRegisterBtn"
-            class="py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow"
-            role="tab"
-            aria-selected="true"
-            aria-controls="registrationSection"
+            id="openManageModalBtn"
+            class="text-lightergreen font-semibold underline underline-offset-4 hover:text-white transition-colors cursor-pointer ml-1"
           >
-            <span>✍️ Daftar Baru</span>
+            Cek atau ubah data Anda &rarr;
           </button>
-          <button
-            type="button"
-            id="tabManageBtn"
-            class="py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer"
-            role="tab"
-            aria-selected="false"
-            aria-controls="manageRegistrationSection"
-          >
-            <span>🔍 Kelola Pendaftaran</span>
-          </button>
-        </div>
+        </p>
       </div>
 
-      <!-- SECTION 1: PENDAFTARAN (STEPPER & FORM) -->
+      <!-- SECTION: PENDAFTARAN (STEPPER & FORM) -->
       <div id="registrationSection" class="w-full">
         <!-- MODE UBAH DATA BANNER -->
         <div id="editModeBanner" class="hidden max-w-[480px] mx-auto mb-6 px-4 py-3 rounded-xl bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-between gap-3 text-xs sm:text-sm text-white animate-fadeIn">
@@ -424,127 +410,140 @@
       </form>
       </div> <!-- /registrationSection -->
 
-      <!-- SECTION 2: KELOLA PENDAFTARAN (VERIFIKASI & PREVIEW FIRST) -->
-      <div id="manageRegistrationSection" class="hidden w-full max-w-[500px] mx-auto px-6 sm:px-8 flex flex-col gap-6 relative z-[1]">
-        <!-- KARTU 1: VERIFIKASI IDENTITAS (NPM + 4 DIGIT WA) -->
-        <div id="manageVerifyCard" class="bg-black/50 border border-white/15 rounded-xl p-5 sm:p-6 flex flex-col gap-4 shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
-          <div class="border-b border-lightgreen/20 pb-3">
-            <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Verifikasi Identitas</span>
-            <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide mt-0.5">Cek Data Pendaftaran</h2>
-            <p class="text-xs text-white/60 mt-1 leading-relaxed">
-              Masukkan NPM dan 4 digit terakhir nomor WhatsApp yang kamu gunakan saat mendaftar.
+      <!-- MODAL KELOLA PENDAFTARAN: OPSI C (Native <dialog>) -->
+      <dialog id="manageModal" class="confirm-modal max-w-[500px]" aria-labelledby="manageModalTitle">
+        <div class="p-5 sm:p-6 flex flex-col gap-4">
+          <div class="flex items-center justify-between border-b border-lightgreen/25 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg">🔍</span>
+              <h3 id="manageModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-lightergreen">Kelola Data Pendaftaran</h3>
+            </div>
+            <button
+              type="button"
+              id="closeManageModalBtn"
+              class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
+              aria-label="Tutup dialog"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- KARTU 1: VERIFIKASI IDENTITAS (NPM + 4 DIGIT WA) -->
+          <div id="manageVerifyCard" class="flex flex-col gap-3.5">
+            <p class="text-xs text-white/70 leading-relaxed">
+              Masukkan NPM dan 4 digit terakhir nomor WhatsApp yang Anda gunakan saat mendaftar untuk melihat, mengubah, atau membatalkan pendaftaran.
             </p>
-          </div>
 
-          <div id="verifyError" class="hidden text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2.5 px-3 text-xs font-medium animate-fadeIn" role="alert"></div>
+            <div id="verifyError" class="hidden text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2.5 px-3 text-xs font-medium animate-fadeIn" role="alert"></div>
 
-          <div class="flex flex-col gap-2">
-            <label for="verifyNpm" class="text-xs sm:text-sm font-semibold uppercase text-white/90">NPM / NIM <span class="text-red-500">*</span></label>
-            <input
-              type="text"
-              id="verifyNpm"
-              class="form-input"
-              placeholder="Contoh: 230102001"
-              inputmode="numeric"
-              autocomplete="off"
-            />
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <div class="flex items-center justify-between">
-              <label for="verifyPin" class="text-xs sm:text-sm font-semibold uppercase text-white/90">PIN (4 Digit Terakhir No. WhatsApp) <span class="text-red-500">*</span></label>
-              <span class="text-[11px] text-white/50">Contoh: 7890</span>
+            <div class="flex flex-col gap-1.5">
+              <label for="verifyNpm" class="text-xs sm:text-sm font-semibold uppercase text-white/90">NPM / NIM <span class="text-red-500">*</span></label>
+              <input
+                type="text"
+                id="verifyNpm"
+                class="form-input !h-[50px]"
+                placeholder="Contoh: 230102001"
+                inputmode="numeric"
+                autocomplete="off"
+              />
             </div>
-            <input
-              type="password"
-              id="verifyPin"
-              class="form-input tracking-widest text-center text-lg font-mono font-bold"
-              maxlength="4"
-              placeholder="••••"
-              inputmode="numeric"
-              autocomplete="off"
-            />
-          </div>
 
-          <button
-            type="button"
-            id="btnCheckRegistration"
-            class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mt-2"
-          >
-            <span id="btnCheckText">🔍 Temukan Data Pendaftaran</span>
-            <span id="btnCheckLoading" class="hidden inline-flex items-center">
-              <svg class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-              Memeriksa...
-            </span>
-          </button>
-        </div>
-
-        <!-- KARTU 2: PREVIEW FIRST CARD (RINGKASAN DATA TERVERIFIKASI) -->
-        <div id="managePreviewCard" class="hidden bg-black/60 border border-lightgreen/40 rounded-xl p-5 sm:p-6 flex flex-col gap-4 shadow-[0_4px_24px_rgba(73,209,133,0.15)] animate-fadeIn">
-          <div class="flex items-start justify-between border-b border-white/10 pb-3">
-            <div>
-              <div class="inline-flex items-center gap-1.5 py-0.5 px-2.5 rounded-full bg-lightgreen/20 text-lightergreen font-semibold text-[10px] sm:text-[11px] border border-lightgreen/40 mb-1">
-                <span>✓ Data Terverifikasi</span>
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <label for="verifyPin" class="text-xs sm:text-sm font-semibold uppercase text-white/90">PIN (4 Digit Terakhir No. WhatsApp) <span class="text-red-500">*</span></label>
+                <span class="text-[11px] text-white/50">Contoh: 7890</span>
               </div>
-              <h2 id="cardApplicantName" class="text-lg sm:text-xl font-bold text-white tracking-wide"></h2>
-              <p id="cardApplicantNpm" class="text-xs text-white/60 font-mono"></p>
+              <input
+                type="password"
+                id="verifyPin"
+                class="form-input !h-[50px] tracking-widest text-center text-lg font-mono font-bold"
+                maxlength="4"
+                placeholder="••••"
+                inputmode="numeric"
+                autocomplete="off"
+              />
             </div>
-            <button type="button" id="btnExitManage" class="py-1 px-2.5 rounded bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-xs font-semibold cursor-pointer transition-colors">
-              Ganti NPM
+
+            <button
+              type="button"
+              id="btnCheckRegistration"
+              class="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+            >
+              <span id="btnCheckText">🔍 Temukan Data Pendaftaran</span>
+              <span id="btnCheckLoading" class="hidden inline-flex items-center">
+                <svg class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Memeriksa...
+              </span>
             </button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-white/[0.02] border border-white/10 rounded-lg p-3.5">
-            <div>
-              <span class="text-white/50 block">Kelas & Semester:</span>
-              <span id="cardClassSemester" class="font-semibold text-white text-xs sm:text-sm"></span>
+          <!-- KARTU 2: PREVIEW FIRST CARD (RINGKASAN DATA TERVERIFIKASI) -->
+          <div id="managePreviewCard" class="hidden flex flex-col gap-3.5 animate-fadeIn">
+            <div class="flex items-start justify-between border-b border-white/10 pb-2">
+              <div>
+                <div class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full bg-lightgreen/20 text-lightergreen font-semibold text-[10px] border border-lightgreen/40 mb-1">
+                  <span>✓ Data Terverifikasi</span>
+                </div>
+                <h4 id="cardApplicantName" class="text-base sm:text-lg font-bold text-white tracking-wide"></h4>
+                <p id="cardApplicantNpm" class="text-xs text-white/60 font-mono"></p>
+              </div>
+              <button type="button" id="btnExitManage" class="py-1 px-2.5 rounded bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-xs font-semibold cursor-pointer transition-colors">
+                Ganti NPM
+              </button>
             </div>
-            <div>
-              <span class="text-white/50 block">Nomor WhatsApp:</span>
-              <span id="cardWhatsapp" class="font-semibold text-white text-xs sm:text-sm font-mono"></span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs bg-black/40 border border-white/10 rounded-lg p-3">
+              <div>
+                <span class="text-white/50 block text-[11px]">Kelas & Semester:</span>
+                <span id="cardClassSemester" class="font-semibold text-white text-xs"></span>
+              </div>
+              <div>
+                <span class="text-white/50 block text-[11px]">Nomor WhatsApp:</span>
+                <span id="cardWhatsapp" class="font-semibold text-white text-xs font-mono"></span>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px]">Email Aktif:</span>
+                <span id="cardEmail" class="font-semibold text-white text-xs break-all"></span>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px] mb-1">Pilihan Divisi:</span>
+                <div class="flex flex-wrap gap-1.5" id="cardDivisionsBadge"></div>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px]">Tautan Portofolio / CV:</span>
+                <a id="cardPortfolioLink" href="#" target="_blank" rel="noopener noreferrer" class="text-lightergreen hover:underline break-all block mt-0.5 font-mono text-[11px]"></a>
+              </div>
             </div>
-            <div class="sm:col-span-2">
-              <span class="text-white/50 block">Email Aktif:</span>
-              <span id="cardEmail" class="font-semibold text-white text-xs sm:text-sm break-all"></span>
-            </div>
-            <div class="sm:col-span-2">
-              <span class="text-white/50 block mb-1">Pilihan Divisi:</span>
-              <div class="flex flex-wrap gap-2" id="cardDivisionsBadge"></div>
-            </div>
-            <div class="sm:col-span-2">
-              <span class="text-white/50 block">Tautan Portofolio / CV:</span>
-              <a id="cardPortfolioLink" href="#" target="_blank" rel="noopener noreferrer" class="text-lightergreen hover:underline break-all block mt-0.5 font-mono text-[11px]"></a>
+
+            <div class="flex flex-col sm:flex-row items-center gap-2.5 pt-1">
+              <button
+                type="button"
+                id="btnStartEdit"
+                class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm shadow-button hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>✏️ Ubah Data di Formulir</span>
+              </button>
+              <button
+                type="button"
+                id="btnOpenDeleteModal"
+                class="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-300 hover:text-red-200 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>🗑️ Hapus Pendaftaran</span>
+              </button>
             </div>
           </div>
 
-          <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
-            <button
-              type="button"
-              id="btnStartEdit"
-              class="w-full sm:flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm shadow-button hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>✏️ Ubah Data Pendaftaran</span>
-            </button>
-            <button
-              type="button"
-              id="btnOpenDeleteModal"
-              class="w-full sm:w-auto py-3 px-4 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-300 hover:text-red-200 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>🗑️ Hapus Pendaftaran</span>
+          <!-- NOTIFIKASI SUKSES HAPUS -->
+          <div id="deleteSuccessBanner" class="hidden p-5 rounded-xl bg-black/60 border border-emerald-400/40 flex flex-col items-center gap-3 text-center animate-fadeIn">
+            <div class="w-10 h-10 rounded-full bg-lightgreen/20 text-lightergreen border border-lightgreen/40 flex items-center justify-center text-xl font-bold">✓</div>
+            <h4 class="text-sm sm:text-base font-bold text-white">Pendaftaran Berhasil Dihapus</h4>
+            <p class="text-xs text-white/80 max-w-[320px] leading-relaxed">Seluruh data pendaftaran Anda telah berhasil dihapus secara permanen dari sistem PROTIC.</p>
+            <button type="button" id="btnBackToNewRegister" class="mt-1 py-2 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs hover:brightness-110 shadow-glow cursor-pointer transition-all">
+              Tutup & Kembali ke Form
             </button>
           </div>
         </div>
-
-        <!-- NOTIFIKASI SUKSES HAPUS -->
-        <div id="deleteSuccessBanner" class="hidden p-6 rounded-xl bg-black/60 border border-emerald-400/40 flex flex-col items-center gap-3 text-center shadow-lg animate-fadeIn">
-          <div class="w-12 h-12 rounded-full bg-lightgreen/20 text-lightergreen border border-lightgreen/40 flex items-center justify-center text-2xl font-bold">✓</div>
-          <h3 class="text-base sm:text-lg font-bold text-white">Pendaftaran Berhasil Dihapus</h3>
-          <p class="text-xs sm:text-sm text-white/80 max-w-[360px] leading-relaxed">Seluruh data pendaftaran Anda telah berhasil dihapus secara permanen dari sistem PROTIC.</p>
-          <button type="button" id="btnBackToNewRegister" class="mt-2 py-2.5 px-5 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm hover:brightness-110 shadow-glow cursor-pointer transition-all">
-            ✍️ Buka Pendaftaran Baru &rarr;
-          </button>
-        </div>
-      </div>
+      </dialog>
 
       <!-- MODAL KONFIRMASI (Native <dialog>) -->
       <dialog id="confirmModal" class="confirm-modal" aria-labelledby="modalTitle">
@@ -770,11 +769,11 @@
         }
       };
 
-      // Tab Switcher & Sections
-      const tabRegisterBtn = document.getElementById("tabRegisterBtn");
-      const tabManageBtn = document.getElementById("tabManageBtn");
+      // Subtle Link & Manage Modal (Opsi C)
+      const openManageModalBtn = document.getElementById("openManageModalBtn");
+      const manageModal = document.getElementById("manageModal");
+      const closeManageModalBtn = document.getElementById("closeManageModalBtn");
       const registrationSection = document.getElementById("registrationSection");
-      const manageRegistrationSection = document.getElementById("manageRegistrationSection");
       const editModeBanner = document.getElementById("editModeBanner");
       const editModeApplicantName = document.getElementById("editModeApplicantName");
       const cancelEditBtn = document.getElementById("cancelEditBtn");
@@ -1345,33 +1344,41 @@
         });
       }
 
-      // Tab Switching Logic
-      function switchTab(tabName) {
-        if (tabName === "manage") {
-          tabManageBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow";
-          tabManageBtn.setAttribute("aria-selected", "true");
-          tabRegisterBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer";
-          tabRegisterBtn.setAttribute("aria-selected", "false");
-
-          registrationSection.classList.add("hidden");
-          manageRegistrationSection.classList.remove("hidden");
-          announce("Beralih ke tab Kelola Pendaftaran.");
-        } else {
-          tabRegisterBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer bg-lightgreen text-darkgreen shadow-glow";
-          tabRegisterBtn.setAttribute("aria-selected", "true");
-          tabManageBtn.className = "py-2.5 px-3 rounded-lg font-semibold text-xs sm:text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer";
-          tabManageBtn.setAttribute("aria-selected", "false");
-
-          registrationSection.classList.remove("hidden");
-          manageRegistrationSection.classList.add("hidden");
-          announce("Beralih ke tab Formulir Pendaftaran.");
+      // Buka / Tutup Modal Kelola Pendaftaran (Opsi C)
+      function openManageModal() {
+        if (manageModal && typeof manageModal.showModal === "function") {
+          showManageView("verify");
+          clearVerifyError();
+          manageModal.showModal();
+          announce("Dialog kelola pendaftaran terbuka.");
+          if (verifyNpm) setTimeout(() => verifyNpm.focus(), 80);
         }
       }
 
-      if (tabRegisterBtn) tabRegisterBtn.addEventListener("click", () => switchTab("register"));
-      if (tabManageBtn) tabManageBtn.addEventListener("click", () => switchTab("manage"));
+      function closeManageModal() {
+        if (manageModal && manageModal.open) {
+          manageModal.close();
+        }
+      }
 
-      // Sub-view Switcher inside Manage Section
+      if (openManageModalBtn) openManageModalBtn.addEventListener("click", openManageModal);
+      if (closeManageModalBtn) closeManageModalBtn.addEventListener("click", closeManageModal);
+
+      if (manageModal) {
+        manageModal.addEventListener("click", (e) => {
+          const rect = manageModal.getBoundingClientRect();
+          const isInDialog =
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width;
+          if (!isInDialog) {
+            closeManageModal();
+          }
+        });
+      }
+
+      // Sub-view Switcher inside Manage Modal
       function showManageView(viewName) {
         if (viewName === "preview") {
           manageVerifyCard.classList.add("hidden");
@@ -1391,7 +1398,7 @@
 
       function showVerifyError(msg) {
         if (verifyError) {
-          verifyError.textContent = msg;
+          verifyError.innerHTML = msg;
           verifyError.classList.remove("hidden");
           announce(msg);
         }
@@ -1399,7 +1406,7 @@
 
       function clearVerifyError() {
         if (verifyError) {
-          verifyError.textContent = "";
+          verifyError.innerHTML = "";
           verifyError.classList.add("hidden");
         }
       }
@@ -1496,6 +1503,12 @@
           const result = await res.json();
 
           if (result.result === "success" && result.data) {
+            // Deteksi jika Google Apps Script di Google Drive masih versi lama
+            if (!result.data.fullname && !result.data.class && !result.data.whatsapp) {
+              showVerifyError("⚠️ <strong>Perhatian:</strong> Skrip Apps Script di Google Drive belum diperbarui dengan kode terbaru dari <code>script/regist.gs</code>. Silakan salin isi file <code>script/regist.gs</code> ke Google Apps Script Spreadsheet Anda.");
+              return;
+            }
+
             verifiedApplicantData = result.data;
             currentVerifiedPin = pin;
             populatePreviewCard(result.data);
@@ -1541,9 +1554,8 @@
       // Tombol Kembali ke Pendaftaran Baru setelah Hapus Sukses
       if (btnBackToNewRegister) {
         btnBackToNewRegister.addEventListener("click", () => {
+          closeManageModal();
           cancelEditMode(true);
-          switchTab("register");
-          showManageView("verify");
         });
       }
 
@@ -1551,6 +1563,8 @@
       function startEditMode(data) {
         if (!data) return;
         isEditMode = true;
+
+        closeManageModal();
 
         if (form.fullname) form.fullname.value = data.fullname || "";
         if (form.npm) {
@@ -1578,7 +1592,6 @@
         const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
         if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Simpan Perubahan &rarr;";
 
-        switchTab("register");
         goToStep(1);
         announce("Mode Ubah Data aktif. Silakan perbarui data Anda dan kirim kembali.");
       }
@@ -1688,8 +1701,7 @@
         duplicateGoManageBtn.addEventListener("click", () => {
           duplicateModal.close();
           const attemptedNpm = form.npm ? form.npm.value.trim() : "";
-          switchTab("manage");
-          showManageView("verify");
+          openManageModal();
           if (verifyNpm && attemptedNpm) {
             verifyNpm.value = attemptedNpm;
             if (verifyPin) verifyPin.focus();
@@ -1799,7 +1811,7 @@
                 duplicateModal.showModal();
               } else {
                 showSubmitError(
-                  `<strong>NPM ${formData.npm} sudah terdaftar!</strong><br />Anda tidak dapat mengirimkan formulir ganda. Silakan beralih ke tab 'Kelola Pendaftaran' untuk mengubah data.`,
+                  `<strong>NPM ${formData.npm} sudah terdaftar!</strong><br />Anda tidak dapat mengirimkan formulir ganda. Silakan gunakan opsi 'Cek atau ubah data' di atas untuk mengubah pendaftaran Anda.`,
                   "NPM sudah terdaftar."
                 );
               }
@@ -1821,14 +1833,14 @@
               announce("Perubahan data pendaftaran berhasil disimpan ke Google Sheets!");
               alert("✅ Perubahan data pendaftaran Anda berhasil disimpan!");
 
-              // Update data lokal & segarkan kartu ringkasan
+              // Update data lokal & buka kartu ringkasan di modal
               verifiedApplicantData = {
                 ...verifiedApplicantData,
                 ...formData,
               };
               populatePreviewCard(verifiedApplicantData);
               cancelEditMode(false);
-              switchTab("manage");
+              openManageModal();
               showManageView("preview");
               return;
             }
@@ -1850,6 +1862,7 @@
             pendingFormData = null;
           });
       }
+
 
       function setLoading(loading) {
         if (loading) {
