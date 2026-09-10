@@ -29,18 +29,21 @@
 
 <body class="font-poppins bg-bgdark text-white overflow-x-hidden">
   <!-- MAIN -->
-  <main class="flex flex-col items-center">
+  <main class="flex flex-col items-center relative">
+    <!-- FLOATING BACK BUTTON (GLASSMORPHISM PILL) -->
+    <a
+      href="index.html"
+      class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full backdrop-blur-md bg-darkgreen/85 border border-lightgreen/40 text-white font-medium text-xs sm:text-sm shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-all duration-200 hover:bg-darkgreen hover:border-lightergreen hover:shadow-[0_0_15px_rgba(73,209,133,0.45)] hover:-translate-x-0.5 focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2 group"
+      aria-label="Kembali ke Beranda"
+    >
+      <span class="text-lightergreen font-bold transition-transform group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
+      <span class="hidden sm:inline">Kembali ke </span><span>Beranda</span>
+    </a>
+
     <!-- HEADER -->
     <header class="flex justify-center w-full max-w-sm">
       <img src="img/header.png" alt="PROTIC Header" class="w-full" width="334" height="147" fetchpriority="high" />
     </header>
-
-    <!-- NAVIGATION -->
-    <nav class="w-full max-w-sm px-6 mt-4 flex justify-start" aria-label="Navigasi Halaman">
-      <a href="index.html" class="inline-flex items-center gap-2 text-[#87EBB3] hover:text-white hover:-translate-x-1 transition-all duration-200 text-sm font-medium py-1 px-2 rounded focus:outline-none focus:ring-2 focus:ring-[#87EBB3]" aria-label="Kembali ke Beranda">
-        <span aria-hidden="true">&larr;</span> Kembali ke Beranda
-      </a>
-    </nav>
 
     <div class="px-6">
       <section class="py-16 flex flex-col items-center gap-8">
@@ -78,29 +81,29 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-5 px-4 sm:px-8 mt-12 shrink-0">
+    <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-6 px-4 sm:px-8 mt-12 shrink-0">
       <div class="flex items-center justify-between gap-3 sm:gap-6 max-w-[1200px] w-full mx-auto">
-        <div class="flex items-center gap-3 sm:gap-4 min-w-0">
+        <div class="flex items-center gap-3 sm:gap-5 min-w-0">
           <div class="shrink-0">
             <img
-              src="img/Protic.png"
+              src="img/Protic1.png"
               alt="PROTIC Logo"
               width="85"
               height="95"
-              class="w-[55px] h-[62px] sm:w-[75px] sm:h-[84px]"
+              class="w-[68px] h-[76px] sm:w-[88px] sm:h-[98px] shrink-0 object-contain drop-shadow-[0_0_12px_rgba(73,209,133,0.35)]"
               loading="lazy"
             />
           </div>
           <div class="min-w-0">
-            <h3 class="font-cinzel font-bold text-2xl sm:text-3xl leading-tight mb-0.5 tracking-wide">PROTIC</h3>
-            <p class="text-[11px] sm:text-xs text-white/90 leading-tight">
+            <h3 class="font-cinzel font-black text-3xl sm:text-4xl leading-none mb-1 tracking-wider text-white">PROTIC</h3>
+            <p class="font-semibold text-xs sm:text-sm text-white/95 leading-snug">
               Programming Technology Informatics Club
             </p>
-            <p class="text-[10px] sm:text-xs text-white/70 mt-1">© 2026 Protic | All Right Reserved</p>
+            <p class="font-medium text-[11px] sm:text-xs text-white/80 mt-1">© 2026 Protic | All Right Reserved</p>
           </div>
         </div>
 
-        <div class="h-14 sm:h-16 w-px bg-white/50 shadow-glow shrink-0"></div>
+        <div class="h-16 sm:h-20 w-px bg-white/60 shadow-glow shrink-0"></div>
 
         <div class="flex flex-col gap-2 shrink-0">
           <a href="https://github.com/Protic-PNC" aria-label="Github" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
