@@ -221,6 +221,12 @@
               BENDAHARA
             </button> -->
           </div>
+          <div
+            id="divisionError"
+            class="division-error-msg hidden"
+            role="alert"
+            aria-live="polite"
+          ></div>
         </div>
 
         <!-- BERKAS -->
@@ -366,6 +372,21 @@
       const form = document.getElementById("registrationForm");
 
       let selectedDivisions = [];
+      const divisionError = document.getElementById("divisionError");
+
+      function showDivisionError(msg) {
+        if (divisionError) {
+          divisionError.textContent = msg;
+          divisionError.classList.remove("hidden");
+        }
+      }
+
+      function clearDivisionError() {
+        if (divisionError) {
+          divisionError.textContent = "";
+          divisionError.classList.add("hidden");
+        }
+      }
 
       document.querySelectorAll(".division-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -375,12 +396,16 @@
             // batalin pilihan
             selectedDivisions = selectedDivisions.filter((d) => d !== division);
             btn.classList.remove("active");
+            btn.classList.remove("selected");
+            clearDivisionError();
           } else {
             if (selectedDivisions.length < 2) {
               selectedDivisions.push(division);
               btn.classList.add("active");
+              btn.classList.add("selected");
+              clearDivisionError();
             } else {
-              alert("Kamu hanya boleh memilih 2 divisi!");
+              showDivisionError("Kamu hanya boleh memilih maksimal 2 divisi!");
             }
           }
         });
@@ -390,7 +415,8 @@
         e.preventDefault();
 
         if (selectedDivisions.length !== 2) {
-          alert("Harap pilih tepat 2 divisi!");
+          showDivisionError("Harap pilih tepat 2 divisi sebelum mengirim formulir!");
+          divisionError.scrollIntoView({ behavior: "smooth", block: "center" });
           return;
         }
 

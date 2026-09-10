@@ -242,6 +242,28 @@ img {
   margin-bottom: var(--spacing-2xl);
 }
 
+.hidden {
+  display: none !important;
+}
+
+.division-error-msg {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: var(--spacing-md);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .division-grid {
   display: grid; /* Menggunakan Grid Layout */
   grid-template-columns: repeat(3, 1fr); /* Membuat 3 kolom sama lebar */

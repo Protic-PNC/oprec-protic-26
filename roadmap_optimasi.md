@@ -100,7 +100,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 10 | U-13 | Fix HTML tidak valid (`</body>` hilang) | 🅒 | ✅ Selesai |
 | 11 | U-05 | Ganti `type="number"` → `type="tel"` / `type="text"` | 🅑 | ✅ Selesai |
 | 12 | U-07 | Fix fallback HTML `{{ $divisi }}` di success.html | 🅒 | ✅ Selesai |
-| 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ⬜ Belum |
+| 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ✅ Selesai |
 | 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ⬜ Belum |
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ⬜ Belum |
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ⬜ Belum |
@@ -281,11 +281,11 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.html` (inline script)
 
 **Yang dilakukan:**
-- [ ] Hapus semua `alert()` untuk validasi divisi
-- [ ] Buat elemen pesan error inline di bawah `.division-grid`
-- [ ] Tampilkan pesan error merah saat divisi < 2 atau > 2 saat submit
-- [ ] Selaraskan teks pesan di semua tempat (satu sumber kebenaran)
-- [ ] Pastikan juga tidak ada `alert()` di tempat lain selain error submission
+- [x] Hapus semua `alert()` untuk validasi divisi
+- [x] Buat elemen pesan error inline di bawah `.division-grid`
+- [x] Tampilkan pesan error merah saat divisi < 2 atau > 2 saat submit
+- [x] Selaraskan teks pesan di semua tempat (satu sumber kebenaran)
+- [x] Pastikan juga tidak ada `alert()` di tempat lain selain error submission
 
 **Estimasi:** 20 menit
 
