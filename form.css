@@ -207,6 +207,12 @@ img {
   line-height: 27px;
   text-transform: uppercase;
   }
+
+  .required-mark {
+    color: #ff5555;
+    margin-left: 3px;
+    font-weight: 700;
+  }
   
   .form-input {
   width: 100%;
@@ -221,6 +227,7 @@ img {
   font-size: var(--font-lg);
   font-weight: 300;
   line-height: 27px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
   
   .form-input::placeholder {
@@ -230,6 +237,17 @@ img {
   .form-input:focus {
   outline: 2px solid var(--accent-green);
   outline-offset: 2px;
+  }
+
+  .form-input:user-invalid {
+    border: 1px solid #ff4d4f !important;
+    border-image: none !important;
+    box-shadow: 0 0 8px rgba(255, 77, 79, 0.4);
+  }
+
+  .form-input:user-invalid:focus {
+    outline: 2px solid #ff4d4f;
+    outline-offset: 2px;
   }
   
 /* Division Selection (FINAL REVISED) */

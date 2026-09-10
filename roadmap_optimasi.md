@@ -103,7 +103,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 13 | U-03 | Ganti semua `alert()` → inline error message | 🅑 | ✅ Selesai |
 | 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ✅ Selesai |
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ✅ Selesai |
-| 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ⬜ Belum |
+| 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ✅ Selesai |
 | 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ⬜ Belum |
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ⬜ Belum |
 | 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ⬜ Belum |
@@ -320,9 +320,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.css`
 
 **Yang dilakukan:**
-- [ ] Tambah styling `.form-input:user-invalid` (border merah, setelah interaksi)
-- [ ] Tambah helper text/pesan error di bawah field wajib
-- [ ] Tambah indikator `*` (asterisk) merah untuk field wajib
+- [x] Tambah styling `.form-input:user-invalid` (border merah, setelah interaksi)
+- [x] Tambah helper text/pesan error di bawah field wajib
+- [x] Tambah indikator `*` (asterisk) merah untuk field wajib
 
 **Estimasi:** 20 menit
 
