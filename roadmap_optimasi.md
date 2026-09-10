@@ -426,13 +426,13 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 ---
 
 ### Sesi 24 — `U-17` Modal Konfirmasi Sebelum Submit
-**File:** `form.html`
+**File:** `form.html`, `form.css`
 
 **Yang dilakukan:**
-- [ ] Buat `<dialog>` native HTML untuk modal konfirmasi
-- [ ] Tampilkan ringkasan: nama, NPM, 2 divisi pilihan
-- [ ] Tombol "Batalkan" dan "Kirim Sekarang"
-- [ ] Pastikan accessible (focus trap, Escape untuk tutup)
+- [x] Buat `<dialog>` native HTML untuk modal konfirmasi
+- [x] Tampilkan ringkasan: nama, NPM, 2 divisi pilihan
+- [x] Tombol "Batalkan" dan "Kirim Sekarang"
+- [x] Pastikan accessible (focus trap, Escape untuk tutup)
 
 **Estimasi:** 30 menit
 

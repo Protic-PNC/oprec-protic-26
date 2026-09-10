@@ -373,6 +373,49 @@
         </div>
       </form>
 
+      <!-- MODAL KONFIRMASI (Native <dialog>) -->
+      <dialog id="confirmModal" class="confirm-modal" aria-labelledby="modalTitle">
+        <div class="modal-dialog-content">
+          <div class="modal-header">
+            <h3 id="modalTitle" class="modal-title">Konfirmasi Pendaftaran</h3>
+          </div>
+          
+          <p class="modal-desc">
+            Pastikan data yang Anda isi sudah benar sebelum mengirimkan formulir:
+          </p>
+
+          <div class="modal-summary">
+            <div class="summary-row">
+              <span class="summary-label">Nama Lengkap:</span>
+              <span class="summary-value" id="summaryName">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">NPM / NIM:</span>
+              <span class="summary-value" id="summaryNpm">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Kelas & Semester:</span>
+              <span class="summary-value" id="summaryClass">—</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Pilihan Divisi:</span>
+              <div class="summary-badges" id="summaryDivisions">
+                <!-- Badges injected by JS -->
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" id="modalCancelBtn" class="btn-cancel">
+              Batalkan
+            </button>
+            <button type="button" id="modalConfirmBtn" class="btn-confirm">
+              Kirim Sekarang &rarr;
+            </button>
+          </div>
+        </div>
+      </dialog>
+
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-main">
@@ -541,6 +584,49 @@
         }
       }
 
+      // Confirmation Modal Elements
+      const confirmModal = document.getElementById("confirmModal");
+      const modalCancelBtn = document.getElementById("modalCancelBtn");
+      const modalConfirmBtn = document.getElementById("modalConfirmBtn");
+      const summaryName = document.getElementById("summaryName");
+      const summaryNpm = document.getElementById("summaryNpm");
+      const summaryClass = document.getElementById("summaryClass");
+      const summaryDivisions = document.getElementById("summaryDivisions");
+
+      let pendingFormData = null;
+
+      // Close modal on cancel button
+      if (modalCancelBtn && confirmModal) {
+        modalCancelBtn.addEventListener("click", () => {
+          confirmModal.close();
+          submitBtn.focus();
+        });
+      }
+
+      // Close modal when clicking outside on backdrop
+      if (confirmModal) {
+        confirmModal.addEventListener("click", (e) => {
+          const rect = confirmModal.getBoundingClientRect();
+          const isInDialog =
+            rect.top <= e.clientY &&
+            e.clientY <= rect.top + rect.height &&
+            rect.left <= e.clientX &&
+            e.clientX <= rect.left + rect.width;
+          if (!isInDialog) {
+            confirmModal.close();
+            submitBtn.focus();
+          }
+        });
+
+        // Handle native escape close event to return focus
+        confirmModal.addEventListener("close", () => {
+          if (!pendingFormData) {
+            submitBtn.focus();
+          }
+        });
+      }
+
+      // Form submit: validasi & buka modal konfirmasi
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         clearSubmitError();
@@ -551,7 +637,7 @@
           return;
         }
 
-        const formData = {
+        pendingFormData = {
           fullname: form.fullname.value.trim(),
           npm: form.npm.value.trim(),
           class: form.class.value.trim(),
@@ -563,6 +649,42 @@
           email: form.email.value.trim(),
         };
 
+        // Isi ringkasan di modal
+        if (summaryName) summaryName.textContent = pendingFormData.fullname;
+        if (summaryNpm) summaryNpm.textContent = pendingFormData.npm;
+        if (summaryClass) summaryClass.textContent = `${pendingFormData.class} (Semester ${pendingFormData.semester})`;
+
+        if (summaryDivisions) {
+          summaryDivisions.innerHTML = "";
+          selectedDivisions.forEach((div) => {
+            const badge = document.createElement("span");
+            badge.className = "summary-badge";
+            badge.textContent = div;
+            summaryDivisions.appendChild(badge);
+          });
+        }
+
+        // Buka modal native
+        if (confirmModal && typeof confirmModal.showModal === "function") {
+          confirmModal.showModal();
+          announce("Modal konfirmasi terbuka. Silakan periksa kembali data Anda.");
+        } else {
+          // Fallback jika browser tidak support dialog
+          executeFormSubmit(pendingFormData);
+        }
+      });
+
+      // Konfirmasi kirim dari dalam modal
+      if (modalConfirmBtn && confirmModal) {
+        modalConfirmBtn.addEventListener("click", () => {
+          confirmModal.close();
+          if (pendingFormData) {
+            executeFormSubmit(pendingFormData);
+          }
+        });
+      }
+
+      function executeFormSubmit(formData) {
         setLoading(true); // aktifkan loading
         announce("Mengirim formulir pendaftaran, mohon tunggu...");
 
@@ -589,8 +711,9 @@
           })
           .finally(() => {
             setLoading(false); // matikan loading kalau gagal
+            pendingFormData = null;
           });
-      });
+      }
 
       function setLoading(loading) {
         if (loading) {
