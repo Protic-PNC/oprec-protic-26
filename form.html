@@ -658,6 +658,14 @@
           </div>
         </div>
       </dialog>
+
+      <!-- TOAST NOTIFICATION CONTAINER (BOTTOM-CENTER) -->
+      <div
+        id="toastContainer"
+        class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[9999] w-[92%] max-w-[420px] pointer-events-none flex flex-col gap-2"
+        aria-live="polite"
+        aria-atomic="true"
+      ></div>
     </section>
 
     <!-- FOOTER -->
@@ -1337,14 +1345,139 @@
         }
       }
 
+      // ==========================================
+      // TOAST NOTIFICATION SYSTEM (BOTTOM-CENTER)
+      // ==========================================
+      const toastContainer = document.getElementById("toastContainer");
+      let activeToastTimeout = null;
+
+      function showToast({ message, type = "success", action = null, duration = 3500 }) {
+        if (!toastContainer) return;
+
+        if (activeToastTimeout) {
+          clearTimeout(activeToastTimeout);
+          activeToastTimeout = null;
+        }
+        toastContainer.innerHTML = "";
+
+        const toast = document.createElement("div");
+        toast.className =
+          "pointer-events-auto w-full bg-[#0d2217]/95 border border-lightgreen/40 shadow-[0_12px_36px_rgba(0,0,0,0.85)] backdrop-blur-md rounded-2xl p-3 sm:p-3.5 flex items-center justify-between gap-3 text-white transition-all duration-300 transform translate-y-4 opacity-0";
+
+        let iconHtml = "";
+        if (type === "success") {
+          iconHtml = `<span class="w-7 h-7 rounded-full bg-lightgreen/20 text-lightergreen border border-lightgreen/40 flex items-center justify-center font-bold text-xs shrink-0">✓</span>`;
+        } else if (type === "error") {
+          iconHtml = `<span class="w-7 h-7 rounded-full bg-red-500/20 text-red-300 border border-red-500/40 flex items-center justify-center font-bold text-xs shrink-0">✕</span>`;
+        } else {
+          iconHtml = `<span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center justify-center font-bold text-xs shrink-0">ℹ</span>`;
+        }
+
+        let actionBtnHtml = "";
+        if (action && action.label) {
+          actionBtnHtml = `
+            <button
+              type="button"
+              id="toastActionBtn"
+              class="py-1.5 px-3.5 rounded-xl bg-lightgreen hover:bg-lightergreen text-darkgreen font-bold text-xs shadow-glow transition-all active:scale-95 shrink-0 cursor-pointer"
+            >
+              ${action.label}
+            </button>
+          `;
+        }
+
+        toast.innerHTML = `
+          <div class="flex items-center gap-2.5 min-w-0">
+            ${iconHtml}
+            <p class="text-xs sm:text-sm text-white/90 leading-snug font-medium truncate sm:whitespace-normal">
+              ${message}
+            </p>
+          </div>
+          ${actionBtnHtml}
+        `;
+
+        toastContainer.appendChild(toast);
+
+        requestAnimationFrame(() => {
+          toast.classList.remove("translate-y-4", "opacity-0");
+          toast.classList.add("translate-y-0", "opacity-100");
+        });
+
+        if (action && action.onClick) {
+          const actionBtn = toast.querySelector("#toastActionBtn");
+          if (actionBtn) {
+            actionBtn.addEventListener("click", () => {
+              dismissToast(toast);
+              action.onClick();
+            });
+          }
+        }
+
+        if (duration > 0) {
+          activeToastTimeout = setTimeout(() => {
+            dismissToast(toast);
+          }, duration);
+        }
+
+        announce(message);
+      }
+
+      function dismissToast(toastEl) {
+        if (!toastEl) return;
+        toastEl.classList.remove("translate-y-0", "opacity-100");
+        toastEl.classList.add("translate-y-4", "opacity-0");
+        setTimeout(() => {
+          if (toastEl.parentElement) toastEl.remove();
+        }, 300);
+      }
+
+      let lastClearedDraft = null;
+
+      function handleClearDraft() {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        if (raw) {
+          try {
+            lastClearedDraft = JSON.parse(raw);
+          } catch (e) {
+            lastClearedDraft = null;
+          }
+        }
+
+        // Langsung bersihkan seketika tanpa dialog konfirmasi mengganggu
+        cancelEditMode(true);
+
+        showToast({
+          message: "Draf formulir dibersihkan.",
+          type: "info",
+          duration: 5000,
+          action: {
+            label: "Urungkan",
+            onClick: () => {
+              if (lastClearedDraft) {
+                try {
+                  localStorage.setItem(DRAFT_KEY, JSON.stringify(lastClearedDraft));
+                  loadDraft();
+                  updateDivisionUI();
+                  updateStepperVisuals();
+                  showToast({
+                    message: "Draf formulir berhasil dipulihkan!",
+                    type: "success",
+                    duration: 3000,
+                  });
+                } catch (err) {
+                  console.warn("Gagal memulihkan draf:", err);
+                } finally {
+                  lastClearedDraft = null;
+                }
+              }
+            },
+          },
+        });
+      }
+
       const clearDraftBtn = document.getElementById("clearDraftBtn");
       if (clearDraftBtn) {
-        clearDraftBtn.addEventListener("click", () => {
-          if (confirm("Bersihkan seluruh isian formulir draf yang tersimpan di browser ini?")) {
-            cancelEditMode(true);
-            announce("Draf formulir berhasil dibersihkan.");
-          }
-        });
+        clearDraftBtn.addEventListener("click", handleClearDraft);
       }
 
       // Input listener to auto-save and update visuals
@@ -1747,12 +1880,25 @@
               currentVerifiedPin = null;
               showManageView("deleteSuccess");
               announce("Pendaftaran Anda telah berhasil dihapus secara permanen dari sistem.");
+              showToast({
+                message: "Pendaftaran berhasil dihapus secara permanen.",
+                type: "success",
+                duration: 4000,
+              });
             } else {
-              alert(result.message || "Gagal menghapus pendaftaran.");
+              showToast({
+                message: result.message || "Gagal menghapus pendaftaran.",
+                type: "error",
+                duration: 4000,
+              });
             }
           } catch (err) {
             console.error("Error deleting:", err);
-            alert("Terjadi kesalahan jaringan saat menghapus pendaftaran. Silakan coba lagi.");
+            showToast({
+              message: "Terjadi kesalahan jaringan saat menghapus pendaftaran. Silakan coba lagi.",
+              type: "error",
+              duration: 4000,
+            });
           } finally {
             setDeleteLoading(false);
           }
@@ -1900,7 +2046,6 @@
             if (isEditMode) {
               clearDraft();
               announce("Perubahan data pendaftaran berhasil disimpan ke Google Sheets!");
-              alert("✅ Perubahan data pendaftaran Anda berhasil disimpan!");
 
               // Update data lokal & buka kartu ringkasan di modal
               verifiedApplicantData = {
@@ -1911,6 +2056,13 @@
               cancelEditMode(true);
               openManageModal();
               showManageView("preview");
+
+              // Notifikasi Toast Modern di bagian bawah layar
+              showToast({
+                message: "Perubahan data pendaftaran berhasil disimpan!",
+                type: "success",
+                duration: 3500,
+              });
               return;
             }
 
