@@ -475,9 +475,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 - [x] Hapus/deprecate `index.css`
 
 #### Sesi 26D — Migrasi `form.html`
-- [ ] Migrasi formulir pendaftaran, floating validation, dan dialog modal ke Tailwind
-- [ ] Verifikasi interaktivitas form dan error states
-- [ ] Hapus/deprecate `form.css`
+- [x] Migrasi formulir pendaftaran, floating validation, dan dialog modal ke Tailwind
+- [x] Verifikasi interaktivitas form dan error states
+- [x] Hapus/deprecate `form.css`
 
 **Estimasi Total:** 2–3 jam
 

@@ -34,37 +34,37 @@
     <!-- Preload Critical Assets -->
     <link rel="preload" as="image" href="img/header.png" type="image/png" />
 
-    <link rel="stylesheet" href="form.css" />
+    <link rel="stylesheet" href="dist/output.css" />
   </head>
-  <body>
-    <section class="registration-section">
-      <header class="header">
-        <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" fetchpriority="high" />
+  <body class="font-poppins bg-bgdark text-white leading-relaxed max-w-[648px] mx-auto min-h-screen flex flex-col justify-between">
+    <section class="w-full flex-grow">
+      <header class="flex justify-center items-center w-full">
+        <img src="img/header.png" alt="PROTIC Header" class="max-w-full h-auto block" width="334" height="147" fetchpriority="high" />
       </header>
 
-      <nav class="page-nav" aria-label="Navigasi Halaman">
-        <a href="index.html" class="back-link" aria-label="Kembali ke Beranda">
+      <nav class="w-full max-w-[500px] flex justify-start mx-auto mt-3 px-6" aria-label="Navigasi Halaman">
+        <a href="index.html" class="inline-flex items-center gap-2 text-lightergreen font-medium text-[15px] py-1.5 px-3 rounded-sm transition-all duration-200 hover:text-white hover:bg-lightgreen/15 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2" aria-label="Kembali ke Beranda">
           <span aria-hidden="true">&larr;</span> Kembali ke Beranda
         </a>
       </nav>
 
-      <div class="form-title-section">
-        <h2 class="form-title">FORMULIR PENDAFTARAN</h2>
-        <p class="form-subtitle">Pengurus Protic tahun 2026/2027</p>
-        <div class="form-divider"></div>
+      <div class="px-6 flex flex-col items-center gap-6 mb-8 relative z-[1]">
+        <h2 class="font-cinzel text-2xl font-bold leading-[27px] uppercase text-center">FORMULIR PENDAFTARAN</h2>
+        <p class="text-base font-normal leading-[27px] uppercase text-center text-textgray">Pengurus Protic tahun 2026/2027</p>
+        <div class="w-[344px] max-w-full h-[1px] bg-gradient-to-r from-darkgreen via-accentgreen to-black shadow-glow"></div>
       </div>
 
       <div id="formAnnouncer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
-      <form id="registrationForm" class="registration-form">
+      <form id="registrationForm" class="px-6 sm:px-8 flex flex-col gap-10 relative z-[1]">
         <!-- BIODATA -->
-        <div class="form-section">
-          <div class="section-header">
-            <h3 class="section-title">BIODATA</h3>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
+            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">BIODATA</h3>
           </div>
 
-          <div class="form-group">
-            <label for="fullname" class="form-label">Nama Lengkap <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="fullname" class="text-base font-semibold leading-[27px] uppercase">Nama Lengkap <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="fullname"
@@ -76,8 +76,8 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="npm" class="form-label">NPM/NIM <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="npm" class="text-base font-semibold leading-[27px] uppercase">NPM/NIM <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="npm"
@@ -91,8 +91,8 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="class" class="form-label">Kelas <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="class" class="text-base font-semibold leading-[27px] uppercase">Kelas <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="text"
               id="class"
@@ -104,8 +104,8 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="semester" class="form-label">Semester <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="semester" class="text-base font-semibold leading-[27px] uppercase">Semester <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="number"
               id="semester"
@@ -121,12 +121,12 @@
         </div>
 
         <!-- PILIHAN DIVISI -->
-        <div class="form-section">
-          <div class="section-header">
-            <h3 class="section-title">PILIHAN DIVISI</h3>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
+            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">PILIHAN DIVISI</h3>
           </div>
-          <div class="division-header-status">
-            <p class="division-instruction">
+          <div class="flex flex-col items-center gap-2 mb-6">
+            <p class="text-sm font-semibold leading-[27px] uppercase text-center">
               Pilih 2 Divisi yang sesuai dengan minat dan bakatmu!
             </p>
             <span id="divisionCounter" class="division-counter" aria-live="polite">
@@ -134,7 +134,7 @@
             </span>
           </div>
 
-          <div class="division-grid" role="group" aria-label="Pilihan Divisi">
+          <div class="grid grid-cols-3 gap-4 justify-items-center" role="group" aria-label="Pilihan Divisi">
             <button
               type="button"
               class="division-btn"
@@ -231,22 +231,6 @@
               />
               HUMAS
             </button>
-            <!-- <button
-              type="button"
-              class="division-btn"
-              data-division="SEKRETARIS"
-              aria-label="Divisi Sekretaris"
-              aria-pressed="false"
-            >
-              <img
-                src="img/icon/sekretaris.svg"
-                alt="Secretary Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
-              SEKRETARIS
-            </button> -->
             <button
               type="button"
               class="division-btn"
@@ -263,39 +247,23 @@
               />
               KOMINFO
             </button>
-            <!-- <button
-              type="button"
-              class="division-btn"
-              data-division="BENDAHARA"
-              aria-label="Divisi Bendahara"
-              aria-pressed="false"
-            > 
-             <img
-                src="img/icon/bendahara.svg"
-                alt="Treasurer Icon"
-                width="30"
-                height="30"
-                loading="lazy"
-              />
-              BENDAHARA
-            </button> -->
           </div>
           <div
             id="divisionError"
-            class="division-error-msg hidden"
+            class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center mt-3 animate-fadeIn hidden"
             role="alert"
             aria-live="polite"
           ></div>
         </div>
 
         <!-- BERKAS -->
-        <div class="form-section">
-          <div class="section-header">
-            <h3 class="section-title">BERKAS</h3>
+        <div class="flex flex-col gap-4">
+          <div class="bg-gradient-to-b from-accentgreen via-meddarkgreen to-darkgreen border border-accentgreen/40 rounded-lg shadow-green py-8 px-2 flex items-center justify-center">
+            <h3 class="font-semibold text-xl leading-8 text-center uppercase tracking-wide">BERKAS</h3>
           </div>
 
-          <div class="form-group">
-            <label for="portfolio" class="form-label">Portofolio / CV</label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="portfolio" class="text-base font-semibold leading-[27px] uppercase">Portofolio / CV</label>
             <input
               type="url"
               id="portfolio"
@@ -305,8 +273,8 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="whatsapp" class="form-label">Nomor Whatsapp <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="whatsapp" class="text-base font-semibold leading-[27px] uppercase">Nomor Whatsapp <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="tel"
               id="whatsapp"
@@ -320,8 +288,8 @@
             />
           </div>
 
-          <div class="form-group">
-            <label for="email" class="form-label">Email Aktif <span class="required-mark" aria-hidden="true">*</span></label>
+          <div class="flex flex-col gap-2.5 sm:gap-3">
+            <label for="email" class="text-base font-semibold leading-[27px] uppercase">Email Aktif <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="email"
               id="email"
@@ -333,26 +301,30 @@
             />
           </div>
 
-          <div class="form-divider"></div>
+          <div class="w-[344px] max-w-full h-[1px] bg-gradient-to-r from-darkgreen via-accentgreen to-black shadow-glow mx-auto my-2"></div>
 
           <div
             id="submitError"
-            class="submit-error-banner hidden"
+            class="text-[#ff8080] bg-[#ff6b6b]/10 border border-[#ff6b6b]/35 rounded-md p-3 sm:p-4 text-xs leading-relaxed text-center my-3 animate-fadeIn hidden"
             role="alert"
             aria-live="assertive"
           ></div>
 
-          <button type="submit" id="submitBtn" class="submit-btn">
+          <button
+            type="submit"
+            id="submitBtn"
+            class="self-center mt-6 mb-8 w-[200px] py-3 px-6 rounded-[10px] bg-gradient-to-b from-lightergreen to-[#23824C] text-white text-base font-semibold shadow-button cursor-pointer inline-flex items-center justify-center gap-2 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-accentgreen focus-visible:outline-offset-2"
+          >
             <span id="btnText">Kirim</span>
-            <span id="btnLoading" class="hidden">
+            <span id="btnLoading" class="hidden inline-flex items-center">
               <svg
-                class="spinner"
+                class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
               >
                 <circle
-                  class="path"
+                  class="opacity-25"
                   cx="12"
                   cy="12"
                   r="10"
@@ -361,10 +333,7 @@
                 ></circle>
                 <path
                   fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 
-                    0 5.373 0 12h4zm2 5.291A7.962 
-                    7.962 0 014 12H0c0 3.042 1.135 
-                    5.824 3 7.938l3-2.647z"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
               Memproses...
@@ -375,101 +344,108 @@
 
       <!-- MODAL KONFIRMASI (Native <dialog>) -->
       <dialog id="confirmModal" class="confirm-modal" aria-labelledby="modalTitle">
-        <div class="modal-dialog-content">
-          <div class="modal-header">
-            <h3 id="modalTitle" class="modal-title">Konfirmasi Pendaftaran</h3>
+        <div class="p-6 flex flex-col gap-4">
+          <div class="border-b border-lightgreen/25 pb-2">
+            <h3 id="modalTitle" class="font-cinzel text-base sm:text-lg font-bold text-lightergreen text-center">Konfirmasi Pendaftaran</h3>
           </div>
           
-          <p class="modal-desc">
+          <p class="text-[15px] text-white/85 text-center mb-1">
             Pastikan data yang Anda isi sudah benar sebelum mengirimkan formulir:
           </p>
 
-          <div class="modal-summary">
-            <div class="summary-row">
-              <span class="summary-label">Nama Lengkap:</span>
-              <span class="summary-value" id="summaryName">—</span>
+          <div class="bg-darkgreen/75 border border-lightgreen/25 rounded-md p-4 flex flex-col gap-3">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5">
+              <span class="text-xs text-white/65 font-medium">Nama Lengkap:</span>
+              <span class="text-[15px] text-white font-semibold break-words" id="summaryName">—</span>
             </div>
-            <div class="summary-row">
-              <span class="summary-label">NPM / NIM:</span>
-              <span class="summary-value" id="summaryNpm">—</span>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5">
+              <span class="text-xs text-white/65 font-medium">NPM / NIM:</span>
+              <span class="text-[15px] text-white font-semibold break-words" id="summaryNpm">—</span>
             </div>
-            <div class="summary-row">
-              <span class="summary-label">Kelas & Semester:</span>
-              <span class="summary-value" id="summaryClass">—</span>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5">
+              <span class="text-xs text-white/65 font-medium">Kelas & Semester:</span>
+              <span class="text-[15px] text-white font-semibold break-words" id="summaryClass">—</span>
             </div>
-            <div class="summary-row">
-              <span class="summary-label">Pilihan Divisi:</span>
-              <div class="summary-badges" id="summaryDivisions">
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5">
+              <span class="text-xs text-white/65 font-medium">Pilihan Divisi:</span>
+              <div class="flex flex-wrap gap-1.5" id="summaryDivisions">
                 <!-- Badges injected by JS -->
               </div>
             </div>
           </div>
 
-          <div class="modal-actions">
-            <button type="button" id="modalCancelBtn" class="btn-cancel">
+          <div class="flex gap-3 justify-end mt-2">
+            <button type="button" id="modalCancelBtn" class="flex-1 py-2.5 px-4 rounded-full bg-transparent border border-white/30 text-white/85 font-poppins text-sm sm:text-base font-medium cursor-pointer transition-all duration-200 hover:bg-white/10 hover:text-white hover:border-white/60 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">
               Batalkan
             </button>
-            <button type="button" id="modalConfirmBtn" class="btn-confirm">
+            <button type="button" id="modalConfirmBtn" class="flex-[1.2] py-2.5 px-4 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-sm sm:text-base font-semibold cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(73,209,133,0.4)] focus-visible:outline-2 focus-visible:outline-lightergreen focus-visible:outline-offset-2">
               Kirim Sekarang &rarr;
             </button>
           </div>
         </div>
       </dialog>
+    </section>
 
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-logo">
-              <img
-                src="img/Protic.png"
-                alt="PROTIC Logo"
-                width="85"
-                height="95"
-                loading="lazy"
-              />
-            </div>
-            <div class="footer-text">
-              <h3 class="footer-title">PROTIC</h3>
-              <p class="footer-subtitle">
-                Programming Technology Informatics Club
-              </p>
-            </div>
+    <!-- FOOTER -->
+    <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-8 px-6 sm:px-8 flex flex-col justify-between mt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-[1200px] w-full mx-auto">
+        <div class="flex items-center gap-4">
+          <div class="footer-logo">
+            <img
+              src="img/Protic.png"
+              alt="PROTIC Logo"
+              width="85"
+              height="95"
+              class="w-[85px] h-[95px]"
+              loading="lazy"
+            />
           </div>
-          <div class="footer-divider"></div>
-          <div class="footer-social">
-            <a href="https://github.com/Protic-PNC" aria-label="Github"
-              ><img
-                src="img/icon/github.svg"
-                alt="GitHub"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
-            <a
-              href="https://www.instagram.com/protic_pnc?stkn=anlzMDhlMzlucmJh"
-              aria-label="Instagram"
-              ><img
-                src="img/icon/instagram.svg"
-                alt="Instagram"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
-            <a
-              href="https://www.linkedin.com/company/proticpnc/"
-              aria-label="Linkedin"
-              ><img
-                src="img/icon/linkedin.svg"
-                alt="LinkedIn"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
+          <div>
+            <h3 class="font-cinzel font-bold text-3xl sm:text-4xl leading-tight mb-1">PROTIC</h3>
+            <p class="text-xs text-white/90">
+              Programming Technology Informatics Club
+            </p>
           </div>
         </div>
-        <p class="footer-copyright">© 2026 Protic | All Right Reserved</p>
-      </footer>
-    </section>
+        <div class="w-full h-px md:w-px md:h-16 bg-white shadow-glow hidden md:block"></div>
+        <div class="flex flex-row md:flex-col gap-3">
+          <a href="https://github.com/Protic-PNC" aria-label="Github" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
+            ><img
+              src="img/icon/github.svg"
+              alt="GitHub"
+              width="20"
+              height="20"
+              class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
+              loading="lazy"
+          /></a>
+          <a
+            href="https://www.instagram.com/protic_pnc?stkn=anlzMDhlMzlucmJh"
+            aria-label="Instagram"
+            class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
+            ><img
+              src="img/icon/instagram.svg"
+              alt="Instagram"
+              width="20"
+              height="20"
+              class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
+              loading="lazy"
+          /></a>
+          <a
+            href="https://www.linkedin.com/company/proticpnc/"
+            aria-label="Linkedin"
+            class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen"
+            ><img
+              src="img/icon/linkedin.svg"
+              alt="LinkedIn"
+              width="20"
+              height="20"
+              class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]"
+              loading="lazy"
+          /></a>
+        </div>
+      </div>
+      <p class="text-xs font-medium text-center mt-6 pt-2 text-white/80">© 2026 Protic | All Right Reserved</p>
+    </footer>
 
     <!-- SCRIPT -->
     <script>
