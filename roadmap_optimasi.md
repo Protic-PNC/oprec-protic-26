@@ -390,10 +390,10 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `index.html`, `index.css`, `script.js`
 
 **Yang dilakukan:**
-- [ ] Kurangi durasi: 2500ms → 1500ms
-- [ ] Tambah tombol "Skip →" yang muncul setelah 500ms
-- [ ] Tambah `@media (prefers-reduced-motion: reduce)` — langsung skip
-- [ ] Tambah loading progress bar tipis di bawah logo
+- [x] Kurangi durasi: 2500ms → 1500ms
+- [x] Tambah tombol "Skip →" yang muncul setelah 500ms
+- [x] Tambah `@media (prefers-reduced-motion: reduce)` — langsung skip
+- [x] Tambah loading progress bar tipis di bawah logo
 
 **Estimasi:** 30 menit
 

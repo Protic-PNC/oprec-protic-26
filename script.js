@@ -56,61 +56,93 @@ document.querySelectorAll(".division-item").forEach(item => {
 window.addEventListener("load", () => {
   const landing = document.getElementById("landingPage");
   const main = document.querySelector(".main-content");
+  const skipBtn = document.getElementById("skipSplashBtn");
 
   if (landing && main) {
-    setTimeout(() => {
-      // kasih efek fade out
-      landing.classList.add("fade-out");
+    // Cek preferensi reduced-motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      landing.style.display = "none";
+      main.classList.add("show");
+      return;
+    }
 
-      // setelah transisi selesai -> tampilkan main
+    let hasDismissed = false;
+    let splashTimer = null;
+
+    const dismissSplash = () => {
+      if (hasDismissed) return;
+      hasDismissed = true;
+      if (splashTimer) clearTimeout(splashTimer);
+
+      landing.classList.add("fade-out");
       landing.addEventListener("transitionend", () => {
         landing.style.display = "none";
         main.classList.add("show");
       }, { once: true });
-    }, 2500); // 2.5 detik splash screen
+    };
+
+    // Tombol Skip muncul setelah 500ms
+    if (skipBtn) {
+      setTimeout(() => {
+        if (!hasDismissed) {
+          skipBtn.classList.add("visible");
+        }
+      }, 500);
+
+      skipBtn.addEventListener("click", dismissSplash);
+    }
+
+    // Durasi splash screen 1500ms (1.5 detik)
+    splashTimer = setTimeout(dismissSplash, 1500);
   }
 });
 
-// === Divisi Selection (max 2) ===
+// === Divisi Selection (hanya jika elemen ada di halaman) ===
 const divisionButtons = document.querySelectorAll(".division-btn");
-let selectedDivisions = [];
+if (divisionButtons.length > 0) {
+  let selectedDivisions = [];
 
-divisionButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const division = button.dataset.division;
+  divisionButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const division = button.dataset.division;
 
-    // Kalau sudah dipilih -> unselect
-    if (selectedDivisions.includes(division)) {
-      selectedDivisions = selectedDivisions.filter(d => d !== division);
-      button.classList.remove("active");
-    } 
-    // Kalau belum dipilih dan < 2
-    else if (selectedDivisions.length < 2) {
-      selectedDivisions.push(division);
-      button.classList.add("active");
-    } 
-    // Kalau lebih dari 2 -> alert
-    else {
-      alert("Kamu hanya bisa memilih maksimal 2 divisi!");
-    }
+      // Kalau sudah dipilih -> unselect
+      if (selectedDivisions.includes(division)) {
+        selectedDivisions = selectedDivisions.filter(d => d !== division);
+        button.classList.remove("active");
+      } 
+      // Kalau belum dipilih dan < 2
+      else if (selectedDivisions.length < 2) {
+        selectedDivisions.push(division);
+        button.classList.add("active");
+      } 
+      // Kalau lebih dari 2 -> alert
+      else {
+        alert("Kamu hanya bisa memilih maksimal 2 divisi!");
+      }
 
-    console.log("Divisi terpilih:", selectedDivisions);
+      console.log("Divisi terpilih:", selectedDivisions);
+    });
   });
-});
 
-// === Tambahkan hidden input agar divisi ikut terkirim ===
-const form = document.querySelector(".registration-form");
-form.addEventListener("submit", (e) => {
-  // sebelum submit, hapus dulu input lama
-  form.querySelectorAll("input[name='divisions[]']").forEach(el => el.remove());
+  // === Tambahkan hidden input agar divisi ikut terkirim ===
+  const form = document.querySelector(".registration-form");
+  if (form) {
+    form.addEventListener("submit", () => {
+      // sebelum submit, hapus dulu input lama
+      form.querySelectorAll("input[name='divisions[]']").forEach(el => el.remove());
 
-  // tambahkan input hidden untuk tiap divisi
-  selectedDivisions.forEach(div => {
-    const hiddenInput = document.createElement("input");
-    hiddenInput.type = "hidden";
-    hiddenInput.name = "divisions[]";
-    hiddenInput.value = div;
-    form.appendChild(hiddenInput);
-  });
-});
+      // tambahkan input hidden untuk tiap divisi
+      selectedDivisions.forEach(div => {
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = "divisions[]";
+        hiddenInput.value = div;
+        form.appendChild(hiddenInput);
+      });
+    });
+  }
+}
+
 

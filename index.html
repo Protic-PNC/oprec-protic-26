@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -46,12 +46,16 @@
   </head>
   <body>
     <section class="landing-page" id="landingPage">
+      <button type="button" class="skip-splash-btn" id="skipSplashBtn" aria-label="Lewati splash screen">Lewati &rarr;</button>
       <div class="hero-image">
         <img src="img/Protic.png" alt="PROTIC Hero" width="353" height="376" fetchpriority="high" />
       </div>
       <div class="hero-content">
         <h1 class="hero-title">PROTIC</h1>
         <p class="hero-subtitle">Improve Skill To Innovate</p>
+        <div class="splash-progress-container" aria-hidden="true">
+          <div class="splash-progress-bar" id="splashProgressBar"></div>
+        </div>
       </div>
       <div class="bg-ellipse bg-ellipse-1"></div>
       <div class="bg-ellipse bg-ellipse-2"></div>

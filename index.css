@@ -48,16 +48,91 @@ a {
 
 /* === HERO / LANDING PAGE (Splash) === */
 .landing-page {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; background: #0b0f0d; z-index: 9999; transition: opacity 1s ease;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; background: #0b0f0d; z-index: 9999; transition: opacity 0.6s ease;
 }
 .landing-page.fade-out { opacity: 0; pointer-events: none; }
 .bg-ellipse { position: absolute; width: 360px; height: 360px; background: url("img/circle.png") no-repeat center/contain; filter: drop-shadow(0 0 40px rgba(0, 255, 100, 0.55)); z-index: 0; opacity: 0.8; }
 .bg-ellipse-1 { top: -160px; left: 50%; transform: translateX(-50%); }
 .bg-ellipse-2 { bottom: -160px; left: 50%; transform: translateX(-50%) rotate(180deg); }
 .hero-image img { width: 210px; filter: drop-shadow(0 0 25px rgba(0, 255, 100, 0.4)); }
-.hero-content { position: relative; z-index: 2; }
+.hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
 .hero-title { font-family: 'Cinzel', serif; font-size: var(--font-6xl); font-weight: 700; line-height: 1.2; margin-bottom: var(--spacing-sm); }
 .hero-subtitle { font-family: 'Poppins', sans-serif; font-size: var(--font-base); font-weight: 400; color: rgba(255, 255, 255, 0.85); }
+
+/* Splash Progress Bar */
+.splash-progress-container {
+  width: 160px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: var(--spacing-lg);
+}
+.splash-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-green), var(--lighter-green));
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(73, 209, 133, 0.8);
+  animation: splashProgress 1.5s ease-out forwards;
+}
+@keyframes splashProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Skip Splash Button */
+.skip-splash-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.skip-splash-btn.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.skip-splash-btn:hover {
+  background: rgba(73, 209, 133, 0.2);
+  border-color: var(--primary-green);
+  transform: translateY(-1px);
+}
+.skip-splash-btn:focus-visible {
+  outline: 2px solid var(--lighter-green);
+  outline-offset: 2px;
+}
+
+/* Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .landing-page {
+    display: none !important;
+    opacity: 0 !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
+  .main-content {
+    display: block !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .splash-progress-bar {
+    animation: none !important;
+  }
+}
 
 /* === MAIN LAYOUT === */
 .main-content { display: none; opacity: 0; transition: opacity 1s ease; }
