@@ -135,7 +135,17 @@
               <span class="text-[11px] font-bold tracking-widest uppercase text-lightgreen">Langkah 1 dari 3</span>
               <h2 class="text-lg sm:text-xl font-bold text-white tracking-wide">Data Diri Calon Pengurus</h2>
             </div>
-            <span class="text-xs text-white/60 font-medium">Semua wajib diisi</span>
+            <div class="flex items-center gap-2.5">
+              <button
+                type="button"
+                id="clearDraftBtn"
+                class="hidden text-[11px] text-white/50 hover:text-red-300 underline underline-offset-2 transition-colors cursor-pointer"
+                title="Bersihkan draf formulir yang tersimpan di browser ini"
+              >
+                Bersihkan Draf
+              </button>
+              <span class="text-xs text-white/60 font-medium">Semua wajib diisi</span>
+            </div>
           </div>
 
           <div id="step1Error" class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center animate-fadeIn hidden" role="alert" aria-live="polite"></div>
@@ -1243,6 +1253,18 @@
       if (backToStep2Btn) backToStep2Btn.addEventListener("click", () => goToStep(2));
 
       // Auto-Save Draft Functions
+      function updateClearDraftBtnVisibility() {
+        const clearDraftBtn = document.getElementById("clearDraftBtn");
+        if (!clearDraftBtn) return;
+        const hasDraft = Boolean(localStorage.getItem(DRAFT_KEY));
+        // Jika bukan edit mode dan ada draf, tampilkan opsi Bersihkan Draf
+        if (!isEditMode && hasDraft) {
+          clearDraftBtn.classList.remove("hidden");
+        } else {
+          clearDraftBtn.classList.add("hidden");
+        }
+      }
+
       function saveDraft() {
         try {
           const draft = {
@@ -1255,9 +1277,13 @@
             whatsapp: form.whatsapp ? form.whatsapp.value : "",
             email: form.email ? form.email.value : "",
             currentStep: currentStep,
+            isEditMode: isEditMode,
+            verifiedApplicantData: isEditMode ? verifiedApplicantData : null,
+            currentVerifiedPin: isEditMode ? currentVerifiedPin : null,
             savedAt: Date.now(),
           };
           localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+          updateClearDraftBtnVisibility();
         } catch (e) {
           console.warn("Gagal menyimpan draf form ke localStorage", e);
         }
@@ -1266,9 +1292,15 @@
       function loadDraft() {
         try {
           const raw = localStorage.getItem(DRAFT_KEY);
-          if (!raw) return;
+          if (!raw) {
+            updateClearDraftBtnVisibility();
+            return;
+          }
           const draft = JSON.parse(raw);
-          if (!draft) return;
+          if (!draft) {
+            updateClearDraftBtnVisibility();
+            return;
+          }
 
           if (draft.fullname && form.fullname) form.fullname.value = draft.fullname;
           if (draft.npm && form.npm) form.npm.value = draft.npm;
@@ -1282,6 +1314,15 @@
             const validDivisions = ["WEB", "UI/UX", "MOBILE", "DEVOPS", "DATA", "HUMAS", "KOMINFO"];
             selectedDivisions = draft.selectedDivisions.filter((d) => validDivisions.includes(d)).slice(0, 2);
           }
+
+          // Pulihkan Status Mode Ubah Data jika pengguna sebelumnya keluar saat sedang mengedit
+          if (draft.isEditMode && draft.verifiedApplicantData) {
+            if (typeof applyEditMode === "function") {
+              applyEditMode(draft.verifiedApplicantData, draft.currentVerifiedPin);
+            }
+          }
+
+          updateClearDraftBtnVisibility();
         } catch (e) {
           console.warn("Gagal memuat draf form dari localStorage", e);
         }
@@ -1290,9 +1331,20 @@
       function clearDraft() {
         try {
           localStorage.removeItem(DRAFT_KEY);
+          updateClearDraftBtnVisibility();
         } catch (e) {
           console.warn("Gagal menghapus draf form", e);
         }
+      }
+
+      const clearDraftBtn = document.getElementById("clearDraftBtn");
+      if (clearDraftBtn) {
+        clearDraftBtn.addEventListener("click", () => {
+          if (confirm("Bersihkan seluruh isian formulir draf yang tersimpan di browser ini?")) {
+            cancelEditMode(true);
+            announce("Draf formulir berhasil dibersihkan.");
+          }
+        });
       }
 
       // Input listener to auto-save and update visuals
@@ -1559,19 +1611,38 @@
         });
       }
 
-      // Mode Edit: Mengisi Data Lama ke Form & Beralih ke Form Step 1
-      function startEditMode(data) {
+      // Mode Edit: Menerapkan Tampilan UI Mode Ubah Data
+      function applyEditMode(data, pin) {
         if (!data) return;
         isEditMode = true;
+        verifiedApplicantData = data;
+        if (pin) currentVerifiedPin = pin;
 
-        closeManageModal();
-
-        if (form.fullname) form.fullname.value = data.fullname || "";
         if (form.npm) {
-          form.npm.value = data.npm || "";
           form.npm.readOnly = true;
           form.npm.classList.add("opacity-70", "cursor-not-allowed");
         }
+
+        if (editModeBanner) editModeBanner.classList.remove("hidden");
+        if (editModeApplicantName) {
+          const name = data.fullname || "Pendaftar";
+          const npm = data.npm || "";
+          editModeApplicantName.textContent = `${name} (${npm})`;
+        }
+
+        if (btnText) btnText.innerHTML = "Simpan Perubahan &rarr;";
+        const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
+        if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Simpan Perubahan &rarr;";
+        updateClearDraftBtnVisibility();
+      }
+
+      // Mode Edit: Mengisi Data Lama ke Form & Beralih ke Form Step 1
+      function startEditMode(data) {
+        if (!data) return;
+        closeManageModal();
+
+        if (form.fullname) form.fullname.value = data.fullname || "";
+        if (form.npm) form.npm.value = data.npm || "";
         if (form.class) form.class.value = data.class || "";
         if (form.semester) form.semester.value = data.semester || "";
         if (form.portfolio) form.portfolio.value = data.portfolio || "";
@@ -1580,17 +1651,10 @@
 
         selectedDivisions = [data.division1, data.division2].filter(Boolean);
 
+        applyEditMode(data, currentVerifiedPin);
         updateDivisionUI();
         updateStepperVisuals();
-
-        if (editModeBanner) editModeBanner.classList.remove("hidden");
-        if (editModeApplicantName) {
-          editModeApplicantName.textContent = `${data.fullname} (${data.npm})`;
-        }
-
-        if (btnText) btnText.innerHTML = "Simpan Perubahan &rarr;";
-        const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
-        if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Simpan Perubahan &rarr;";
+        saveDraft(); // Langsung amankan sesi Edit Mode ke localStorage!
 
         goToStep(1);
         announce("Mode Ubah Data aktif. Silakan perbarui data Anda dan kirim kembali.");
@@ -1598,6 +1662,9 @@
 
       function cancelEditMode(resetAll = false) {
         isEditMode = false;
+        verifiedApplicantData = null;
+        currentVerifiedPin = null;
+
         if (form.npm) {
           form.npm.readOnly = false;
           form.npm.classList.remove("opacity-70", "cursor-not-allowed");
@@ -1607,14 +1674,16 @@
         const modalConfirmBtnText = document.getElementById("modalConfirmBtnText");
         if (modalConfirmBtnText) modalConfirmBtnText.innerHTML = "Kirim Sekarang &rarr;";
 
+        clearDraft(); // Selalu bersihkan draf saat keluar dari mode edit
+
         if (resetAll) {
-          clearDraft();
           form.reset();
           selectedDivisions = [];
           updateDivisionUI();
           updateStepperVisuals();
           goToStep(1);
         }
+        updateClearDraftBtnVisibility();
       }
 
       if (btnStartEdit) {
@@ -1839,7 +1908,7 @@
                 ...formData,
               };
               populatePreviewCard(verifiedApplicantData);
-              cancelEditMode(false);
+              cancelEditMode(true);
               openManageModal();
               showManageView("preview");
               return;
