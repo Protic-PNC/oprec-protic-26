@@ -452,21 +452,34 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 
 ---
 
-### Sesi 26 — `P-06` + `P-07` Migrasi Penuh ke Tailwind
-**File:** `index.html`, `index.css`, `form.html`, `form.css`, `thankyou.html`, `thankyou.css`
+### Sesi 26 — `P-06` + `P-07` Migrasi Penuh ke Tailwind (Dipecah per Sub-Sesi)
+**File:** `index.html`, `index.css`, `form.html`, `form.css`, `thankyou.html`, `thankyou.css`, `pengumuman.html`, `success.html`, `denied.html`
 
-> ⚠️ Sesi terbesar — pertimbangkan pecah jadi sub-sesi per halaman jika perlu.
+> ⚠️ Dipecah menjadi 4 sub-sesi bertahap untuk meminimalkan risiko regresi dan memastikan verifikasi visual per halaman:
 
-**Yang dilakukan:**
-- [ ] Setup Tailwind CLI (bukan CDN) + `tailwind.config.js`
-- [ ] Definisikan design tokens (warna, shadow, radius) di config
-- [ ] Migrasi `index.html` + hapus `index.css`
-- [ ] Migrasi `form.html` + hapus `form.css`
-- [ ] Migrasi `thankyou.html` + hapus `thankyou.css`
-- [ ] Build ke `output.css` dan ganti semua CDN tag dengan file lokal
-- [ ] Verifikasi konsistensi visual di semua 6 halaman
+#### Sesi 26A — Setup Tooling Tailwind CLI v3 & Eliminasi CDN (`P-06`)
+- [ ] Inisialisasi `package.json` dan install `tailwindcss@^3` lokal
+- [ ] Buat `tailwind.config.js` dengan menyatukan seluruh design tokens (warna, shadow, radius, font)
+- [ ] Buat `src/input.css` dan setup script npm `"build:css"`
+- [ ] Compile ke `dist/output.css` dan ganti tag CDN di `pengumuman.html`, `success.html`, `denied.html`
+- [ ] Verifikasi 3 halaman hasil bebas dari CDN runtime compiler
 
-**Estimasi:** 2–3 jam
+#### Sesi 26B — Migrasi `thankyou.html`
+- [ ] Migrasi layout kartu & footer `thankyou.html` ke utility class Tailwind
+- [ ] Verifikasi tampilan di browser
+- [ ] Hapus/deprecate `thankyou.css`
+
+#### Sesi 26C — Migrasi `index.html`
+- [ ] Migrasi landing page, hero, splash progress, dan 2-kolom desktop ke Tailwind
+- [ ] Verifikasi animasi dan responsive breakpoints
+- [ ] Hapus/deprecate `index.css`
+
+#### Sesi 26D — Migrasi `form.html`
+- [ ] Migrasi formulir pendaftaran, floating validation, dan dialog modal ke Tailwind
+- [ ] Verifikasi interaktivitas form dan error states
+- [ ] Hapus/deprecate `form.css`
+
+**Estimasi Total:** 2–3 jam
 
 ---
 
@@ -474,9 +487,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `script.js`
 
 **Yang dilakukan:**
-- [x] Hapus baris 74–115 (division selection logic — tidak pernah dieksekusi di `form.html`)
-- [x] Verifikasi `index.html` masih berfungsi normal
-- [x] Verifikasi `form.html` masih berfungsi normal (inline script-nya independen)
+- [ ] Hapus baris 74–115 (division selection logic — tidak pernah dieksekusi di `form.html`)
+- [ ] Verifikasi `index.html` masih berfungsi normal
+- [ ] Verifikasi `form.html` masih berfungsi normal (inline script-nya independen)
 
 **Estimasi:** 10 menit
 
