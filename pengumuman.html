@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
 
 <head>
@@ -86,8 +86,8 @@
           </div>
 
           <div class="flex flex-col gap-4 items-start">
-            <label for="fullname" class="text-sm font-semibold uppercase">NPM</label>
-            <input type="text" id="fullname" name="fullname"
+            <label for="npm" class="text-sm font-semibold uppercase">NPM</label>
+            <input type="text" id="npm" name="npm"
               class="w-full h-[61px] bg-gradient-to-b from-[#114B2A] to-[#000000] border-[1px] border-solid border-[linear-gradient(180deg,_#06291E_1.44%,_#227D4A_12.75%,_#80C89F_24.43%,_#227D4A_39.47%,_#151515_87.33%)] rounded-[8px] py-[16px] px-4 text-white font-[300] text-[13px] leading-[27px]"
               required placeholder="25010xxx" />
           </div>
@@ -152,7 +152,7 @@
       "https://script.google.com/macros/s/AKfycbwIQSXMYo9amj9RHuLhKVcUNThJNoF2sn64q2GhZekD0nsCh4cCO5tcO0MrxMygBV-Z/exec";
 
     const submitBtn = document.getElementById("submit");
-    const npmInput = document.getElementById("fullname");
+    const npmInput = document.getElementById("npm");
 
     // Ambil data dari API
     async function fetchStudentData(npm) {
