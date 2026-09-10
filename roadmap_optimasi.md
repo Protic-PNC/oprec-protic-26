@@ -92,7 +92,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 02 | P-05 | Tambah `width` & `height` pada semua `<img>` | 🅐 | ✅ Selesai |
 | 03 | P-09 | Tambah favicon | 🅐 | ✅ Selesai |
 | 04 | P-11 | Sediakan font Dungeon (diganti Google Fonts Cinzel) | 🅒 | ✅ Selesai |
-| 05 | P-01 | Compress & resize `fotbar.webp` (<300KB) | 🅑 | ⬜ Belum |
+| 05 | P-01 | Compress & resize `fotbar.webp` (<300KB) | 🅑 | ✅ Selesai (108 KB) |
 | 06 | P-04 | Tambah `<link rel="preload">` untuk aset kritis | 🅐 | ⬜ Belum |
 | 07 | P-08 | Tambah `loading="lazy"` pada gambar non-kritis | 🅐 | ⬜ Belum |
 | 08 | P-03 | Unduh & host lokal semua ikon dari S3 Codia | 🅐 | ⬜ Belum |
