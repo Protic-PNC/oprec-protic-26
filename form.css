@@ -37,17 +37,17 @@ Fonts: Poppins (base), Cinzel (headings)
   --black: #000000;
 
   /* Font Sizes */
-  --font-xs: 7px;
-  --font-sm: 8px;
-  --font-md: 10px;
-  --font-base: 11px;
-  --font-lg: 12px;
-  --font-xl: 13px;
-  --font-2xl: 14px;
-  --font-3xl: 15px;
+  --font-xs: 12px;
+  --font-sm: 13px;
+  --font-md: 14px;
+  --font-base: 15px;
+  --font-lg: 16px;
+  --font-xl: 16px;
+  --font-2xl: 16px;
+  --font-3xl: 18px;
   --font-4xl: 20px;
   --font-5xl: 24px;
-  --font-6xl: 40px;
+  --font-6xl: 36px;
 
   /* Spacing */
   --spacing-xs: 6px;
@@ -558,7 +558,7 @@ img {
 .footer-subtitle {
   font-size: var(--font-md);
   font-weight: 400;
-  line-height: 15px;
+  line-height: 20px;
 }
 
 .footer-divider {
@@ -582,27 +582,10 @@ img {
 .footer-copyright {
   font-size: var(--font-sm);
   font-weight: 500;
-  line-height: 16px;
+  line-height: 18px;
   text-align: center;
   margin-top: auto;
   padding-bottom: 4px; /* biar nempel ke bawah */
-}
-
-/* === Division Button Active State === */
-.division-btn {
-  border: 2px solid transparent;
-  border-radius: 12px;
-  padding: 10px;
-  transition: 0.3s ease;
-}
-
-.division-btn.active {
-  border: 2px solid var(--primary-green); /* hijau tegas */
-  /* background: linear-gradient(180deg, #2AAC63 2.31%, var(--darker-green) 80%, var(--darker-green) 60%, var(--darker-green) 50%); */
-  background: linear-gradient(180deg, #2AAC63 , #06291E 80%);
-  color: #fff;
-  transform: scale(1);
-  box-shadow: 0 0 12px rgba(59, 174, 109, 0.7);
 }
 
 .submit-btn {
@@ -623,7 +606,8 @@ img {
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: scale(1.03);}
+  transform: scale(1.03);
+}
 
 .submit-btn:active:not(:disabled) {
   transform: scale(0.98);
@@ -632,10 +616,6 @@ img {
 .submit-btn:disabled {
   opacity: 0.75;
   cursor: not-allowed;
-}
-
-.hidden {
-  display: none;
 }
 
 .spinner {

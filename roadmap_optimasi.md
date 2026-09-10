@@ -104,7 +104,7 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 | 14 | U-06 | Tambah counter divisi terpilih ("1/2 dipilih") | 🅑 | ✅ Selesai |
 | 15 | U-08 | Perbaiki error handling form submission | 🅑 | ✅ Selesai |
 | 16 | U-18 | Tambah CSS error state pada input form | 🅑 | ✅ Selesai |
-| 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ⬜ Belum |
+| 17 | U-10 | Fix ukuran font terlalu kecil di form.css | 🅑 | ✅ Selesai |
 | 18 | U-11 | Tambah `aria-live` region | 🅑 | ⬜ Belum |
 | 19 | U-16 | Audit & perbaiki kontras warna (WCAG AA) | 🅑 | ⬜ Belum |
 | 20 | U-15 | Tambah hover effect ikon sosial media | 🅒 | ⬜ Belum |
@@ -334,12 +334,12 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `form.css`
 
 **Yang dilakukan:**
-- [ ] `--font-xs: 7px` → `12px`
-- [ ] `--font-sm: 8px` → `13px`
-- [ ] `--font-md: 10px` → `14px`
-- [ ] `--font-base: 11px` → `15px`
-- [ ] Target minimum: body text ≥ 14px, label kecil ≥ 12px
-- [ ] Verifikasi tidak ada teks di bawah 12px di form
+- [x] `--font-xs: 7px` → `12px`
+- [x] `--font-sm: 8px` → `13px`
+- [x] `--font-md: 10px` → `14px`
+- [x] `--font-base: 11px` → `15px`
+- [x] Target minimum: body text ≥ 14px, label kecil ≥ 12px
+- [x] Verifikasi tidak ada teks di bawah 12px di form
 
 **Estimasi:** 15 menit
 
