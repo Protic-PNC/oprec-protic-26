@@ -76,9 +76,9 @@ body {
 }
 
 .thankyou-title {
-  font-family: "Dungeon", serif;
+  font-family: "Cinzel", serif;
   font-size: var(--font-5xl);
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .thankyou-divider {
@@ -158,9 +158,9 @@ body {
 }
 
 .footer-title {
-  font-family: 'Dungeon', serif;
+  font-family: 'Cinzel', serif;
   font-size: var(--font-6xl);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 45px;
   margin-bottom: var(--spacing-xs);
 }

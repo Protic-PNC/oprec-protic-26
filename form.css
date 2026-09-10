@@ -8,7 +8,7 @@ Colors:
   Text: #FFFFFF
 
 Grid Width: 412px (mobile-first)
-Fonts: Poppins (base), Dungeon (headings)
+Fonts: Poppins (base), Cinzel (headings)
 ===========================================
 */
 
@@ -139,9 +139,9 @@ img {
   }
   
   .form-title {
-  font-family: 'Dungeon', serif;
+  font-family: 'Cinzel', serif;
   font-size: var(--font-5xl);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 27px;
   text-transform: uppercase;
   text-align: center;
@@ -453,9 +453,9 @@ img {
 }
 
 .footer-title {
-  font-family: 'Dungeon', serif;
+  font-family: 'Cinzel', serif;
   font-size: var(--font-6xl);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 45px;
   margin-bottom: var(--spacing-xs);
 }

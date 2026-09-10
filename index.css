@@ -56,7 +56,7 @@ a {
 .bg-ellipse-2 { bottom: -160px; left: 50%; transform: translateX(-50%) rotate(180deg); }
 .hero-image img { width: 210px; filter: drop-shadow(0 0 25px rgba(0, 255, 100, 0.4)); }
 .hero-content { position: relative; z-index: 2; }
-.hero-title { font-family: 'Dungeon', serif; font-size: var(--font-6xl); font-weight: 400; line-height: 1.2; margin-bottom: var(--spacing-sm); }
+.hero-title { font-family: 'Cinzel', serif; font-size: var(--font-6xl); font-weight: 700; line-height: 1.2; margin-bottom: var(--spacing-sm); }
 .hero-subtitle { font-family: 'Poppins', sans-serif; font-size: var(--font-base); font-weight: 400; color: rgba(255, 255, 255, 0.85); }
 
 /* === MAIN LAYOUT === */
@@ -85,7 +85,7 @@ a {
 }
 
 .section-title {
-  font-family: 'Dungeon', serif; font-size: var(--font-5xl); font-weight: 400; line-height: 1.2; text-transform: uppercase; text-align: center;
+  font-family: 'Cinzel', serif; font-size: var(--font-5xl); font-weight: 700; line-height: 1.2; text-transform: uppercase; text-align: center;
 }
 
 .intro-image-group, .intro-text-content {
@@ -188,9 +188,9 @@ a {
 }
 
 .footer-title {
-  font-family: 'Dungeon', serif;
+  font-family: 'Cinzel', serif;
   font-size: var(--font-6xl);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 45px;
   margin-bottom: var(--spacing-xs);
 }
