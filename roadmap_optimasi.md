@@ -465,9 +465,9 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 - [x] Verifikasi 3 halaman hasil bebas dari CDN runtime compiler
 
 #### Sesi 26B — Migrasi `thankyou.html`
-- [ ] Migrasi layout kartu & footer `thankyou.html` ke utility class Tailwind
-- [ ] Verifikasi tampilan di browser
-- [ ] Hapus/deprecate `thankyou.css`
+- [x] Migrasi layout kartu & footer `thankyou.html` ke utility class Tailwind
+- [x] Verifikasi tampilan di browser
+- [x] Hapus/deprecate `thankyou.css`
 
 #### Sesi 26C — Migrasi `index.html`
 - [ ] Migrasi landing page, hero, splash progress, dan 2-kolom desktop ke Tailwind

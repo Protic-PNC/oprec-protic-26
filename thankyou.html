@@ -25,83 +25,67 @@
   <!-- Preload Critical Assets -->
   <link rel="preload" as="image" href="img/header.png" type="image/png" />
 
-  <link rel="stylesheet" href="thankyou.css">
+  <link rel="stylesheet" href="dist/output.css">
 </head>
-<body>
+<body class="font-poppins bg-bgdark text-white overflow-x-hidden min-h-screen flex flex-col">
   <!-- Header with Logo -->
-  <header class="header">
-     <img src="img/header.png" alt="PROTIC Header" class="header-image" width="334" height="147" fetchpriority="high" />
+  <header class="w-full max-w-[500px] mb-8 flex justify-center items-center mx-auto text-center pt-6 px-4">
+     <img src="img/header.png" alt="PROTIC Header" class="max-w-full h-auto block" width="334" height="147" fetchpriority="high" />
   </header>
-    <!-- Thank You Section -->
-  <section class="thankyou-section">
+
+  <!-- Thank You Section -->
+  <section class="flex-grow flex flex-col items-center justify-center py-8 px-6">
     <!-- Thank You Content -->
-    <div class="thankyou-content">
-      <h2 class="thankyou-title">Terima Kasih</h2>
-      <div class="thankyou-divider"></div>
-      <p class="thankyou-text">
+    <div class="max-w-[600px] w-full flex flex-col items-center gap-6 text-center">
+      <h1 class="font-cinzel text-3xl sm:text-5xl font-bold tracking-wide">Terima Kasih</h1>
+      <div class="w-3/5 max-w-[280px] h-[2px] bg-gradient-to-r from-darkgreen via-accentgreen to-darkgreen shadow-glow my-2"></div>
+      <p class="text-base sm:text-lg text-textgray leading-relaxed">
         kami ucapkan terima kasih atas partisipasi anda<br>
         dalam mengikuti pendaftaran pengurus protic 2026/2027
       </p>
       
-      <div class="thankyou-message">
+      <div class="max-w-[500px] w-full bg-gradient-to-b from-meddarkgreen to-black rounded-md border border-medgreen py-4 px-6 text-sm sm:text-base leading-relaxed">
         <p>Kami telah menerima formulir Anda. Silakan hubungi kami langsung melalui WhatsApp jika ada pertanyaan.</p>
       </div>
       
-      <button class="community-btn" onclick="window.open('https://chat.whatsapp.com/DaExLk9Nm7U6YpDFvHParv?s=cl&p=a&mlu=4&ilr=4', '_blank')">
+      <button class="px-8 py-3 rounded-full bg-gradient-to-br from-lightergreen to-[#23824C] shadow-button text-white text-base sm:text-lg font-semibold cursor-pointer transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-lightergreen" onclick="window.open('https://chat.whatsapp.com/DaExLk9Nm7U6YpDFvHParv?s=cl&p=a&mlu=4&ilr=4', '_blank')">
         Join Community Group
       </button>
 
-      <div class="thankyou-back">
-        <a href="index.html" class="back-home-link" aria-label="Kembali ke Beranda">
+      <div class="mt-2 flex justify-center">
+        <a href="index.html" class="inline-flex items-center gap-2 text-lightergreen text-sm font-medium px-5 py-2 rounded-full border border-lightergreen/35 bg-black/20 hover:bg-lightergreen/15 hover:text-white hover:border-lightergreen hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lightergreen" aria-label="Kembali ke Beranda">
           <span aria-hidden="true">&larr;</span> Kembali ke Beranda
         </a>
       </div>
     </div>
   </section>
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-main">
-            <div class="footer-logo">
-              <img src="img/Protic.png" alt="PROTIC Logo" width="85" height="95" loading="lazy" />
-            </div>
-            <div class="footer-text">
-              <h3 class="footer-title">PROTIC</h3>
-              <p class="footer-subtitle">Programming Technology Informatics Club</p>
-            </div>
-          </div>
-          <div class="footer-divider"></div>
-          <div class="footer-social">
-            <a href="https://github.com/Protic-PNC" aria-label="Github"
-              ><img
-                src="img/icon/github.svg"
-                alt="GitHub"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
-            <a
-              href="https://www.instagram.com/protic_pnc?stkn=anlzMDhlMzlucmJh"
-              aria-label="Instagram"
-              ><img
-                src="img/icon/instagram.svg"
-                alt="Instagram"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
-            <a
-              href="https://www.linkedin.com/company/proticpnc/"
-              aria-label="Linkedin"
-              ><img
-                src="img/icon/linkedin.svg"
-                alt="LinkedIn"
-                width="20"
-                height="20"
-                loading="lazy"
-            /></a>
-          </div>
+
+  <!-- Footer -->
+  <footer class="w-full bg-gradient-to-b from-darkgreen to-[#3DA86C] border-t border-t-darkgreen py-8 px-6 sm:px-8 flex flex-col justify-between shrink-0">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 max-w-[1200px] w-full mx-auto">
+      <div class="flex items-center gap-4">
+        <img src="img/Protic.png" alt="PROTIC Logo" width="85" height="95" class="w-[85px] h-[95px]" loading="lazy" />
+        <div>
+          <h3 class="font-cinzel font-bold text-3xl sm:text-4xl leading-tight mb-1">PROTIC</h3>
+          <p class="text-xs text-white/90">Programming Technology Informatics Club</p>
         </div>
-        <p class="footer-copyright">© 2026 Protic | All Right Reserved</p>
-      </footer>
+      </div>
+
+      <div class="w-full h-px md:w-px md:h-16 bg-white shadow-glow hidden md:block"></div>
+
+      <div class="flex flex-row md:flex-col gap-3">
+        <a href="https://github.com/Protic-PNC" aria-label="Github" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen">
+          <img src="img/icon/github.svg" alt="GitHub" width="20" height="20" class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]" loading="lazy" />
+        </a>
+        <a href="https://www.instagram.com/protic_pnc?stkn=anlzMDhlMzlucmJh" aria-label="Instagram" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen">
+          <img src="img/icon/instagram.svg" alt="Instagram" width="20" height="20" class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]" loading="lazy" />
+        </a>
+        <a href="https://www.linkedin.com/company/proticpnc/" aria-label="Linkedin" class="p-1 rounded hover:-translate-y-0.5 hover:scale-110 hover:bg-lightergreen/15 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accentgreen">
+          <img src="img/icon/linkedin.svg" alt="LinkedIn" width="20" height="20" class="w-5 h-5 transition-all hover:drop-shadow-[0_0_6px_rgba(73,209,133,0.7)]" loading="lazy" />
+        </a>
+      </div>
+    </div>
+    <p class="text-xs font-medium text-center mt-6 pt-2 text-white/80">© 2026 Protic | All Right Reserved</p>
+  </footer>
 </body>
 </html>
