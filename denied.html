@@ -52,7 +52,7 @@
             <div
               class="w-full py-5 px-8 bg-gradient-to-b from-[#114B2A] to-[#000000] border-[1px] border-solid border-[linear-gradient(180deg,_#06291E_1.44%,_#227D4A_12.75%,_#80C89F_24.43%,_#227D4A_39.47%,_#151515_87.33%)] rounded-[8px] text-white font-[300] text-[13px] leading-[27px] text-center items-center flex justify-center"
             >
-              <h2 class="font-playfair text-3xl lg:text-4xl">
+              <h2 id="deniedTitle" class="font-playfair text-3xl lg:text-4xl">
                 Mohon Maaf Anda Dinyatakan<br />
                 Tidak Lolos
               </h2>
@@ -163,5 +163,55 @@
         </p>
       </footer>
     </main>
+    <script>
+      function generateSecurityToken(npm, status, timestamp) {
+        const secretSalt = "PROTIC_OPREC_2026_SECURITY_SALT_v1";
+        const payload = String(npm).trim() + "|" + String(status).toLowerCase().trim() + "|" + timestamp + "|" + secretSalt;
+        let hash = 5381;
+        for (let i = 0; i < payload.length; i++) {
+          hash = ((hash << 5) + hash) + payload.charCodeAt(i);
+          hash = hash & hash;
+        }
+        let hash2 = 0x811c9dc5;
+        for (let i = 0; i < payload.length; i++) {
+          hash2 ^= payload.charCodeAt(i);
+          hash2 = Math.imul(hash2, 0x01000193);
+        }
+        return ((hash >>> 0).toString(16).padStart(8, "0") + (hash2 >>> 0).toString(16).padStart(8, "0"));
+      }
+
+      const MAX_SESSION_AGE = 15 * 60 * 1000; // 15 menit
+      try {
+        const raw = sessionStorage.getItem("studentData");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.data && parsed.timestamp && parsed.token) {
+            const now = Date.now();
+            const age = now - parsed.timestamp;
+
+            if (age > MAX_SESSION_AGE || parsed.timestamp > now + 60000) {
+              sessionStorage.removeItem("studentData");
+            } else {
+              const expectedToken = generateSecurityToken(
+                parsed.data.NPM,
+                parsed.data.Status,
+                parsed.timestamp
+              );
+
+              if (expectedToken !== parsed.token) {
+                sessionStorage.removeItem("studentData");
+              } else if (parsed.data.Nama) {
+                const deniedTitle = document.getElementById("deniedTitle");
+                if (deniedTitle) {
+                  deniedTitle.innerHTML = `Mohon Maaf, <span class="text-lightergreen font-semibold">${parsed.data.Nama}</span><br />Anda Dinyatakan Belum Lolos`;
+                }
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.error("Gagal memeriksa sesi:", e);
+      }
+    </script>
   </body>
 </html>

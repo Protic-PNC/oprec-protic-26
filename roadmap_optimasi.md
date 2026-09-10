@@ -501,8 +501,8 @@ Setelah 3 sesi ini selesai dan sudah di-merge ke `main`, baru boleh paralel.
 **File:** `success.html`, `denied.html`, `pengumuman.html`
 
 **Yang dilakukan:**
-- [ ] Tambah timestamp/token ke sessionStorage saat data diset di `pengumuman.html`
-- [ ] Validasi token di `success.html` dan `denied.html`
+- [x] Tambah timestamp/token ke sessionStorage saat data diset di `pengumuman.html`
+- [x] Validasi token di `success.html` dan `denied.html`
 
 **Estimasi:** 20 menit
 

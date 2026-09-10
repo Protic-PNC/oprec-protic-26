@@ -147,6 +147,22 @@
       return data;
     }
 
+    function generateSecurityToken(npm, status, timestamp) {
+      const secretSalt = "PROTIC_OPREC_2026_SECURITY_SALT_v1";
+      const payload = String(npm).trim() + "|" + String(status).toLowerCase().trim() + "|" + timestamp + "|" + secretSalt;
+      let hash = 5381;
+      for (let i = 0; i < payload.length; i++) {
+        hash = ((hash << 5) + hash) + payload.charCodeAt(i);
+        hash = hash & hash;
+      }
+      let hash2 = 0x811c9dc5;
+      for (let i = 0; i < payload.length; i++) {
+        hash2 ^= payload.charCodeAt(i);
+        hash2 = Math.imul(hash2, 0x01000193);
+      }
+      return ((hash >>> 0).toString(16).padStart(8, "0") + (hash2 >>> 0).toString(16).padStart(8, "0"));
+    }
+
     // Saat tombol diklik
     submitBtn.addEventListener("click", async () => {
       const npm = npmInput.value.trim();
@@ -165,16 +181,29 @@
         }
 
         // Ambil data sesuai nama kolom di spreadsheet
-        const nim = npmInput.value;
+        const nim = (result.data.NPM || npm).toString().trim();
         const nama = result.data.Nama;
         const divisi = result.data.Divisi;
-        const status = result.data.Status;
+        const status = (result.data.Status || "").toString().trim();
 
-        // Tampilkan hasil
-        // alert(`✅ Data ditemukan!\n\nNama: ${nama}\nDivisi: ${divisi}\nStatus: ${status}`);
+        // Buat timestamp & token keamanan (U-20 hardening)
+        const timestamp = Date.now();
+        const token = generateSecurityToken(nim, status, timestamp);
 
-        // Simpan ke sessionStorage (opsional)
-        sessionStorage.setItem("studentData", JSON.stringify(result.data));
+        const sessionPayload = {
+          data: {
+            ...result.data,
+            NPM: nim,
+            Nama: nama,
+            Divisi: divisi,
+            Status: status
+          },
+          timestamp,
+          token
+        };
+
+        // Simpan ke sessionStorage dengan token & timestamp
+        sessionStorage.setItem("studentData", JSON.stringify(sessionPayload));
 
         // Arahkan ke halaman sesuai status
         if (status && status.toLowerCase() === "diterima") {
