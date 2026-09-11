@@ -52,48 +52,54 @@ document.querySelectorAll(".division-item").forEach(item => {
   });
 });
 
-// === Splash Screen Transition ===
+// === Splash Screen Transition (Once-Per-Session) ===
 window.addEventListener("load", () => {
   const landing = document.getElementById("landingPage");
   const main = document.querySelector(".main-content");
   const skipBtn = document.getElementById("skipSplashBtn");
 
-  if (landing && main) {
-    // Cek preferensi reduced-motion
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
+  if (!landing || !main) return;
+
+  // Cek apakah splash sudah pernah ditampilkan dalam sesi ini
+  const alreadyShown = sessionStorage.getItem("protic_splash_shown") === "true";
+
+  if (alreadyShown) {
+    landing.style.display = "none";
+    main.classList.add("show");
+    return;
+  }
+
+  let hasDismissed = false;
+  let splashTimer = null;
+
+  const dismissSplash = () => {
+    if (hasDismissed) return;
+    hasDismissed = true;
+    if (splashTimer) clearTimeout(splashTimer);
+
+    // Tandai bahwa splash sudah ditampilkan untuk sesi ini
+    try {
+      sessionStorage.setItem("protic_splash_shown", "true");
+    } catch (e) {}
+
+    landing.classList.add("fade-out");
+    landing.addEventListener("transitionend", () => {
       landing.style.display = "none";
       main.classList.add("show");
-      return;
-    }
+    }, { once: true });
+  };
 
-    let hasDismissed = false;
-    let splashTimer = null;
+  // Tombol Skip muncul setelah 400ms
+  if (skipBtn) {
+    setTimeout(() => {
+      if (!hasDismissed) {
+        skipBtn.classList.add("visible");
+      }
+    }, 400);
 
-    const dismissSplash = () => {
-      if (hasDismissed) return;
-      hasDismissed = true;
-      if (splashTimer) clearTimeout(splashTimer);
-
-      landing.classList.add("fade-out");
-      landing.addEventListener("transitionend", () => {
-        landing.style.display = "none";
-        main.classList.add("show");
-      }, { once: true });
-    };
-
-    // Tombol Skip muncul setelah 500ms
-    if (skipBtn) {
-      setTimeout(() => {
-        if (!hasDismissed) {
-          skipBtn.classList.add("visible");
-        }
-      }, 500);
-
-      skipBtn.addEventListener("click", dismissSplash);
-    }
-
-    // Durasi splash screen 1500ms (1.5 detik)
-    splashTimer = setTimeout(dismissSplash, 1500);
+    skipBtn.addEventListener("click", dismissSplash);
   }
+
+  // Durasi splash screen 1500ms (1.5 detik)
+  splashTimer = setTimeout(dismissSplash, 1500);
 });

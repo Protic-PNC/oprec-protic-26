@@ -16,6 +16,16 @@
   .main-content.show {
     @apply block opacity-100;
   }
+
+  /* Once-Per-Session Anti-Flicker: langsung tampilkan konten utama tanpa delay jika sudah pernah melihat splash */
+  html.splash-already-shown .landing-page {
+    display: none !important;
+  }
+  html.splash-already-shown .main-content {
+    display: block !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
   .skip-splash-btn {
     @apply absolute top-6 right-6 z-10 bg-white/10 backdrop-blur-md border border-white/20 text-white font-poppins text-xs sm:text-sm font-medium py-1.5 px-3.5 rounded-full cursor-pointer opacity-0 invisible transition-all duration-300 hover:bg-primary/20 hover:border-primary hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-lightergreen;
   }
@@ -214,19 +224,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .landing-page {
-    display: none !important;
-    opacity: 0 !important;
-    transition: none !important;
-    pointer-events: none !important;
-  }
-  .main-content {
-    display: block !important;
-    opacity: 1 !important;
-    transition: none !important;
-  }
   .splash-progress-bar {
     animation: none !important;
+    width: 100% !important;
   }
   .section-title, .division-card, .about-card {
     opacity: 1 !important;
