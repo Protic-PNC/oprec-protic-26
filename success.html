@@ -257,46 +257,61 @@
     } else {
       // Isi nama & divisi
       namaEl.textContent = studentData.Nama;
-      divisiEl.textContent = `Divisi ${studentData.Divisi}`;
+      // Tampilan nama posisi/divisi yang rapi
+      const isCoreRole =
+        studentData.Divisi.toUpperCase() === "SEKRETARIS" ||
+        studentData.Divisi.toUpperCase() === "SEKRE" ||
+        studentData.Divisi.toUpperCase() === "BENDAHARA";
+      const displayRole = isCoreRole ? studentData.Divisi : `Divisi ${studentData.Divisi}`;
+
+      divisiEl.textContent = displayRole;
 
       // Ubah isi info agar lebih rapi dan proporsional
       infoEl.innerHTML = `
         <div class="flex flex-col items-center gap-2 leading-relaxed">
-          <p class="text-[15px]">Anda resmi bergabung dengan</p>
-          <p class="text-[18px] font-semibold text-lightgreen">Divisi ${studentData.Divisi} PROTIC 2026/2027</p>
+          <p class="text-[15px]">Anda resmi bergabung sebagai</p>
+          <p class="text-[18px] font-semibold text-lightgreen">${displayRole} PROTIC 2026/2027</p>
           <p class="text-[14px] mt-2 text-textgray">Terima kasih telah menjadi bagian dari kami.</p>
-          <p class="text-[14px] text-textgray">Klik tombol di bawah untuk masuk ke grup pengurus!</p>
+          <p class="text-[14px] text-textgray">Klik tombol di bawah untuk menghubungi koordinator!</p>
         </div>
       `;
 
-      // text message whatsapp
-      const info = `Halo Kak! Sebelumnya perkenalkan, saya
-
-Nama   : ${studentData.Nama}
-NPM    : ${studentData.NPM || "-"}
-Divisi : ${studentData.Divisi}
-
-Saya sudah dinyatakan DITERIMA sebagai Pengurus Protic 2026/2027 pada divisi ${studentData.Divisi}.  
-Mohon arahan lebih lanjut, Kak. Terima kasih 🙏🏻`;
-
-      // Link grup berdasarkan divisi
-      const groupLinks = {
-        DATA: `https://api.whatsapp.com/send/?phone=6288802660915&text=${encodeURIComponent(info)}`,
-        DEVOPS: `https://api.whatsapp.com/send/?phone=6285869592005&text=${encodeURIComponent(info)}`,
-        HUMAS: `https://api.whatsapp.com/send/?phone=62882008288696&text=${encodeURIComponent(info)}`,
-        KOMINFO: `https://api.whatsapp.com/send/?phone=6285974088420&text=${encodeURIComponent(info)}`,
-        MOBILE: `https://api.whatsapp.com/send/?phone=6285173384560&text=${encodeURIComponent(info)}`,
-        "UI/UX": `https://api.whatsapp.com/send/?phone=6288237169266&text=${encodeURIComponent(info)}`,
-        WEB: `https://api.whatsapp.com/send/?phone=62895384922113&text=${encodeURIComponent(info)}`,
+      // Kontak koordinator berdasarkan divisi/posisi
+      const divisionContacts = {
+        DATA: "6288802660915",
+        DEVOPS: "6285869592005",
+        HUMAS: "62882008288696",
+        KOMINFO: "6285974088420",
+        MOBILE: "6285173384560",
+        "UI/UX": "6288237169266",
+        WEB: "62895384922113",
+        SEKRETARIS: "6285727669488",
+        SEKRE: "6285727669488",
+        BENDAHARA: "6285777269126",
       };
 
-      const link = groupLinks[studentData.Divisi.toUpperCase()];
+      const normalizedDivisi = String(studentData.Divisi || "").toUpperCase().trim();
+      const phone = divisionContacts[normalizedDivisi];
 
-      if (link) {
-        groupBtn.addEventListener("click", () => window.open(link, "_blank"));
+      if (phone) {
+        const textLines = [
+          "Halo Kak! Sebelumnya perkenalkan, saya",
+          "",
+          `Nama   : ${studentData.Nama}`,
+          `NPM    : ${studentData.NPM || "-"}`,
+          `Divisi : ${studentData.Divisi}`,
+          "",
+          `Saya sudah dinyatakan DITERIMA sebagai Pengurus Protic 2026/2027 pada divisi ${studentData.Divisi}.`,
+          "Mohon arahan lebih lanjut, Kak. Terima kasih 🙏🏻",
+        ];
+        const messageText = textLines.join("\n");
+        const cleanPhone = String(phone).replace(/\D/g, "");
+        const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(messageText)}`;
+
+        groupBtn.addEventListener("click", () => window.open(waLink, "_blank"));
       } else {
         groupBtn.disabled = true;
-        groupBtn.textContent = "Link Grup Belum Tersedia";
+        groupBtn.textContent = "Kontak Belum Tersedia";
         groupBtn.classList.add("opacity-50", "cursor-not-allowed");
       }
     }

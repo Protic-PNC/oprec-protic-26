@@ -261,6 +261,14 @@
               <img src="img/icon/kominfo.svg" alt="Communication Icon" width="30" height="30" loading="lazy" />
               KOMINFO
             </button>
+            <button type="button" class="division-btn" data-division="SEKRETARIS" aria-label="Posisi Sekretaris" aria-pressed="false">
+              <img src="img/icon/sekretaris.svg" alt="Secretary Icon" width="30" height="30" loading="lazy" />
+              <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">SEKRETARIS</span>
+            </button>
+            <button type="button" class="division-btn" data-division="BENDAHARA" aria-label="Posisi Bendahara" aria-pressed="false">
+              <img src="img/icon/bendahara.svg" alt="Treasurer Icon" width="30" height="30" loading="lazy" />
+              <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">BENDAHARA</span>
+            </button>
           </div>
 
           <div id="divisionError" class="text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2 px-3 text-xs font-medium text-center animate-fadeIn hidden" role="alert" aria-live="polite"></div>
@@ -784,6 +792,24 @@
           icon: "img/icon/kominfo.svg",
           desc: "Branding media sosial organisasi, pembuatan konten grafis kreatif, dokumentasi multimedia, dan publikasi.",
           skills: ["Content Creation", "Social Media", "Desain Grafis", "Copywriting"]
+        },
+        "SEKRETARIS": {
+          name: "Sekretaris",
+          icon: "img/icon/sekretaris.svg",
+          desc: "Pengelolaan administrasi resmi organisasi, persuratan, notulensi rapat, serta pengarsipan dokumen dan proposal kegiatan.",
+          skills: ["Administrasi", "Notulensi", "Persuratan", "Dokumentasi"]
+        },
+        "SEKRE": {
+          name: "Sekretaris",
+          icon: "img/icon/sekretaris.svg",
+          desc: "Pengelolaan administrasi resmi organisasi, persuratan, notulensi rapat, serta pengarsipan dokumen dan proposal kegiatan.",
+          skills: ["Administrasi", "Notulensi", "Persuratan", "Dokumentasi"]
+        },
+        "BENDAHARA": {
+          name: "Bendahara",
+          icon: "img/icon/bendahara.svg",
+          desc: "Pengelolaan keuangan organisasi, budgeting program kerja, pencatatan cash flow kas, serta penyusunan LPJ keuangan.",
+          skills: ["Budgeting", "Bookkeeping", "Cash Flow", "LPJ Keuangan"]
         }
       };
 
@@ -1319,7 +1345,18 @@
           if (draft.email && form.email) form.email.value = draft.email;
 
           if (Array.isArray(draft.selectedDivisions)) {
-            const validDivisions = ["WEB", "UI/UX", "MOBILE", "DEVOPS", "DATA", "HUMAS", "KOMINFO"];
+            const validDivisions = [
+              "WEB",
+              "UI/UX",
+              "MOBILE",
+              "DEVOPS",
+              "DATA",
+              "HUMAS",
+              "KOMINFO",
+              "SEKRETARIS",
+              "SEKRE",
+              "BENDAHARA",
+            ];
             selectedDivisions = draft.selectedDivisions.filter((d) => validDivisions.includes(d)).slice(0, 2);
           }
 

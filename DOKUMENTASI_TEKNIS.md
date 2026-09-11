@@ -232,20 +232,23 @@ Cari dan ganti seluruh teks `2026/2027` dan tahun copyright `© 2026` di semua f
    - Klik **Deploy > New deployment** (Web app, *Execute as: Me*, *Who has access: Anyone*).
    - Salin URL Web App dan tempel ke variabel `API_URL` di [pengumuman.html](pengumuman.html) (baris ~125).
 
-### ✅ Langkah 4: Perbarui Nomor Kontak Koordinator Divisi
-Buka file [success.html](success.html) pada blok objek `groupLinks` (sekitar baris 200–225), lalu perbarui nomor WhatsApp koordinator masing-masing divisi:
+### ✅ Langkah 4: Perbarui Nomor Kontak Koordinator Divisi / Posisi
+Buka file [success.html](success.html) pada blok objek `divisionContacts`, lalu perbarui nomor WhatsApp koordinator masing-masing divisi/posisi:
 ```javascript
-const groupLinks = {
-  DATA: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  DEVOPS: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  HUMAS: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  KOMINFO: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  MOBILE: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  "UI/UX": `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
-  WEB: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
+const divisionContacts = {
+  DATA: "6288802660915",
+  DEVOPS: "6285869592005",
+  HUMAS: "62882008288696",
+  KOMINFO: "6285974088420",
+  MOBILE: "6285173384560",
+  "UI/UX": "6288237169266",
+  WEB: "62895384922113",
+  SEKRETARIS: "6285727669488", // Sekretaris (+62 857-2766-9488)
+  SEKRE: "6285727669488",
+  BENDAHARA: "6285777269126",  // Bendahara (+62 857-7726-9126)
 };
 ```
-> Pastikan nomor WhatsApp diawali kode negara `62` tanpa tanda `+` atau spasi.
+> Pastikan nomor WhatsApp diawali kode negara `62` tanpa tanda `+` atau spasi. Sistem secara otomatis menyusun tautan universal `https://wa.me/<nomor>?text=<pesan>` yang aman dari bug enkripsi teks.
 
 ### ✅ Langkah 5: Perbarui Link Komunitas Umum
 Perbarui link undangan WhatsApp Community di:
@@ -259,7 +262,7 @@ Perbarui link undangan WhatsApp Community di:
 Jika di masa depan ada divisi baru (misal: *Cyber Security / Game Development*) atau divisi yang dilebur:
 
 ### 1. Di [form.html](form.html):
-Tambahkan tombol divisi di dalam kontainer `<div class="grid grid-cols-3 gap-4 ...">`:
+Tambahkan tombol divisi di dalam kontainer `<div class="grid grid-cols-3 gap-3 sm:gap-4 ...">`:
 ```html
 <button
   type="button"
@@ -269,18 +272,20 @@ Tambahkan tombol divisi di dalam kontainer `<div class="grid grid-cols-3 gap-4 .
   aria-pressed="false"
 >
   <img src="img/icon/cyber.svg" alt="Cyber Icon" width="30" height="30" loading="lazy" />
-  CYBER
+  <span class="text-[10px] sm:text-[11px] font-bold">CYBER</span>
 </button>
 ```
 *Sistem JavaScript di `form.html` secara otomatis mengenali atribut `data-division` dan membatasi pilihan maksimal 2 divisi.*
+
+Tambahkan pula informasi deskripsi dan daftar skill di objek `divisionInfo` pada [form.html](form.html).
 
 ### 2. Di [index.html](index.html):
 Tambahkan kartu perkenalan divisi di section divisi agar calon pendaftar bisa membaca tugas pokok divisi tersebut.
 
 ### 3. Di [success.html](success.html):
-Tambahkan entry baru di objek `groupLinks`:
+Tambahkan nomor kontak koordinator di objek `divisionContacts`:
 ```javascript
-CYBER: `https://api.whatsapp.com/send/?phone=628xxxxxxxxxx&text=${encodeURIComponent(info)}`,
+CYBER: "628xxxxxxxxxx",
 ```
 
 ### 4. Kompilasi Ulang CSS:
