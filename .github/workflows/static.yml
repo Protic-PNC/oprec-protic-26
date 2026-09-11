@@ -1,0 +1,26 @@
+name: Deploy Oprec Protic to VPS
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: "deploy-to-vps"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies & Build CSS
+        run: |
+          npm install
+          npm run build:css
+
+      - name: Deploy to Web Folder
+        run: |
+          rsync -rv --delete --no-perms --no-o --no-g --omit-dir-times --exclude=.git --exclude=.github ${{ github.workspace }}/ /var/www/oprec-protic-26/
