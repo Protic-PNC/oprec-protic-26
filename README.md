@@ -1,6 +1,6 @@
 # 🚀 Website Open Recruitment PROTIC (PNC)
 
-Website resmi pendaftaran dan pengumuman seleksi calon pengurus **PROTIC (Programming Technology Informatics Club) Politeknik Negeri Cilacap**. Sistem ini mengelola alur mulai dari pengenalan organisasi, pengisian formulir biodata & pilihan divisi, konfirmasi ringkasan data, hingga pengumuman kelolosan peserta secara terintegrasi dengan Google Sheets.
+Website resmi pendaftaran dan pengumuman seleksi calon pengurus **PROTIC (Programming Technology Informatics Club) Politeknik Negeri Cilacap**. Sistem ini mengelola alur mulai dari pengenalan organisasi, pengisian formulir biodata & pilihan divisi, konfirmasi ringkasan data, hingga pengumuman kelolosan peserta secara terintegrasi dengan Google Sheets. 
 
 ---
 
