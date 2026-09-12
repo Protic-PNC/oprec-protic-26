@@ -310,16 +310,14 @@
 
           <!-- Portofolio / CV Link -->
           <div class="flex flex-col gap-2.5 sm:gap-3">
-            <label for="portfolio" class="text-sm sm:text-base font-semibold uppercase flex items-center justify-between">
-              <span>Tautan Portofolio / CV</span>
-              <span class="text-xs text-white/50 lowercase font-normal">(opsional)</span>
-            </label>
+            <label for="portfolio" class="text-sm sm:text-base font-semibold uppercase">Tautan Portofolio / CV <span class="text-red-500 ml-1 font-bold" aria-hidden="true">*</span></label>
             <input
               type="url"
               id="portfolio"
               name="portfolio"
               class="form-input"
               placeholder="https://drive.google.com/your-portfolio-link"
+              required
             />
           </div>
 
@@ -592,6 +590,10 @@
               <div class="flex flex-wrap gap-1.5" id="summaryDivisions">
                 <!-- Badges injected by JS -->
               </div>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0.5 pt-1 border-t border-lightgreen/15">
+              <span class="text-xs text-white/65 font-medium shrink-0">Tautan Portofolio / CV:</span>
+              <a id="summaryPortfolio" href="#" target="_blank" rel="noopener noreferrer" class="text-xs text-lightergreen hover:underline break-all font-mono text-left sm:text-right">—</a>
             </div>
           </div>
 
@@ -898,6 +900,7 @@
       const summaryNpm = document.getElementById("summaryNpm");
       const summaryClass = document.getElementById("summaryClass");
       const summaryDivisions = document.getElementById("summaryDivisions");
+      const summaryPortfolio = document.getElementById("summaryPortfolio");
 
       // Submit State Elements
       const submitBtn = document.getElementById("submitBtn");
@@ -994,10 +997,41 @@
         }
 
         if (step === 3) {
+          const portfolio = form.portfolio.value.trim();
           const whatsapp = form.whatsapp.value.trim();
           const email = form.email.value.trim();
+
+          // Validasi Portofolio / CV
+          if (!portfolio) {
+            showSubmitError("Harap masukkan tautan Portofolio / CV Anda!", "Kolom tautan portofolio wajib diisi.");
+            form.portfolio.focus();
+            return false;
+          }
+
+          if (!portfolio.startsWith("https://")) {
+            showSubmitError("Tautan harus diawali dengan https:// (contoh: https://drive.google.com/...)", "Format tautan portofolio harus diawali https://");
+            form.portfolio.focus();
+            return false;
+          }
+
+          try {
+            const urlObj = new URL(portfolio);
+            if (urlObj.hostname !== "drive.google.com" && !urlObj.hostname.endsWith(".drive.google.com")) {
+              showSubmitError("Tautan portofolio harus berupa tautan Google Drive (https://drive.google.com/...)!", "Tautan bukan dari Google Drive.");
+              form.portfolio.focus();
+              return false;
+            }
+          } catch (e) {
+            showSubmitError("Format tautan Google Drive tidak valid. Pastikan tautan dapat diakses!", "Format URL portofolio tidak valid.");
+            form.portfolio.focus();
+            return false;
+          }
+
+          // Validasi Kontak Aktif
           if (!whatsapp || !email) {
             showSubmitError("Harap lengkapi nomor WhatsApp dan Email aktif Anda!", "Kolom kontak wajib diisi.");
+            if (!whatsapp) form.whatsapp.focus();
+            else form.email.focus();
             return false;
           }
           clearSubmitError();
@@ -2004,6 +2038,11 @@
             badge.textContent = div;
             summaryDivisions.appendChild(badge);
           });
+        }
+
+        if (summaryPortfolio) {
+          summaryPortfolio.textContent = pendingFormData.portfolio;
+          summaryPortfolio.href = pendingFormData.portfolio;
         }
 
         // Reset checklist izin Drive ke unchecked dan disable tombol konfirmasi
