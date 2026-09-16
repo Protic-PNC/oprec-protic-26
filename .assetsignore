@@ -1,0 +1,16 @@
+# Dependencies and build tools
+node_modules/
+
+# Source and documentation files
+src/
+script/
+*.md
+
+# Config and repository files
+.git/
+.github/
+package.json
+package-lock.json
+tailwind.config.js
+wrangler.jsonc
+.assetsignore

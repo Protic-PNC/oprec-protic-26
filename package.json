@@ -5,8 +5,10 @@
   "main": "script.js",
   "scripts": {
     "start": "npx serve .",
+    "build": "npm run build:css",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "watch:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "watch:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "deploy": "npm run build:css && wrangler deploy"
   },
   "keywords": [],
   "author": "PROTIC PNC",
