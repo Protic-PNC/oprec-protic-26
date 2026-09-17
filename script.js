@@ -9,8 +9,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // === Registration Deadline & Countdown ===
-// Target: 18 September 2026 00:00:00 WIB (Midnight pergantian hari)
-const REGISTRATION_DEADLINE = new Date("2026-09-18T00:00:00+07:00").getTime();
+// Mengambil dari APP_CONFIG (Single Source of Truth) dengan fallback aman
+const REGISTRATION_DEADLINE = window.APP_CONFIG?.REGISTRATION_DEADLINE
+  ? new Date(window.APP_CONFIG.REGISTRATION_DEADLINE).getTime()
+  : new Date("2026-09-18T00:00:00+07:00").getTime();
 
 function isRegistrationClosed() {
   return Date.now() >= REGISTRATION_DEADLINE;
@@ -178,7 +180,7 @@ window.addEventListener("load", () => {
 });
 
 // === Kelola Data Pendaftaran Modal di Beranda ===
-const scriptURL = "https://script.google.com/macros/s/AKfycbw_mtEcU_vVhF96O2ACQZkPp_LoV7i88L9b4CNFx5gLkJ9wSiSzBtaA6xkNitoZ-aPo/exec";
+const scriptURL = window.APP_CONFIG?.SCRIPT_URL || "https://script.google.com/macros/s/AKfycbw_mtEcU_vVhF96O2ACQZkPp_LoV7i88L9b4CNFx5gLkJ9wSiSzBtaA6xkNitoZ-aPo/exec";
 
 const openManageModalBtn = document.getElementById("openManageModalBtn");
 const manageModal = document.getElementById("manageModal");

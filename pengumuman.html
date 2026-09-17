@@ -159,10 +159,13 @@
         </div>
       </div>
     </footer>
-  </main>
-  <script>
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbw_mtEcU_vVhF96O2ACQZkPp_LoV7i88L9b4CNFx5gLkJ9wSiSzBtaA6xkNitoZ-aPo/exec";
+    <!-- App Configuration -->
+    <script src="src/js/config.js"></script>
+
+    <script>
+      const API_URL =
+        window.APP_CONFIG?.SCRIPT_URL ||
+        "https://script.google.com/macros/s/AKfycbw_mtEcU_vVhF96O2ACQZkPp_LoV7i88L9b4CNFx5gLkJ9wSiSzBtaA6xkNitoZ-aPo/exec";
 
     const submitBtn = document.getElementById("submit");
     const npmInput = document.getElementById("npm");
@@ -187,7 +190,7 @@
     }
 
     function generateSecurityToken(npm, status, timestamp) {
-      const secretSalt = "PROTIC_OPREC_2026_SECURITY_SALT_v1";
+      const secretSalt = window.APP_CONFIG?.SECURITY_SALT || "PROTIC_OPREC_2026_SECURITY_SALT_v1";
       const payload = String(npm).trim() + "|" + String(status).toLowerCase().trim() + "|" + timestamp + "|" + secretSalt;
       let hash = 5381;
       for (let i = 0; i < payload.length; i++) {

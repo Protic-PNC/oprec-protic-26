@@ -816,9 +816,13 @@
       </div>
     </footer>
 
+    <!-- App Configuration -->
+    <script src="src/js/config.js"></script>
+
     <!-- SCRIPT -->
     <script>
       const scriptURL =
+        window.APP_CONFIG?.SCRIPT_URL ||
         "https://script.google.com/macros/s/AKfycbw_mtEcU_vVhF96O2ACQZkPp_LoV7i88L9b4CNFx5gLkJ9wSiSzBtaA6xkNitoZ-aPo/exec";
       const form = document.getElementById("registrationForm");
 
@@ -899,8 +903,10 @@
       const editModeApplicantName = document.getElementById("editModeApplicantName");
       const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-      // Registration Deadline & Closed State Elements
-      const REGISTRATION_DEADLINE = new Date("2026-09-18T00:00:00+07:00").getTime();
+      // Registration Deadline & Closed State Elements (Centralized Config)
+      const REGISTRATION_DEADLINE = window.APP_CONFIG?.REGISTRATION_DEADLINE
+        ? new Date(window.APP_CONFIG.REGISTRATION_DEADLINE).getTime()
+        : new Date("2026-09-18T00:00:00+07:00").getTime();
       const closedScreenSection = document.getElementById("closedScreenSection");
       const closedScreenManageBtn = document.getElementById("closedScreenManageBtn");
       const formTitleContainer = document.getElementById("formTitleContainer");

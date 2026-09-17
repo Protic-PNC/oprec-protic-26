@@ -165,11 +165,13 @@
         </div>
       </div>
     </footer>
-  </main>
-  <script>
-    // Validasi token keamanan & expiry sessionStorage (U-20)
+    <!-- App Configuration -->
+    <script src="src/js/config.js"></script>
+
+    <script>
+      // Validasi token keamanan & expiry sessionStorage (U-20)
     function generateSecurityToken(npm, status, timestamp) {
-      const secretSalt = "PROTIC_OPREC_2026_SECURITY_SALT_v1";
+      const secretSalt = window.APP_CONFIG?.SECURITY_SALT || "PROTIC_OPREC_2026_SECURITY_SALT_v1";
       const payload = String(npm).trim() + "|" + String(status).toLowerCase().trim() + "|" + timestamp + "|" + secretSalt;
       let hash = 5381;
       for (let i = 0; i < payload.length; i++) {
@@ -184,7 +186,7 @@
       return ((hash >>> 0).toString(16).padStart(8, "0") + (hash2 >>> 0).toString(16).padStart(8, "0"));
     }
 
-    const MAX_SESSION_AGE = 15 * 60 * 1000; // 15 menit
+    const MAX_SESSION_AGE = window.APP_CONFIG?.MAX_SESSION_AGE_MS || 15 * 60 * 1000; // 15 menit
     let studentData = null;
     let authError = null;
 
