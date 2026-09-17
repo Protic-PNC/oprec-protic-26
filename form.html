@@ -816,8 +816,10 @@
       </div>
     </footer>
 
-    <!-- App Configuration -->
+    <!-- App Configuration & Shared Utilities -->
     <script src="src/js/config.js"></script>
+    <script src="src/js/utils/security.js"></script>
+    <script src="src/js/utils/timer.js"></script>
 
     <!-- SCRIPT -->
     <script>
@@ -2291,12 +2293,14 @@
         return Date.now() >= REGISTRATION_DEADLINE;
       }
 
-      function updateFormStatusUI() {
-        const now = Date.now();
-        const diff = REGISTRATION_DEADLINE - now;
+      // Inisialisasi awal saat halaman dibuka
+      loadDraft();
+      updateDivisionUI();
+      updateStepperVisuals();
 
-        if (diff <= 0) {
-          // Status: Ditutup
+      // Inisialisasi status deadline (via modul terpusat timer.js)
+      window.PROTIC.startCountdownInterval(REGISTRATION_DEADLINE, ({ formatted, expired }) => {
+        if (expired) {
           if (formCountdownWrapper) formCountdownWrapper.classList.add("hidden");
           if (formStatusDot) {
             formStatusDot.classList.remove("bg-lightgreen", "animate-pulse");
@@ -2311,51 +2315,20 @@
             formStatusBadge.classList.remove("bg-lightgreen/10", "border-lightgreen/25");
             formStatusBadge.classList.add("bg-rose-500/10", "border-rose-500/25");
           }
-
-          // Jika user TIDAK sedang dalam mode edit (isEditMode)
           if (!isEditMode) {
             if (registrationSection) registrationSection.classList.add("hidden");
             if (formTitleContainer) formTitleContainer.classList.add("hidden");
             if (closedScreenSection) closedScreenSection.classList.remove("hidden");
           } else {
-            // Sedang ubah data: biarkan registrationSection tampil dengan editModeBanner
             if (closedScreenSection) closedScreenSection.classList.add("hidden");
             if (formTitleContainer) formTitleContainer.classList.add("hidden");
             if (registrationSection) registrationSection.classList.remove("hidden");
           }
-          return true; // Expired
+        } else {
+          if (formCountdownWrapper) formCountdownWrapper.classList.remove("hidden");
+          if (formCountdownDigits) formCountdownDigits.textContent = formatted;
         }
-
-        // Status: Masih Aktif
-        if (formCountdownWrapper) formCountdownWrapper.classList.remove("hidden");
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        const formatted = [
-          String(hours).padStart(2, "0"),
-          String(minutes).padStart(2, "0"),
-          String(seconds).padStart(2, "0")
-        ].join(" : ");
-
-        if (formCountdownDigits) formCountdownDigits.textContent = formatted;
-        return false;
-      }
-
-      // Inisialisasi awal saat halaman dibuka
-      loadDraft();
-      updateDivisionUI();
-      updateStepperVisuals();
-
-      // Inisialisasi status deadline
-      const formTimerExpired = updateFormStatusUI();
-      if (!formTimerExpired) {
-        const formInterval = setInterval(() => {
-          if (updateFormStatusUI()) {
-            clearInterval(formInterval);
-          }
-        }, 1000);
-      }
+      });
 
       // Buka otomatis modal kelola pendaftaran jika diakses via tautan kelola (form.html?manage=true / #manage)
       try {

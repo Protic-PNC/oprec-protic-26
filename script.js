@@ -18,65 +18,33 @@ function isRegistrationClosed() {
   return Date.now() >= REGISTRATION_DEADLINE;
 }
 
-function updateCountdownUI() {
-  const badge = document.getElementById("countdownBadge");
-  const digits = document.getElementById("countdownDigits");
-  const joinBtn = document.querySelector(".join-btn");
-
-  if (!badge && !joinBtn) return true;
-
-  const now = Date.now();
-  const diff = REGISTRATION_DEADLINE - now;
-
-  if (diff <= 0) {
-    // Pendaftaran Ditutup
-    if (badge) {
-      badge.classList.add("expired");
-      badge.innerHTML = `
-        <span class="w-2 h-2 rounded-full bg-rose-500 shrink-0" aria-hidden="true"></span>
-        <span>Pendaftaran Telah Ditutup</span>
-      `;
-    }
-
-    if (joinBtn) {
-      joinBtn.classList.add("btn-closed");
-      joinBtn.setAttribute("disabled", "true");
-      joinBtn.setAttribute("aria-disabled", "true");
-      joinBtn.textContent = "Pendaftaran Ditutup";
-      joinBtn.classList.remove("w-40");
-      joinBtn.classList.add("w-auto", "px-6");
-    }
-    return true; // Selesai / Expired
-  }
-
-  // Masih aktif, format jam, menit, detik
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-  const formatted = [
-    String(hours).padStart(2, "0"),
-    String(minutes).padStart(2, "0"),
-    String(seconds).padStart(2, "0")
-  ].join(" : ");
-
-  if (digits) {
-    digits.textContent = formatted;
-  }
-
-  return false;
-}
-
-// Inisialisasi countdown di landing page
+// Inisialisasi countdown di landing page (via modul terpusat timer.js)
 if (document.getElementById("countdownBadge") || document.querySelector(".join-btn")) {
-  const isFinished = updateCountdownUI();
-  if (!isFinished) {
-    const timerInterval = setInterval(() => {
-      if (updateCountdownUI()) {
-        clearInterval(timerInterval);
+  window.PROTIC.startCountdownInterval(REGISTRATION_DEADLINE, ({ formatted, expired }) => {
+    const badge = document.getElementById("countdownBadge");
+    const digits = document.getElementById("countdownDigits");
+    const joinBtn = document.querySelector(".join-btn");
+
+    if (expired) {
+      if (badge) {
+        badge.classList.add("expired");
+        badge.innerHTML = `
+          <span class="w-2 h-2 rounded-full bg-rose-500 shrink-0" aria-hidden="true"></span>
+          <span>Pendaftaran Telah Ditutup</span>
+        `;
       }
-    }, 1000);
-  }
+      if (joinBtn) {
+        joinBtn.classList.add("btn-closed");
+        joinBtn.setAttribute("disabled", "true");
+        joinBtn.setAttribute("aria-disabled", "true");
+        joinBtn.textContent = "Pendaftaran Ditutup";
+        joinBtn.classList.remove("w-40");
+        joinBtn.classList.add("w-auto", "px-6");
+      }
+    } else {
+      if (digits) digits.textContent = formatted;
+    }
+  });
 }
 
 // === Join Button with Click Effect ===

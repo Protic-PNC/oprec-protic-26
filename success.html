@@ -165,75 +165,28 @@
         </div>
       </div>
     </footer>
-    <!-- App Configuration -->
+    <!-- App Configuration & Shared Utilities -->
     <script src="src/js/config.js"></script>
+    <script src="src/js/utils/security.js"></script>
 
     <script>
-      // Validasi token keamanan & expiry sessionStorage (U-20)
-    function generateSecurityToken(npm, status, timestamp) {
-      const secretSalt = window.APP_CONFIG?.SECURITY_SALT || "PROTIC_OPREC_2026_SECURITY_SALT_v1";
-      const payload = String(npm).trim() + "|" + String(status).toLowerCase().trim() + "|" + timestamp + "|" + secretSalt;
-      let hash = 5381;
-      for (let i = 0; i < payload.length; i++) {
-        hash = ((hash << 5) + hash) + payload.charCodeAt(i);
-        hash = hash & hash;
+
+      // Verifikasi sesi menggunakan modul utilitas terpusat (security.js)
+      const { data: _sessionRaw, error: _authError } = window.PROTIC.verifyStudentSession();
+
+      // Validasi tambahan: halaman ini khusus untuk status "diterima"
+      let studentData = _sessionRaw;
+      let authError = _authError;
+      if (_sessionRaw && (!_sessionRaw.Status || _sessionRaw.Status.toLowerCase() !== "diterima")) {
+        studentData = null;
+        authError = "Status Kelolosan Tidak Sesuai";
+        sessionStorage.removeItem("studentData");
       }
-      let hash2 = 0x811c9dc5;
-      for (let i = 0; i < payload.length; i++) {
-        hash2 ^= payload.charCodeAt(i);
-        hash2 = Math.imul(hash2, 0x01000193);
-      }
-      return ((hash >>> 0).toString(16).padStart(8, "0") + (hash2 >>> 0).toString(16).padStart(8, "0"));
-    }
 
-    const MAX_SESSION_AGE = window.APP_CONFIG?.MAX_SESSION_AGE_MS || 15 * 60 * 1000; // 15 menit
-    let studentData = null;
-    let authError = null;
-
-    try {
-      const raw = sessionStorage.getItem("studentData");
-      if (!raw) {
-        authError = "Sesi Tidak Ditemukan";
-      } else {
-        const parsed = JSON.parse(raw);
-        // Cek struktur payload
-        if (!parsed || !parsed.data || !parsed.timestamp || !parsed.token) {
-          authError = "Format Sesi Tidak Valid";
-        } else {
-          const now = Date.now();
-          const age = now - parsed.timestamp;
-
-          if (age > MAX_SESSION_AGE || parsed.timestamp > now + 60000) {
-            authError = "Sesi Telah Berakhir (Kedaluwarsa)";
-            sessionStorage.removeItem("studentData");
-          } else {
-            const expectedToken = generateSecurityToken(
-              parsed.data.NPM,
-              parsed.data.Status,
-              parsed.timestamp
-            );
-
-            if (expectedToken !== parsed.token) {
-              authError = "Integritas Sesi Tidak Valid";
-              sessionStorage.removeItem("studentData");
-            } else if (!parsed.data.Status || parsed.data.Status.toLowerCase() !== "diterima") {
-              authError = "Status Kelolosan Tidak Sesuai";
-              sessionStorage.removeItem("studentData");
-            } else {
-              studentData = parsed.data;
-            }
-          }
-        }
-      }
-    } catch (e) {
-      console.error("Gagal membaca atau memverifikasi studentData:", e);
-      authError = "Terjadi Kesalahan Pembacaan Sesi";
-    }
-
-    const namaEl = document.getElementById("studentName");
-    const divisiEl = document.getElementById("studentDivision");
-    const infoEl = document.getElementById("studentInfo");
-    const groupBtn = document.getElementById("groupBtn");
+      const namaEl = document.getElementById("studentName");
+      const divisiEl = document.getElementById("studentDivision");
+      const infoEl = document.getElementById("studentInfo");
+      const groupBtn = document.getElementById("groupBtn");
 
     if (!studentData || !studentData.Nama || !studentData.Divisi) {
       if (namaEl) namaEl.textContent = authError || "Data Tidak Ditemukan";
