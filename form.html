@@ -64,28 +64,103 @@
         </div>
 
         <!-- Kanan: Status Badge Oprec -->
-        <div class="inline-flex items-center gap-1.5 py-1 px-2.5 sm:px-3 rounded-full bg-lightgreen/10 border border-lightgreen/25 text-lightergreen text-[11px] sm:text-xs font-semibold tracking-wide shrink-0">
-          <span class="w-1.5 h-1.5 rounded-full bg-lightgreen animate-pulse"></span>
-          <span>Oprec 2026</span>
+        <div id="formStatusBadge" class="inline-flex items-center gap-1.5 py-1 px-2.5 sm:px-3 rounded-full bg-lightgreen/10 border border-lightgreen/25 text-lightergreen text-[11px] sm:text-xs font-semibold tracking-wide shrink-0 transition-colors">
+          <span id="formStatusDot" class="w-1.5 h-1.5 rounded-full bg-lightgreen animate-pulse"></span>
+          <span id="formStatusText">Oprec 2026</span>
         </div>
       </header>
 
-      <div class="px-6 flex flex-col items-center gap-2 mb-6 relative z-[1]">
+      <div id="formTitleContainer" class="px-6 flex flex-col items-center gap-2 mb-6 relative z-[1]">
         <h1 class="font-cinzel text-2xl sm:text-3xl font-bold leading-tight uppercase text-center tracking-wide">FORMULIR PENDAFTARAN</h1>
         <p class="text-xs sm:text-sm font-medium uppercase text-center text-lightergreen/90 tracking-wider">Calon Pengurus PROTIC 2026/2027</p>
         
+        <!-- COUNTDOWN TIMER BADGE DI FORM -->
+        <div id="formCountdownWrapper" class="mt-1">
+          <div id="formCountdownBadge" class="countdown-badge" role="timer" aria-live="polite">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-amberPulse shrink-0" aria-hidden="true"></span>
+            <span>Ditutup dalam:</span>
+            <span id="formCountdownDigits" class="timer-digits">--:--:--</span>
+          </div>
+        </div>
+
         <!-- SUBTLE LINK: OPSI C (Pintu Masuk Tersembunyi & Rapi) -->
-        <p class="text-xs text-white/55 text-center mt-1">
+        <p id="formAlreadyRegisteredPrompt" class="text-xs text-white/55 text-center mt-1 leading-relaxed">
           Sudah pernah mendaftar?
           <button
             type="button"
             id="openManageModalBtn"
-            class="text-lightergreen font-semibold underline underline-offset-4 hover:text-white transition-colors cursor-pointer ml-1"
+            class="inline-block whitespace-nowrap text-lightergreen font-semibold underline underline-offset-4 hover:text-white transition-colors cursor-pointer ml-1"
           >
-            Cek atau ubah data Anda &rarr;
+            Cek atau ubah data &rarr;
           </button>
         </p>
       </div>
+
+      <!-- SECTION: CLOSED SCREEN (PENDAFTARAN TELAH DITUTUP) -->
+      <section id="closedScreenSection" class="hidden w-full px-4 sm:px-6 py-6 flex flex-col items-center gap-6 animate-fadeIn" aria-label="Informasi Penutupan Pendaftaran">
+        <div class="closed-screen-card w-full p-6 sm:p-8 flex flex-col items-center text-center gap-6">
+          <!-- Icon / Badge status -->
+          <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs sm:text-sm font-semibold tracking-wide shadow-[0_0_16px_rgba(225,29,72,0.25)]">
+            <span class="w-2 h-2 rounded-full bg-rose-500 shrink-0" aria-hidden="true"></span>
+            <span>Pendaftaran Resmi Ditutup</span>
+          </div>
+
+          <!-- Headline & Message -->
+          <div class="space-y-3 max-w-[500px]">
+            <h2 class="font-cinzel text-2xl sm:text-3xl font-bold tracking-wide text-white leading-tight">
+              Terima Kasih atas Partisipasi Anda
+            </h2>
+            <p class="text-sm sm:text-base text-white/80 leading-relaxed font-light">
+              Masa pendaftaran calon pengurus <strong class="font-semibold text-white">PROTIC 2026/2027</strong> telah resmi berakhir pada pukul 24:00 WIB. Terima kasih kepada seluruh mahasiswa Politeknik Negeri Cilacap yang telah mendaftarkan diri.
+            </p>
+          </div>
+
+          <!-- Highlight Box Informasi Seleksi -->
+          <div class="w-full max-w-[480px] bg-white/[0.04] border border-lightgreen/20 rounded-xl p-4 sm:p-5 text-left flex flex-col gap-2.5">
+            <div class="flex items-center gap-2 text-lightergreen text-xs font-semibold uppercase tracking-wider">
+              <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Tahap Pengumuman & Seleksi</span>
+            </div>
+            <p class="text-xs sm:text-sm text-white/80 leading-relaxed">
+              Hasil seleksi administrasi serta jadwal wawancara akan dipublikasikan melalui portal pengumuman dan grup WhatsApp resmi komunitas PROTIC.
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[440px] mt-1">
+            <a
+              href="https://chat.whatsapp.com/DaExLk9Nm7U6YpDFvHParv?s=cl&p=a&mlu=4&ilr=4"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-gradient-to-r from-lightergreen to-[#23824C] text-white font-semibold text-sm sm:text-base shadow-button hover:scale-[1.02] transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-lightergreen"
+            >
+              <span>Gabung Community Group</span>
+            </a>
+            <a
+              href="index.html"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-lightgreen"
+            >
+              <span>&larr; Beranda</span>
+            </a>
+          </div>
+
+          <!-- Akses Kelola Pendaftaran bagi yang sudah daftar -->
+          <div class="pt-4 border-t border-white/10 w-full max-w-[480px]">
+            <p class="text-xs text-white/60 leading-relaxed">
+              Sudah pernah mendaftar sebelum penutupan?
+              <button
+                type="button"
+                id="closedScreenManageBtn"
+                class="inline-block whitespace-nowrap text-lightergreen font-semibold underline underline-offset-4 hover:text-white transition-colors cursor-pointer ml-1"
+              >
+                Cek atau ubah data &rarr;
+              </button>
+            </p>
+          </div>
+        </div>
+      </section>
 
       <!-- SECTION: PENDAFTARAN (STEPPER & FORM) -->
       <div id="registrationSection" class="w-full">
@@ -823,6 +898,17 @@
       const editModeBanner = document.getElementById("editModeBanner");
       const editModeApplicantName = document.getElementById("editModeApplicantName");
       const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+      // Registration Deadline & Closed State Elements
+      const REGISTRATION_DEADLINE = new Date("2026-09-18T00:00:00+07:00").getTime();
+      const closedScreenSection = document.getElementById("closedScreenSection");
+      const closedScreenManageBtn = document.getElementById("closedScreenManageBtn");
+      const formTitleContainer = document.getElementById("formTitleContainer");
+      const formCountdownWrapper = document.getElementById("formCountdownWrapper");
+      const formCountdownDigits = document.getElementById("formCountdownDigits");
+      const formStatusBadge = document.getElementById("formStatusBadge");
+      const formStatusDot = document.getElementById("formStatusDot");
+      const formStatusText = document.getElementById("formStatusText");
 
       // Manage Section Elements
       const manageVerifyCard = document.getElementById("manageVerifyCard");
@@ -1618,6 +1704,7 @@
       }
 
       if (openManageModalBtn) openManageModalBtn.addEventListener("click", openManageModal);
+      if (closedScreenManageBtn) closedScreenManageBtn.addEventListener("click", openManageModal);
       if (closeManageModalBtn) closeManageModalBtn.addEventListener("click", closeManageModal);
 
       if (manageModal) {
@@ -1862,6 +1949,7 @@
 
         goToStep(1);
         announce("Mode Ubah Data aktif. Silakan perbarui data Anda dan kirim kembali.");
+        updateFormStatusUI();
       }
 
       function cancelEditMode(resetAll = false) {
@@ -1888,6 +1976,7 @@
           goToStep(1);
         }
         updateClearDraftBtnVisibility();
+        updateFormStatusUI();
       }
 
       if (btnStartEdit) {
@@ -2000,6 +2089,15 @@
         e.preventDefault();
         clearSubmitError();
 
+        if (!isEditMode && isRegistrationClosed()) {
+          showSubmitError(
+            "<strong>Pendaftaran Telah Ditutup.</strong><br />Masa pendaftaran calon pengurus PROTIC 2026/2027 telah resmi berakhir pada pukul 24:00 WIB.",
+            "Pendaftaran telah ditutup."
+          );
+          updateFormStatusUI();
+          return;
+        }
+
         // Validate all 3 steps
         if (!validateStep(1)) {
           goToStep(1);
@@ -2074,6 +2172,15 @@
       }
 
       function executeFormSubmit(formData) {
+        if (!isEditMode && isRegistrationClosed()) {
+          showSubmitError(
+            "<strong>Pendaftaran Telah Ditutup.</strong><br />Masa pendaftaran calon pengurus PROTIC 2026/2027 telah resmi berakhir pada pukul 24:00 WIB.",
+            "Pendaftaran telah ditutup."
+          );
+          updateFormStatusUI();
+          return;
+        }
+
         setLoading(true);
         announce(isEditMode ? "Menyimpan perubahan data pendaftaran..." : "Mengirim formulir pendaftaran, mohon tunggu...");
 
@@ -2173,10 +2280,101 @@
         }
       }
 
+      // Registration Deadline & Closed State Handler
+      function isRegistrationClosed() {
+        return Date.now() >= REGISTRATION_DEADLINE;
+      }
+
+      function updateFormStatusUI() {
+        const now = Date.now();
+        const diff = REGISTRATION_DEADLINE - now;
+
+        if (diff <= 0) {
+          // Status: Ditutup
+          if (formCountdownWrapper) formCountdownWrapper.classList.add("hidden");
+          if (formStatusDot) {
+            formStatusDot.classList.remove("bg-lightgreen", "animate-pulse");
+            formStatusDot.classList.add("bg-rose-500");
+          }
+          if (formStatusText) {
+            formStatusText.textContent = "Ditutup";
+            formStatusText.classList.remove("text-lightergreen");
+            formStatusText.classList.add("text-rose-300");
+          }
+          if (formStatusBadge) {
+            formStatusBadge.classList.remove("bg-lightgreen/10", "border-lightgreen/25");
+            formStatusBadge.classList.add("bg-rose-500/10", "border-rose-500/25");
+          }
+
+          // Jika user TIDAK sedang dalam mode edit (isEditMode)
+          if (!isEditMode) {
+            if (registrationSection) registrationSection.classList.add("hidden");
+            if (formTitleContainer) formTitleContainer.classList.add("hidden");
+            if (closedScreenSection) closedScreenSection.classList.remove("hidden");
+          } else {
+            // Sedang ubah data: biarkan registrationSection tampil dengan editModeBanner
+            if (closedScreenSection) closedScreenSection.classList.add("hidden");
+            if (formTitleContainer) formTitleContainer.classList.add("hidden");
+            if (registrationSection) registrationSection.classList.remove("hidden");
+          }
+          return true; // Expired
+        }
+
+        // Status: Masih Aktif
+        if (formCountdownWrapper) formCountdownWrapper.classList.remove("hidden");
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const formatted = [
+          String(hours).padStart(2, "0"),
+          String(minutes).padStart(2, "0"),
+          String(seconds).padStart(2, "0")
+        ].join(" : ");
+
+        if (formCountdownDigits) formCountdownDigits.textContent = formatted;
+        return false;
+      }
+
       // Inisialisasi awal saat halaman dibuka
       loadDraft();
       updateDivisionUI();
       updateStepperVisuals();
+
+      // Inisialisasi status deadline
+      const formTimerExpired = updateFormStatusUI();
+      if (!formTimerExpired) {
+        const formInterval = setInterval(() => {
+          if (updateFormStatusUI()) {
+            clearInterval(formInterval);
+          }
+        }, 1000);
+      }
+
+      // Buka otomatis modal kelola pendaftaran jika diakses via tautan kelola (form.html?manage=true / #manage)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("manage") === "true" || window.location.hash === "#manage") {
+          setTimeout(() => {
+            openManageModal();
+          }, 50);
+        }
+      } catch (e) {}
+
+      // Tangani pendaftar yang diverifikasi di Beranda dan ingin mengubah data di form.html
+      try {
+        const redirectEdit = sessionStorage.getItem("protic_edit_applicant");
+        if (redirectEdit) {
+          sessionStorage.removeItem("protic_edit_applicant");
+          const parsed = JSON.parse(redirectEdit);
+          if (parsed && parsed.data) {
+            currentVerifiedPin = parsed.pin || null;
+            setTimeout(() => {
+              startEditMode(parsed.data);
+            }, 60);
+          }
+        }
+      } catch (e) {}
     </script>
   </body>
 </html>

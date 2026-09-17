@@ -82,12 +82,35 @@
             <h2 class="section-title font-cinzel text-3xl sm:text-4xl lg:text-5xl font-bold uppercase leading-tight">
               PROGRAMMING TECHNOLOGY INFORMATICS CLUB
             </h2>
+
+            <!-- COUNTDOWN TIMER / STATUS BADGE -->
+            <div id="countdownWrapper" class="flex flex-col items-center lg:items-start gap-2">
+              <div id="countdownBadge" class="countdown-badge" role="timer" aria-live="polite">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-amberPulse shrink-0" aria-hidden="true"></span>
+                <span>Ditutup dalam:</span>
+                <span id="countdownDigits" class="timer-digits">--:--:--</span>
+              </div>
+            </div>
+
             <button
+              id="joinBtn"
               class="join-btn w-40 h-11 rounded-full bg-gradient-to-b from-lightergreen to-[#23824C] border border-darkgreen shadow-button text-white font-poppins text-lg font-semibold uppercase flex items-center justify-center cursor-pointer transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow focus:outline-none focus:ring-2 focus:ring-lightergreen"
-              onclick="window.location.href = 'form.html'"
             >
               Join Now
             </button>
+
+            <!-- Link Cek / Ubah Data di Beranda (Membuka Modal Langsung) -->
+            <p class="text-xs text-white/60 text-center lg:text-left -mt-2 leading-relaxed">
+              Sudah pernah mendaftar?
+              <button
+                type="button"
+                id="openManageModalBtn"
+                class="inline-block whitespace-nowrap text-lightergreen font-semibold underline underline-offset-4 hover:text-white transition-colors ml-1 cursor-pointer"
+              >
+                Cek atau ubah data &rarr;
+              </button>
+            </p>
+
             <div class="divider w-full max-w-[500px] h-px bg-gradient-to-r from-darkgreen to-black shadow-glow"></div>
           </div>
 
@@ -371,6 +394,169 @@
           </div>
         </div>
       </footer>
+
+      <!-- MODAL KELOLA PENDAFTARAN LANGSUNG DI BERANDA (Native <dialog>) -->
+      <dialog id="manageModal" class="confirm-modal max-w-[500px]" aria-labelledby="manageModalTitle">
+        <div class="p-5 sm:p-6 flex flex-col gap-4">
+          <div class="flex items-center justify-between border-b border-lightgreen/25 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg">🔍</span>
+              <h3 id="manageModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-lightergreen">Kelola Data Pendaftaran</h3>
+            </div>
+            <button
+              type="button"
+              id="closeManageModalBtn"
+              class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white flex items-center justify-center text-xs font-bold cursor-pointer transition-colors"
+              aria-label="Tutup dialog"
+            >
+              ✕
+            </button>
+          </div>
+
+          <!-- KARTU 1: VERIFIKASI IDENTITAS (NPM + 4 DIGIT WA) -->
+          <div id="manageVerifyCard" class="flex flex-col gap-3.5">
+            <p class="text-xs text-white/70 leading-relaxed">
+              Masukkan NPM dan 4 digit terakhir nomor WhatsApp yang Anda gunakan saat mendaftar untuk melihat, mengubah, atau membatalkan pendaftaran.
+            </p>
+
+            <div id="verifyError" class="hidden text-[#ff6b6b] bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-md py-2.5 px-3 text-xs font-medium animate-fadeIn" role="alert"></div>
+
+            <div class="flex flex-col gap-1.5">
+              <label for="verifyNpm" class="text-xs sm:text-sm font-semibold uppercase text-white/90">NPM / NIM <span class="text-red-500">*</span></label>
+              <input
+                type="text"
+                id="verifyNpm"
+                class="form-input !h-[50px]"
+                placeholder="Contoh: 230102001"
+                inputmode="numeric"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <div class="flex items-center justify-between">
+                <label for="verifyPin" class="text-xs sm:text-sm font-semibold uppercase text-white/90">PIN (4 Digit Terakhir No. WhatsApp) <span class="text-red-500">*</span></label>
+                <span class="text-[11px] text-white/50">Contoh: 7890</span>
+              </div>
+              <input
+                type="password"
+                id="verifyPin"
+                class="form-input !h-[50px] tracking-widest text-center text-lg font-mono font-bold"
+                maxlength="4"
+                placeholder="••••"
+                inputmode="numeric"
+                autocomplete="off"
+              />
+            </div>
+
+            <button
+              type="button"
+              id="btnCheckRegistration"
+              class="w-full py-3 px-5 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-sm sm:text-base shadow-button hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+            >
+              <span id="btnCheckText">🔍 Temukan Data Pendaftaran</span>
+              <span id="btnCheckLoading" class="hidden inline-flex items-center">
+                <svg class="w-5 h-5 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Memeriksa...
+              </span>
+            </button>
+          </div>
+
+          <!-- KARTU 2: PREVIEW FIRST CARD (RINGKASAN DATA TERVERIFIKASI) -->
+          <div id="managePreviewCard" class="hidden flex flex-col gap-3.5 animate-fadeIn">
+            <div class="flex items-start justify-between border-b border-white/10 pb-2">
+              <div>
+                <div class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full bg-lightgreen/20 text-lightergreen font-semibold text-[10px] border border-lightgreen/40 mb-1">
+                  <span>✓ Data Terverifikasi</span>
+                </div>
+                <h4 id="cardApplicantName" class="text-base sm:text-lg font-bold text-white tracking-wide"></h4>
+                <p id="cardApplicantNpm" class="text-xs text-white/60 font-mono"></p>
+              </div>
+              <button type="button" id="btnExitManage" class="py-1 px-2.5 rounded bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-xs font-semibold cursor-pointer transition-colors">
+                Ganti NPM
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs bg-black/40 border border-white/10 rounded-lg p-3">
+              <div>
+                <span class="text-white/50 block text-[11px]">Kelas & Semester:</span>
+                <span id="cardClassSemester" class="font-semibold text-white text-xs"></span>
+              </div>
+              <div>
+                <span class="text-white/50 block text-[11px]">Nomor WhatsApp:</span>
+                <span id="cardWhatsapp" class="font-semibold text-white text-xs font-mono"></span>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px]">Email Aktif:</span>
+                <span id="cardEmail" class="font-semibold text-white text-xs break-all"></span>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px] mb-1">Pilihan Divisi:</span>
+                <div class="flex flex-wrap gap-1.5" id="cardDivisionsBadge"></div>
+              </div>
+              <div class="sm:col-span-2">
+                <span class="text-white/50 block text-[11px]">Tautan Portofolio / CV:</span>
+                <a id="cardPortfolioLink" href="#" target="_blank" rel="noopener noreferrer" class="text-lightergreen hover:underline break-all block mt-0.5 font-mono text-[11px]"></a>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-2.5 pt-1">
+              <button
+                type="button"
+                id="btnStartEdit"
+                class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs sm:text-sm shadow-button hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>✏️ Ubah Data di Formulir</span>
+              </button>
+              <button
+                type="button"
+                id="btnOpenDeleteModal"
+                class="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-300 hover:text-red-200 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>🗑️ Hapus Pendaftaran</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- NOTIFIKASI SUKSES HAPUS -->
+          <div id="deleteSuccessBanner" class="hidden p-5 rounded-xl bg-black/60 border border-emerald-400/40 flex flex-col items-center gap-3 text-center animate-fadeIn">
+            <div class="w-10 h-10 rounded-full bg-lightgreen/20 text-lightergreen border border-lightgreen/40 flex items-center justify-center text-xl font-bold">✓</div>
+            <h4 class="text-sm sm:text-base font-bold text-white">Pendaftaran Berhasil Dihapus</h4>
+            <p class="text-xs text-white/80 max-w-[320px] leading-relaxed">Seluruh data pendaftaran Anda telah berhasil dihapus secara permanen dari sistem PROTIC.</p>
+            <button type="button" id="btnBackToNewRegister" class="mt-1 py-2 px-4 rounded-xl bg-gradient-to-r from-lightgreen to-lightergreen text-darkgreen font-bold text-xs hover:brightness-110 shadow-glow cursor-pointer transition-all">
+              Tutup
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <!-- MODAL KONFIRMASI HAPUS BAHAYA (Native <dialog>) -->
+      <dialog id="deleteModal" class="confirm-modal" aria-labelledby="deleteModalTitle">
+        <div class="p-6 flex flex-col gap-4">
+          <div class="border-b border-red-500/30 pb-2 flex items-center gap-2 text-red-400">
+            <span class="text-xl">⚠️</span>
+            <h3 id="deleteModalTitle" class="font-cinzel text-base sm:text-lg font-bold text-red-400">Konfirmasi Hapus Pendaftaran</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-white/85 leading-relaxed">
+            Apakah Anda yakin ingin menghapus pendaftaran atas nama <strong id="deleteTargetName" class="text-white"></strong> (NPM: <span id="deleteTargetNpm" class="font-mono text-lightergreen"></span>)?
+          </p>
+          <div class="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-xs text-red-200/90 leading-relaxed">
+            ⚠️ <strong>Tindakan ini bersifat permanen (Hard Delete).</strong> Semua data Anda akan dihapus dari Google Sheets.
+          </div>
+          <div class="flex gap-3 justify-end mt-2">
+            <button type="button" id="deleteCancelBtn" class="flex-1 py-2.5 px-4 rounded-full bg-transparent border border-white/30 text-white/85 font-medium text-xs sm:text-sm hover:bg-white/10 cursor-pointer transition-colors">
+              Batal
+            </button>
+            <button type="button" id="deleteConfirmBtn" class="flex-[1.2] py-2.5 px-4 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer">
+              <span id="deleteBtnText">Ya, Hapus Sekarang</span>
+              <span id="deleteBtnLoading" class="hidden inline-flex items-center">
+                <svg class="w-4 h-4 mr-1.5 align-middle animate-spin inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Menghapus...
+              </span>
+            </button>
+          </div>
+        </div>
+      </dialog>
     </main>
 
     <script src="script.js" defer></script>

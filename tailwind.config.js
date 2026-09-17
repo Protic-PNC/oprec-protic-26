@@ -19,6 +19,22 @@ module.exports = {
         bgdarker: "#444444",
         textgray: "rgba(255, 255, 255, 0.75)",
         surface: "#0d1a13",
+        // Status & Countdown Semantic Tokens
+        warning: {
+          DEFAULT: "#F59E0B",
+          light: "#FCD34D",
+          dark: "#B45309",
+        },
+        closed: {
+          DEFAULT: "#FB7185",
+          bg: "rgba(225, 29, 72, 0.12)",
+          border: "rgba(225, 29, 72, 0.35)",
+        },
+        muted: {
+          surface: "#141C17",
+          border: "rgba(255, 255, 255, 0.12)",
+          text: "rgba(255, 255, 255, 0.4)",
+        },
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
@@ -32,6 +48,8 @@ module.exports = {
         button: "0 -1px 13.6px rgba(108, 184, 141, 0.43)",
         hero: "0 6px 69.3px rgba(3, 56, 26, 0.52), 0 1px 16.7px rgba(255, 255, 255, 0.15)",
         modal: "0 16px 48px rgba(0, 0, 0, 0.75), 0 0 24px rgba(73, 209, 133, 0.25)",
+        amber: "0 0 16px rgba(245, 158, 11, 0.35)",
+        closed: "0 0 16px rgba(225, 29, 72, 0.25)",
       },
       borderRadius: {
         sm: "6px",

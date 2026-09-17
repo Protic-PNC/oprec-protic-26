@@ -221,6 +221,48 @@
     border-radius: 10px;
     padding: 14px 16px;
   }
+
+  /* Countdown Timer Badge Component */
+  .countdown-badge {
+    @apply inline-flex items-center gap-2 py-1.5 px-3.5 sm:px-4 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: #FCD34D;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
+  }
+  .countdown-badge .timer-digits {
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+  .countdown-badge.expired {
+    background: rgba(225, 29, 72, 0.12);
+    border-color: rgba(225, 29, 72, 0.35);
+    color: #FB7185;
+    box-shadow: 0 0 16px rgba(225, 29, 72, 0.2);
+  }
+
+  /* Disabled / Closed Registration Button */
+  .join-btn.btn-closed,
+  button.btn-closed {
+    background: #18221c !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    transform: none !important;
+    filter: grayscale(0.6);
+  }
+
+  /* Closed Screen Card in form.html */
+  .closed-screen-card {
+    background: linear-gradient(180deg, #10291d 0%, #08160f 50%, #050e0a 100%);
+    border: 1px solid rgba(73, 209, 133, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 24px rgba(73, 209, 133, 0.15);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -264,4 +306,19 @@
 
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes amberPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+}
+
+.animate-amberPulse {
+  animation: amberPulse 1.5s ease-in-out infinite;
 }
